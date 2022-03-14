@@ -11,7 +11,7 @@
 
 ### 🎨 와이어프레임 수정 및 보완
 
-![와이어프레임수정](./assets/README_0314/와이어프레임수정.png) 
+![wireframe](./assets/README_0314/wireframe.PNG) 
 
 [Figma](https://www.figma.com/file/eBbMvojkhqel1q7g6ITRcJ/%ED%8A%B9%ED%99%94PJT?node-id=0%3A1)
 
