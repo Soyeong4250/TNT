@@ -1,26 +1,34 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+      <header>
+        <main-header></main-header>
+        <div></div> 
+        <!--공지사항 및 로그인-->
+        <div></div>
+      </header>
+      
+      <router-view></router-view>
+      
+      바닥
+      <main-footer>
+
+      </main-footer>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import mainHeader from "@/components/main-header.vue"
+import mainFooter from "@/components/main-footer.vue"
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    mainHeader,
+    mainFooter
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
