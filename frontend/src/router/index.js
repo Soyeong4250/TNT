@@ -1,18 +1,23 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Main from "@/views/MainPage.vue"
+import { createRouter, createWebHistory } from "vue-router";
+import Main from "@/views/MainPage.vue";
+import Search from "@/views/SearchPage.vue";
 
 const routes = [
-    {
-      path: '/',
-      name: 'Main',
-      component: Main
-    }
-]
-  
-  const router = createRouter({
-    history: createWebHistory(process.env.BASE_URL),
-    routes
-  })
-  
-  export default router
-  
+  {
+    path: "/",
+    name: "Main",
+    component: Main,
+  },
+  {
+    path: "/search",
+    name: "Search",
+    component: Search,
+  },
+];
+
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
+  routes,
+});
+
+export default router;
