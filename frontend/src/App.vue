@@ -1,11 +1,6 @@
 <template>
+      <main-header></main-header>
   <div>
-      <header>
-        <main-header></main-header>
-        <div></div> 
-        <!--공지사항 및 로그인-->
-        <div></div>
-      </header>
       
       <router-view></router-view>
       
