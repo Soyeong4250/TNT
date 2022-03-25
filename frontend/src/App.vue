@@ -10,7 +10,6 @@
 
     <router-view></router-view>
 
-    바닥
     <main-footer> </main-footer>
   </div>
 </template>
