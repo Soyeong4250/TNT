@@ -1,29 +1,34 @@
 <template>
-      <main-header></main-header>
+  <main-header></main-header>
   <div>
-      
-      <router-view></router-view>
-      
-      바닥
-      <main-footer>
+    <header>
+      <main-header></main-header>
+      <category-btn></category-btn>
+      <div></div>
+      <!--공지사항 및 로그인-->
+      <div></div>
+    </header>
 
-      </main-footer>
+    <router-view></router-view>
+
+    바닥
+    <main-footer> </main-footer>
   </div>
 </template>
 
 <script>
-import mainHeader from "@/components/main-header.vue"
-import mainFooter from "@/components/main-footer.vue"
+import mainHeader from "@/components/main-header.vue";
+import mainFooter from "@/components/main-footer.vue";
+import categoryBtn from "@/components/category-btn.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     mainHeader,
-    mainFooter
-  }
-}
+    mainFooter,
+    categoryBtn,
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
