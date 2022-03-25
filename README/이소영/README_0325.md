@@ -16,7 +16,7 @@
 
 이유 : 뉴스 기사를 다루는 서비스로, 신뢰가 중요하다고 생각해 ```신뢰```를 상징하는 ```파란색```으로 서비스의 컨셉 색상을 잡음
 
-![NoticeSample.png](./assets/README_0325/NoticeSample.png)
+![noticeSample.png](./assets/README_0325/noticeSample.png)
 
 
 
