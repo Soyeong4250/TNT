@@ -1,5 +1,5 @@
 # API 명세서
-- ### 기본 포트 : http://localhost:9999/api/v1  |   http://j6b206.p.ssafy.io:9999/api/v1
+- ### 기본 포트 : http://localhost:9999/api  |   http://j6b206.p.ssafy.io:9999/api
 [회원](#회원)  
 [공지사항 게시판](#공지사항-게시판)  
 [뉴스](#뉴스)
