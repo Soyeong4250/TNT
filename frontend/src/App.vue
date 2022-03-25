@@ -1,10 +1,12 @@
 <template>
   <div>
       <header>
-        <main-header></main-header>
-        <div></div> 
         <!--공지사항 및 로그인-->
-        <div></div>
+        <div>
+          <router-link to="/notice">공지사항</router-link>
+        </div>
+        <div></div> 
+        <main-header></main-header>
       </header>
       
       <router-view></router-view>
