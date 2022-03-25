@@ -2,7 +2,6 @@
   <main-header></main-header>
   <div>
     <header>
-      <main-header></main-header>
       <category-btn></category-btn>
       <div></div>
       <!--공지사항 및 로그인-->
