@@ -1,4 +1,5 @@
 <template>
+  <main-header></main-header>
   <div>
     <header>
       <main-header></main-header>
