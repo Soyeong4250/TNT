@@ -1,6 +1,6 @@
 <template>
   <main-header></main-header>
-  <div>
+  <div style="overflow: auto">
     <header>
       <category-btn></category-btn>
       <dailykeyword/>
@@ -32,4 +32,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+</style>
