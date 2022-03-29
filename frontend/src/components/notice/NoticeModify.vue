@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import NoticeWriteForm from "@/components/notice/child/NoticeWriteFrom.vue"
+import NoticeWriteForm from "@/components/notice/child/NoticeWriteForm.vue"
 
 export default {
 	components: {

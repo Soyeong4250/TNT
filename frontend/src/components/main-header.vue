@@ -1,15 +1,64 @@
 <template>
-    <div>
-        헤더
+    <div id="header">
+        <img @click="clickMain" id="logo" src="@/assets/logo.png" alt="로고 로딩 오류"/>
+
+        <span id=header-btn>
+            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                <router-link to="/notice">
+                    <button type="button" class="btn btn-outline-dark header-text">공지사항</button>
+                </router-link>
+
+                <router-link to="/user">
+                    <button type="button" class="btn btn-outline-dark header-text">로그인</button>                
+                </router-link>
+
+                <router-link to="/user">
+                    <button type="button" class="btn btn-outline-dark header-text">로그아웃</button>
+                </router-link>
+            </div>
+        </span>
     </div>
+        <div id="header-title" class = "">
+            <span @click="clickMain" id="header-title-text">Today News Talk</span>
+        </div>
 </template>
 
 <script>
-export default {
+export default {    
+    setup(){        
+        const clickMain = () =>{
+            location.href = "/"
+        }
+        return{
+            clickMain,
+        }
+    }
 
 }
 </script>
 
 <style>
-
+#header{
+    margin-top: 1em;    
+}
+#logo{
+    margin-left: 1em;
+    width: 1.5em;
+    height: 1.5em;
+}
+#header-btn{
+    float: right;
+}
+#header-title{
+    margin-top: 1em;
+    font-size: 2em;
+    text-align: center;
+    font-weight: bold;    
+}
+#header-title-text{
+    cursor: pointer;
+}
+.header-text{
+    margin-right: 2em;   
+}
 </style>
