@@ -8,7 +8,7 @@
                     <button type="button" class="btn btn-outline-dark header-text">공지사항</button>
                 </router-link>
 
-                <router-link to="/user">
+                <router-link to="/login">
                     <button type="button" class="btn btn-outline-dark header-text">로그인</button>                
                 </router-link>
 

@@ -1,37 +1,20 @@
 <template>
   <main-header></main-header>
-  <div style="overflow: auto">
-    <header>
-      <category-btn></category-btn>
-      <dailykeyword/>
-      <div></div>
-      <!--공지사항 및 로그인-->
-      <div></div>
-    </header>
-
-    <router-view></router-view>
-
-    <main-footer> </main-footer>
-  </div>
+  <router-view></router-view>
+  <main-footer> </main-footer>
 </template>
 
 <script>
 import mainHeader from "@/components/main-header.vue";
 import mainFooter from "@/components/main-footer.vue";
-import categoryBtn from "@/components/category-btn.vue";
-import dailykeyword from "@/components/daily-keyword.vue";
 
 export default {
   name: "App",
   components: {
     mainHeader,
     mainFooter,
-    categoryBtn,
-    dailykeyword,
   },
 };
 </script>
 
-<style>
-
-</style>
+<style></style>

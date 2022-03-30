@@ -47,10 +47,10 @@ public class UserController {
      * 액세스 토큰이 없다면 에러 발생
      */
     @GetMapping("/{id}")
-    public ResponseEntity<? extends BaseResponseBody> getUserInfo(@PathVariable String userId, Authentication authentication) {
+    public ResponseEntity<? extends BaseResponseBody> getUserInfo(@PathVariable String id, Authentication authentication) {
 
         TNTUserDetails userDetails = (TNTUserDetails) authentication.getDetails();
-        User user = userService.getUserByUserId(userId);
+        User user = userService.getUserByUserId(id);
 
         return ResponseEntity.status(200).body(UserInfoGetRes.of(user));
     }

@@ -1,9 +1,9 @@
 <template>
   <div class="d-flex justify-content-center">
     <form @submit="onSubmit">
-    <input name="userId" v-model="userId" />
+    <input name="user_id" v-model="user_id" />
     <span>{{ userIdError }}</span>
-    <input name="password" v-model="password" type="password" />
+    <input name="user_pwd" v-model="user_pwd" type="password" />
     <span>{{ passwordError }}</span>
     <button type="submit" class="login-btn d-block">로그인</button>
     </form>
@@ -12,29 +12,35 @@
 
 <script>
 import { useForm, useField } from 'vee-validate';
+import { useStore } from "vuex";
 import * as yup from 'yup';
 export default {
     name : 'UserLogin',
     setup(){
+      const store = useStore();
       const schema = yup.object({
-      userId: yup.string().required(),
-      password: yup.string().required().min(4),
+      user_id: yup.string().required("아이디를 입력하세요"),
+      user_pwd: yup.string().required("비밀번호를 입력하세요").min(6, "비밀번호는 6자리 이상이어야합니다."),
     });
-       useForm({
-      validationSchema: schema,
-    });
-    const { handleSubmit } = useForm();
+      
+    const { handleSubmit } = useForm({validationSchema: schema,});
     const onSubmit = handleSubmit(values => {
-      alert(JSON.stringify(values, null, 2));
+      const payload = {
+        user_id: values.user_id,
+        user_pwd: values.user_pwd,
+      };
+      store.dispatch("accountStore/getToken", payload);
     });
     // No need to define rules for fields
-    const { value: userId, errorMessage: userIdError } = useField('userId');
-    const { value: password, errorMessage: passwordError } = useField('password');
+    const { value: user_id, errorMessage: userIdError } = useField('user_id');
+    const { value: user_pwd, errorMessage: passwordError } = useField('user_pwd');
+
+    
     return {
       onSubmit,
-      userId,
+      user_id,
       userIdError,
-      password,
+      user_pwd,
       passwordError,
     };
     }
