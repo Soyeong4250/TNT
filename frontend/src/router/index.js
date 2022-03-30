@@ -5,6 +5,13 @@ import Login from "@/views/users/UserLogin.vue";
 import Register from "@/views/users/UserRegister.vue"
 import FindId from "@/views/users/FindId.vue";
 import FindPwd from "@/views/users/FindPwd.vue";
+
+import NoticePage from "@/views/NoticePage.vue";
+import NoticeList from "@/components/notice/NoticeList.vue";
+import NoticeWrite from "@/components/notice/NoticeWrite.vue";
+import NoticeView from "@/components/notice/NoticeView.vue";
+import NoticeModify from "@/components/notice/NoticeModify.vue";
+
 const routes = [
   {
     path: "/",
