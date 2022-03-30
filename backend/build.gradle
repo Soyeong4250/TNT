@@ -7,7 +7,7 @@ buildscript {
 plugins {
     id 'org.springframework.boot' version '2.5.10'
     id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
 
@@ -43,9 +43,8 @@ dependencies {
     runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
     annotationProcessor 'org.projectlombok:lombok'
     
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
-
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation("com.google.guava:guava:29.0-jre")
     annotationProcessor("com.google.guava:guava:29.0-jre")
 
@@ -74,7 +73,7 @@ configurations {
 }
 
 tasks.named('test') {
-    useJUnitPlatform()
+	useJUnitPlatform()
 }
 
 compileQuerydsl.doFirst {
