@@ -1,18 +1,38 @@
 <template>
     <div id="header">
-        <img id="logo" src="@/assets/logo.png" alt="로고 로딩 오류"/>
+        <img @click="clickMain" id="logo" src="@/assets/logo.png" alt="로고 로딩 오류"/>
 
-        <span id=header_btn>
-            <span class="header_text">공지사항</span>   
-            <span class="header_text">로그인</span>
-            <span class="header_text">로그아웃</span>
+        <span id=header-btn>
+            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                <router-link to="/notice">
+                    <button type="button" class="btn btn-outline-dark header-text">공지사항</button>
+                </router-link>
+
+                <router-link to="/login">
+                    <button type="button" class="btn btn-outline-dark header-text">로그인</button>                
+                </router-link>
+
+                <router-link to="/user">
+                    <button type="button" class="btn btn-outline-dark header-text">로그아웃</button>
+                </router-link>
+            </div>
         </span>
     </div>
-        <div id="header_title">Today News Talk</div>
+        <div id="header-title" class = "">
+            <span @click="clickMain" id="header-title-text">Today News Talk</span>
+        </div>
 </template>
 
 <script>
-export default {
+export default {    
+    setup(){        
+        const clickMain = () =>{
+            location.href = "/"
+        }
+        return{
+            clickMain,
+        }
+    }
 
 }
 </script>
@@ -26,24 +46,19 @@ export default {
     width: 20px;
     height: 20px;
 }
-.header_text{
-    color: aquamarine;
-    cursor: pointer;    
-    position: relative;
-    margin-right: 20px;
-    font-weight: normal;
-    font-size: 20px;
-}
-#header_btn{
+#header-btn{
     float: right;
 }
-.header_text:hover{
-    color: black;
-}
-#header_title{
+#header-title{
     margin-top: 20px;
     font-size: 30px;
-    font-weight: bold;
-    margin-left: 500px;
+    text-align: center;
+    font-weight: bold;    
+}
+#header-title-text{
+    cursor: pointer;
+}
+.header-text{
+    margin-right: 20px;   
 }
 </style>

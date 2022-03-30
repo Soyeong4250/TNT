@@ -14,6 +14,7 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
     // 아래와 같이, Query Method 인터페이스(반환값, 메소드명, 인자) 정의를 하면 자동으로 Query Method 구현됨.
     Optional<User> findByUserId(String userId);
+    Optional<User> findByNameAndEmail(String name, String email);
     // delete할때는 반드시 Transactional annotation을 붙여줘야한다
     @Transactional
     Optional<Integer> deleteByUserId(String userId);
