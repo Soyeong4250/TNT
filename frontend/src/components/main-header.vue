@@ -8,11 +8,7 @@
                     <button type="button" class="btn btn-outline-dark header-text">공지사항</button>
                 </router-link>
 
-<<<<<<< HEAD
                 <router-link to="/login">
-=======
-                <router-link to="/user">
->>>>>>> notice
                     <button type="button" class="btn btn-outline-dark header-text">로그인</button>                
                 </router-link>
 
@@ -43,33 +39,19 @@ export default {
 
 <style>
 #header{
-<<<<<<< HEAD
-    margin-top: 7px;
-}
-#logo{
-    margin-left: 10px;
-    width: 20px;
-    height: 20px;
-=======
     margin-top: 1em;    
 }
 #logo{
     margin-left: 1em;
     width: 1.5em;
     height: 1.5em;
->>>>>>> notice
 }
 #header-btn{
     float: right;
 }
 #header-title{
-<<<<<<< HEAD
-    margin-top: 20px;
-    font-size: 30px;
-=======
     margin-top: 1em;
     font-size: 2em;
->>>>>>> notice
     text-align: center;
     font-weight: bold;    
 }
@@ -77,10 +59,6 @@ export default {
     cursor: pointer;
 }
 .header-text{
-<<<<<<< HEAD
-    margin-right: 20px;   
-=======
     margin-right: 2em;   
->>>>>>> notice
 }
 </style>
