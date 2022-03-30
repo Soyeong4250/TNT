@@ -11,7 +11,7 @@ plugins {
     id 'java'
 }
 
-group = 'com.example'
+group = 'com.ssafy'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
@@ -51,6 +51,7 @@ dependencies {
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.4.5'
 }
 def querydslDir = "src/main/generated/querydsl"
 
