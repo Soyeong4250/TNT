@@ -36,6 +36,33 @@ const routes = [
     name: "FindPwd",
     component: FindPwd,
   },
+  {
+    path: '/notice',
+    name: 'NoticePage',
+    component: NoticePage,
+    redirect: "/notice/list",
+    children: [
+      {
+        path: "list",
+        name: "NoticeList",
+        component: NoticeList,
+      },
+      {
+        path: "regist",
+        name: "NoticeWrite",
+        component: NoticeWrite,
+      },
+      {
+        path: "detail/:no",
+        name: "NoticeView",
+        component: NoticeView,
+      },
+      {
+        path: "modify/:no",
+        name: "NoticeModify",
+        component: NoticeModify,
+      }],
+  },
 ]
 
 const router = createRouter({
@@ -44,3 +71,4 @@ const router = createRouter({
 });
 
 export default router;
+  

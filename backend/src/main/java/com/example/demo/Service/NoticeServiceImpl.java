@@ -1,13 +1,13 @@
-package com.ssafy.tnt.api.service;
+package com.example.demo.Service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ssafy.tnt.db.entity.Notice;
-import com.ssafy.tnt.db.entity.NoticeDTO;
-import com.ssafy.tnt.db.repository.NoticeRepository;
+import com.example.demo.db.entity.Notice;
+import com.example.demo.db.entity.NoticeDTO;
+import com.example.demo.db.repository.NoticeRepository;
 
 @Service
 public class NoticeServiceImpl implements NoticeService{

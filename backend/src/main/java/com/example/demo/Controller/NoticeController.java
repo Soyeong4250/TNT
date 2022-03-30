@@ -1,28 +1,29 @@
-package com.ssafy.tnt.api.controller;
+package com.example.demo.Controller;
 
-import com.ssafy.tnt.db.repository.NoticeRepository;
+import java.util.List;
+
+import com.example.demo.db.repository.NoticeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.ssafy.tnt.api.service.NoticeService;
-import com.ssafy.tnt.db.entity.Notice;
-import com.ssafy.tnt.db.entity.NoticeDTO;
+import com.example.demo.Service.NoticeService;
+import com.example.demo.db.entity.Notice;
+import com.example.demo.db.entity.NoticeDTO;
 
-import java.util.List;
 
 
 @CrossOrigin(origins = {"*"}, maxAge = 6000)
 @RestController
-@RequestMapping("/api/notice")
+@RequestMapping("/api/v1/notice")
 public class NoticeController {
-
+	
 	@Autowired
 	NoticeService noticeService;
 	@Autowired
 	private NoticeRepository noticeRepository;
-
+	
 	@GetMapping
 	public ResponseEntity<List<Notice>> findAllNotice(){
 		System.out.println("접속");
@@ -45,5 +46,5 @@ public class NoticeController {
 	public ResponseEntity<Notice> deleteNotice(@PathVariable("no") int no){
 		return new ResponseEntity<>(noticeService.deleteNotice(no), HttpStatus.OK);
 	}
-
+	
 }

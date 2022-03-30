@@ -1,6 +1,6 @@
 <template>
-  <div class="mx-auto">
-    <b-button-group style="border-style: outset">
+  <div> 
+    <b-button-group style="border-style: outset; width:100%">
       <b-button variant="light" @click="searchPolitics">정치</b-button>
       <b-button variant="light" @click="searchEconomy">경제</b-button>
       <b-button variant="light" @click="searchSociety">사회</b-button>

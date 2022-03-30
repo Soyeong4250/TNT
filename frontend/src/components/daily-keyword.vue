@@ -1,32 +1,35 @@
 <template>
     <div>
-        <b-button class = "button" pill variant="outline-warning" :key="key.num" v-for="key in keywords"
-        @click="functioncall">
-            {{key.category}}
-        </b-button>
-    </div>
+        <div>
+            <b-button class = "button" pill variant="outline-warning" :key="key.num" v-for="key in keywords"
+            @click="functioncall">
+                {{key.category}}
+            </b-button>
+        </div>
 
-    <!-- 내용 -->
-    <div id = "keyword-box">
-        <p>오늘의 키워드</p>
-        <div id="keyword-inbox">
-            <div class = "rank-box" v-for = "rank in ranks5" :key = "rank.rank" >
-                <!-- 순위 가져오기-->
-                <b-button class="ranking" pill variant = "secondary"> 
-                {{ rank.rank }}   {{rank.content}} {{rank.change}}
-                <!-- 순위 변화는 나중에 함수 구현 -->
-                </b-button>
+        <!-- 내용 -->
+        <div id = "keyword-box">
+            <p>오늘의 키워드</p>
+            <div id="keyword-inbox">
+                <div class = "rank-box" v-for = "rank in ranks5" :key = "rank.rank" >
+                    <!-- 순위 가져오기-->
+                    <b-button class="ranking" pill variant = "secondary"> 
+                    {{ rank.rank }}   {{rank.content}} {{rank.change}}
+                    <!-- 순위 변화는 나중에 함수 구현 -->
+                    </b-button>
 
-            </div>
-            <div class ="rank-box2" v-for = "rank in ranks10" :key = "rank.rank" >
-                <!-- 순위 가져오기-->
-                <b-button class="ranking" pill variant = "secondary"> 
-                {{ rank.rank }}   {{rank.content}} {{rank.change}}
-                <!-- 순위 변화는 나중에 함수 구현 -->
-                </b-button>
+                </div>
+                <div class ="rank-box2" v-for = "rank in ranks10" :key = "rank.rank" >
+                    <!-- 순위 가져오기-->
+                    <b-button class="ranking" pill variant = "secondary"> 
+                    {{ rank.rank }}   {{rank.content}} {{rank.change}}
+                    <!-- 순위 변화는 나중에 함수 구현 -->
+                    </b-button>
 
+                </div>
             </div>
         </div>
+        
     </div>
 
 
