@@ -97,11 +97,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .button {
-    margin-right: 30px;
+    margin-right: 40px;
     margin-bottom: 30px;
-    width: 100px;
+    width: 110px;
 }
 
 #keyword-box{
@@ -125,12 +125,12 @@ export default {
     position: relative;
     width : 230px;
     left : 230px;
-    bottom :  290px;
+    bottom : 300px;
 }
 .ranking {
     margin-bottom: 20px;
     margin-left : 30px;
-    width:170px;
+    width:200px;
 
 }
 

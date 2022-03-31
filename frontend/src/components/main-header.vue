@@ -12,8 +12,8 @@
                     <button type="button" class="btn btn-outline-dark header-text">로그인</button>                
                 </router-link>
 
-                <router-link to="/user">
-                    <button type="button" class="btn btn-outline-dark header-text">로그아웃</button>
+                <router-link to="/register">
+                    <button type="button" class="btn btn-outline-dark header-text">회원가입</button>                
                 </router-link>
             </div>
         </span>
