@@ -4,16 +4,16 @@
 
         <span id=header-btn>
             <div class="btn-group" role="group" aria-label="Basic outlined example">
-                <router-link to="/notice">
-                    <button type="button" class="btn btn-outline-dark header-text">공지사항</button>
+                <router-link class="header-router" to="/notice">
+                    <span class="header-text">공지사항</span>
                 </router-link>
 
-                <router-link to="/login">
-                    <button type="button" class="btn btn-outline-dark header-text">로그인</button>                
+                <router-link class="header-router" to="/login">
+                    <span class="header-text">로그인</span>                    
                 </router-link>
 
-                <router-link to="/register">
-                    <button type="button" class="btn btn-outline-dark header-text">회원가입</button>                
+                <router-link class="header-router" to="/register">
+                    <span class="header-text">회원가입</span>
                 </router-link>
             </div>
         </span>
@@ -59,6 +59,23 @@ export default {
     cursor: pointer;
 }
 .header-text{
-    margin-right: 2em;   
+}
+.header-text:hover{
+
+}
+.header-router{
+    width: 150px;
+    margin-right: 50px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+}
+.header-router:hover{
+    text-decoration-color: aqua;
+    color: firebrick;
+    text-decoration: underline;
 }
 </style>

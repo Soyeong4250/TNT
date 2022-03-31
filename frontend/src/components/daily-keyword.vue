@@ -1,8 +1,7 @@
 <template>
     <div>
         <div>
-            <b-button class = "button" pill variant="outline-warning" :key="key.num" v-for="key in keywords"
-            @click="functioncall">
+            <b-button class = "button" pill variant="outline-warning" :key="key.num" v-for="key in keywords">
                 {{key.category}}
             </b-button>
         </div>
@@ -40,9 +39,8 @@
 export default {
 
 
-    data() {
-        return {
-            keywords :[
+    setup() {
+        const keywords =[
                 { category : "전체",
                   num : 1},
                   { category : "정치",
@@ -58,9 +56,8 @@ export default {
                   { category : "오피니언",
                   num : 7},
                   
-            ],
-
-            ranks5 : [{rank:1,
+            ];
+        const ranks5 = [{rank:1,
                     content : "삼성전자",
                     change : 0},
                     {rank:2,
@@ -75,8 +72,8 @@ export default {
                     {rank:5,
                     content : "삼성전자",
                     change : 0},
-                    ],
-                ranks10 : [ {rank:6,
+                    ];
+        const ranks10 = [ {rank:6,
                     content : "삼성전자",
                     change : 0},
                     {rank:7,
@@ -91,7 +88,11 @@ export default {
                     {rank:10,
                     content : "삼성전자",
                     change : 0},
-                ]
+        ];
+        return{
+            keywords,
+            ranks5,
+            ranks10
         }
     }
 }
