@@ -26,7 +26,7 @@ export default {
 
 <style>
 #footer-main{
-  position: absolute;
+  margin-top : 40px;
   bottom: 0px;  
   height: 150px;
   width: 100%;
