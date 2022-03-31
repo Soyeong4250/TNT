@@ -15,12 +15,13 @@
     "core-js": "^3.8.3",
     "dayjs": "^1.11.0",
     "dotenv": "^16.0.0",
+    "mdb-vue-ui-kit": "^1.11.0",
     "vee-validate": "^4.5.10",
     "vue": "^3.2.31",
+    "vue-moment": "^4.1.0",
     "vue-router": "^4.0.13",
     "vuex": "^4.0.2",
-    "yup": "^0.32.11",
-    "vue-moment": "^4.1.0"
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

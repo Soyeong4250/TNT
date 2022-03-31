@@ -2,7 +2,7 @@
   <div id="app">
     <form @submit="onSubmit">
         <div>
-        <input name="user_id" v-model="idCk" @keyup="memberCheck"/>
+        <input name="user_id" v-model="user_id" @keyup="memberCheck"/>
         <span>{{ userIdError }}</span>
         <p v-if="bool" id="check-id">중복된 아이디입니다.</p>
         </div>
@@ -45,7 +45,7 @@ export default {
     name:"UserRegister",
     setup(){
       const schema = yup.object({
-      user_id: yup.string().required("아이디는 필수 기입사항 입니다."),
+      user_id: yup.string().required("아이디를 입력하세요."),
         user_name: yup.string().required("이름은 필수 기입사항 입니다."),
       user_email: yup.string()
         .required("Email 은 필수 기입사항 입니다.")
@@ -56,13 +56,14 @@ export default {
       confirmPassword: yup.string()
         .oneOf([yup.ref("user_pwd"), null], "비밀번호와 같지 않습니다.")
         .required("비밀번호 확인은 필수 기입사항 입니다."),
+        user_birth: yup.date().required("생년월일은 필수 기입사항 입니다.")
     });
     const { handleSubmit } = useForm({
       validationSchema: schema,
     });
    
     let bool = ref(false);
-    const idCk = ref("");
+    let idCk = ref("");
     // No need to define rules for fields
     const { value: user_id, errorMessage: userIdError } = useField('user_id');
     const { value: user_pwd, errorMessage: user_pwdError } = useField('user_pwd');
@@ -72,16 +73,16 @@ export default {
     const { value: user_birth, errorMessage: birthError } = useField('user_birth');
 
     const onSubmit = handleSubmit(values=>{
-
+        console.log("작동?")
       if (bool.value) {
         alert("중복된 아이디입니다.");
       } else {
         axios
           .post(process.env.VUE_APP_API_URL + "/users/register/", values)
           .then((response) => {
-
-            if(response.data.message==="success") alert("회원 등록 성공!");
-          }).catch(alert("회원 등록 실패!"));
+            console.log(response);
+            if(response.data.message==="Success") alert("회원 등록 성공!");
+          })//.catch(alert("회원 등록 실패!"));
           
       }
     });
