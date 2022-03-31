@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.time.LocalDate;
 
@@ -22,4 +23,6 @@ public class User extends BaseTimeEntity{
     private String password;
     private String email;
     private LocalDate birth;
+    @Column(columnDefinition = "varchar(1) default 'U'")
+    private String Role;
 }
