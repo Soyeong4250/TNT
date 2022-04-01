@@ -7,5 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.ssafy.tnt.db.entity.News;
 
 public interface NewsRepository extends JpaRepository<News, Long>{
-	Page<News> findByCategory(String category, Pageable pageable);
+	Page<News> findByCategoryContainingOrderByNoDesc(String category, Pageable pageable);
+	Page<News> findByTitleContainingOrderByNoDesc(String title, Pageable pageable);
+	Page<News> findByContentContainingOrderByNoDesc(String content, Pageable pageable);
 }

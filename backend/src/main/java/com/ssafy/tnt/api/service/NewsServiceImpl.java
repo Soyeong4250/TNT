@@ -13,11 +13,22 @@ public class NewsServiceImpl implements NewsService{
 	@Autowired
 	NewsRepository newsRepository;
 
-	int size = 10;
+	int size = 10; // 한 페이지에 제공할 개수
+	
 	@Override
 	public Page<News> findByCategory(String category, int page) {
 		PageRequest pageRequest = PageRequest.of(page, this.size);
-		return newsRepository.findByCategory(category, pageRequest);
+		return newsRepository.findByCategoryContainingOrderByNoDesc(category, pageRequest);
+	}
+	@Override
+	public Page<News> findByTitle(String title, int page) {
+		PageRequest pageRequest = PageRequest.of(page, this.size);
+		return newsRepository.findByTitleContainingOrderByNoDesc(title, pageRequest);
+	}
+	@Override
+	public Page<News> findByContent(String content, int page) {
+		PageRequest pageRequest = PageRequest.of(page, this.size);
+		return newsRepository.findByContentContainingOrderByNoDesc(content, pageRequest);
 	}
 	
 }
