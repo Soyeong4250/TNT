@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.SecureRandom;
+import java.util.Date;
 import java.util.Optional;
 
 @Service("userService")
@@ -67,5 +69,34 @@ public class UserServiceImpl implements UserService{
         user.setName(userUpdateInfo.getUser_name());
         user.setPassword(passwordEncoder.encode(userUpdateInfo.getUser_pwd()));
         return userRepository.save(user);
+    }
+
+    @Override
+    public String getUserId(String name, String email){
+        Optional<User> pUser = userRepository.findByNameAndEmail(name,email);
+        if(!pUser.isPresent()) return null;
+
+        User user=pUser.get();
+        return user.getUserId();
+    }
+
+    @Override
+    public String getRandomPassword() {
+        char[] charSet = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '!', '@', '#', '$', '%', '^', '&' };
+
+        StringBuilder stringBuilder=new StringBuilder();
+        // 난수 생성을 위한 secureRandom 생성
+        SecureRandom secureRandom=new SecureRandom();
+        // 시드 설정
+        secureRandom.setSeed(new Date().getTime());
+
+        int idx=0;
+        // 8자리 암호 생성
+        for (int i = 0; i < 8; i++) {
+            idx=secureRandom.nextInt(charSet.length);
+            stringBuilder.append(charSet[idx]);
+        }
+
+        return stringBuilder.toString();
     }
 }

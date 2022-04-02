@@ -1,32 +1,34 @@
 <template>
-    <div class = "btn-box">
-        <b-button class = "button" pill variant="outline-primary" :key="key.num" v-for="key in keywords"
-        @click="functioncall">
-            {{key.category}}
-        </b-button>
-    </div>
+    <div>
+        <div>
+            <b-button class = "button" pill variant="outline-warning" :key="key.num" v-for="key in keywords">
+                {{key.category}}
+            </b-button>
+        </div>
 
-    <!-- 내용 -->
-    <div id = "keyword-box">
-        <p>오늘의 키워드</p>
-        <div id="keyword-inbox">
-            <div class = "rank-box" v-for = "rank in ranks5" :key = "rank.rank" >
-                <!-- 순위 가져오기-->
-                <b-button class="ranking" pill variant = "secondary"> 
-                {{ rank.rank }}   {{rank.content}} {{rank.change}}
-                <!-- 순위 변화는 나중에 함수 구현 -->
-                </b-button>
+        <!-- 내용 -->
+        <div id = "keyword-box">
+            <p>오늘의 키워드</p>
+            <div id="keyword-inbox">
+                <div class = "rank-box" v-for = "rank in ranks5" :key = "rank.rank" >
+                    <!-- 순위 가져오기-->
+                    <b-button class="ranking" pill variant = "secondary"> 
+                    {{ rank.rank }}   {{rank.content}} {{rank.change}}
+                    <!-- 순위 변화는 나중에 함수 구현 -->
+                    </b-button>
 
-            </div>
-            <div class ="rank-box2" v-for = "rank in ranks10" :key = "rank.rank" >
-                <!-- 순위 가져오기-->
-                <b-button class="ranking" pill variant = "secondary"> 
-                {{ rank.rank }}   {{rank.content}} {{rank.change}}
-                <!-- 순위 변화는 나중에 함수 구현 -->
-                </b-button>
+                </div>
+                <div class ="rank-box2" v-for = "rank in ranks10" :key = "rank.rank" >
+                    <!-- 순위 가져오기-->
+                    <b-button class="ranking" pill variant = "secondary"> 
+                    {{ rank.rank }}   {{rank.content}} {{rank.change}}
+                    <!-- 순위 변화는 나중에 함수 구현 -->
+                    </b-button>
 
+                </div>
             </div>
         </div>
+        
     </div>
 
 
@@ -37,9 +39,8 @@
 export default {
 
 
-    data() {
-        return {
-            keywords :[
+    setup() {
+        const keywords =[
                 { category : "전체",
                   num : 1},
                   { category : "정치",
@@ -55,9 +56,8 @@ export default {
                   { category : "오피니언",
                   num : 7},
                   
-            ],
-
-            ranks5 : [{rank:1,
+            ];
+        const ranks5 = [{rank:1,
                     content : "삼성전자",
                     change : 0},
                     {rank:2,
@@ -72,8 +72,8 @@ export default {
                     {rank:5,
                     content : "삼성전자",
                     change : 0},
-                    ],
-                ranks10 : [ {rank:6,
+                    ];
+        const ranks10 = [ {rank:6,
                     content : "삼성전자",
                     change : 0},
                     {rank:7,
@@ -88,21 +88,21 @@ export default {
                     {rank:10,
                     content : "삼성전자",
                     change : 0},
-                ]
+        ];
+        return{
+            keywords,
+            ranks5,
+            ranks10
         }
     }
 }
 </script>
 
-<style>
-.btn-box {
-    width: 100%;
-    text-align: center;
-}
-.btn {
-    margin-left: 30px;
+<style scoped>
+.button {
+    margin-right: 40px;
     margin-bottom: 30px;
-    /* width: 100px; */
+    width: 110px;
 }
 
 #keyword-box{
@@ -126,12 +126,12 @@ export default {
     position: relative;
     width : 230px;
     left : 230px;
-    bottom :  290px;
+    bottom : 300px;
 }
 .ranking {
     margin-bottom: 20px;
     margin-left : 30px;
-    width:170px;
+    width:200px;
 
 }
 

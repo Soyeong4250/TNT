@@ -1,18 +1,11 @@
 import { createStore } from "vuex";
-// import http from "@/util/http-common.js";
+import { accountStore } from "./modules/accountStore";
+import createPersistedState from "vuex-persistedstate";
+
 
 export default createStore({
-	state: {
-
+	modules: {
+		accountStore : accountStore
 	},
-	getters : {
-
-	},
-	mutations: {
-
-	},
-	actions: {
-
-	},
-	modules: {},
+	plugins: [createPersistedState()],
 });

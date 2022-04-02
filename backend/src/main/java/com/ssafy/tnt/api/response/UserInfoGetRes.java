@@ -1,5 +1,6 @@
 package com.ssafy.tnt.api.response;
 
+import com.ssafy.tnt.common.model.response.BaseResponseBody;
 import com.ssafy.tnt.db.entity.User;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,19 +15,23 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Builder
-public class UserInfoGetRes {
+public class UserInfoGetRes extends BaseResponseBody {
+    private Long id;
     private String name;
     private String userId;
     private String email;
     private LocalDate birth;
     private LocalDate reg;
+    private String role;
 
     public static UserInfoGetRes of(User user) {
        UserInfoGetRes userInfoGetRes= UserInfoGetRes.builder()
+               .id(user.getId())
                .userId(user.getUserId())
                .name(user.getName())
                .email(user.getEmail())
                .birth(user.getBirth())
+               .role(user.getRole())
                 .build();
         return userInfoGetRes;
     }
