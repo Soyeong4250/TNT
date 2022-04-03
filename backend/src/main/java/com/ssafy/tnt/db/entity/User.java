@@ -7,6 +7,7 @@ import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Entity
@@ -18,6 +19,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @DynamicInsert
 public class User extends BaseTimeEntity{
+    @Id
+    private Long id;
     private String name;
     private String userId;
     @JsonIgnore

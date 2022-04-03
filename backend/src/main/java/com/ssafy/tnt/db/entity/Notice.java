@@ -19,11 +19,11 @@ public class Notice {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="notice_no")
-	private int no;
+	private Long no;
 	@Column(name="notice_title")
 	private String title;
 	@Column(name="notice_writer")
-	private String writer;
+	private Long writer;
 	@Column(name="notice_content")
 	private String content;
 	@Column(name="notice_date")	
@@ -31,15 +31,15 @@ public class Notice {
 	
 	
 	@Builder
-	public Notice(String title, String writer, String content) {
-		this.title = title;
-		this.writer = writer;
-		this.content = content;
+	public Notice(NoticeDTO noticeDTO) {
+		this.title = noticeDTO.getTitle();
+		this.content = noticeDTO.getContent();
+		this.writer = noticeDTO.getWriter();
 	}
 	
-	public void update(String title, String content) {
-		this.title = title;
-		this.content = content;
+	public void update(NoticeDTO noticeDTO) {
+		this.title = noticeDTO.getTitle();
+		this.content = noticeDTO.getContent();
 	}
 	
 	@PrePersist
@@ -47,7 +47,7 @@ public class Notice {
 		this.date = LocalDateTime.now();
 	}
 
-	public Notice(int no, String title, String writer, String content, LocalDateTime date) {
+	public Notice(Long no, String title, Long writer, String content, LocalDateTime date) {
 		super();
 		this.no = no;
 		this.title = title;

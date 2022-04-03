@@ -1,24 +1,40 @@
 package com.ssafy.tnt.db.entity;
 
+import com.querydsl.core.annotations.QueryProjection;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class NoticeDTO {
-	private int no;
+	private Long no;
 	private String title;	
-	private String writer;
+	private Long writer;
 	private String content;
-	private Date date;
+	private LocalDateTime date;
 
-	public NoticeDTO(String title, String writer, String content) {
+//	private Long userPkId;
+	private String userName;
+
+	public NoticeDTO(String title, Long writer, String content) {
 		this.title = title;
 		this.writer = writer;
 		this.content = content;
+	}
+
+	@QueryProjection
+	public NoticeDTO(Notice notice, User user) {
+		no = notice.getNo();
+		title = notice.getTitle();
+		content = notice.getContent();
+		date = notice.getDate();
+
+		writer = user.getId();
+		userName = user.getName();
 	}
 }

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<notice-write-form type="modify" />
+		<notice-write-form type="modify"/>
 	</div>
 </template>
 
@@ -10,6 +10,8 @@ import NoticeWriteForm from "@/components/notice/child/NoticeWriteForm.vue"
 export default {
 	components: {
 		NoticeWriteForm,
+	},
+	props: {
 	}
 }
 </script>

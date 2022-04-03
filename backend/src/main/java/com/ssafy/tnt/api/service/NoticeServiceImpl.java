@@ -9,7 +9,10 @@ import com.ssafy.tnt.db.entity.Notice;
 import com.ssafy.tnt.db.entity.NoticeDTO;
 import com.ssafy.tnt.db.repository.NoticeRepository;
 
+import javax.transaction.Transactional;
+
 @Service
+@Transactional
 public class NoticeServiceImpl implements NoticeService{
 
 	@Autowired
@@ -32,7 +35,7 @@ public class NoticeServiceImpl implements NoticeService{
 
 	@Override
 	public Notice registNotice(NoticeDTO noticeDto) {
-		Notice notice = new Notice(noticeDto.getTitle(), noticeDto.getWriter(), noticeDto.getContent());
+		Notice notice = new Notice(noticeDto);
 		noticeRepository.save(notice);
 		System.out.println(notice);
 		return notice;
@@ -40,24 +43,18 @@ public class NoticeServiceImpl implements NoticeService{
 
 	@Override
 	public Notice modifyNotice(NoticeDTO noticeDto) {
-//		Notice notice = findByNo(noticeDto.getNo());
-		Notice notice = noticeRepository.findById(noticeDto.getNo()).orElseThrow(() -> new IllegalArgumentException("no such data"));
-		notice.update(noticeDto.getTitle(), noticeDto.getContent());
-
-//		Notice notice = findByNo(noticeDto.getNo());
-//		notice.setTitle(noticeDto.getTitle());
-//		notice.setContent(noticeDto.getContent());
-//		noticeRepository.save(notice);
+		Notice notice = noticeRepository.findById
+				(noticeDto.getNo()).orElseThrow(() -> new IllegalArgumentException("no such data"));
+		notice.update(noticeDto);
 		return notice;
 	}
 
 	@Override
-	public Notice deleteNotice(int notice_no) {
+	public Notice deleteNotice(Long notice_no) {
 //		Notice notice = findByNo(notice_no);
 		Notice notice = noticeRepository.findById(notice_no).orElseThrow(() -> new IllegalArgumentException("no such data"));
 		noticeRepository.delete(notice);
 		return notice;
 	}
-
 
 }

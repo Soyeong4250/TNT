@@ -7,43 +7,34 @@
             <col style="width: 20%" />
             <col style="width: 80%" />
           </colgroup>
-          <b-tr class="view-table-content">
-            <b-th>제목</b-th>
-            <b-td
-              ><b-form-input ref="subject" v-model="title"></b-form-input
-            ></b-td>
-          </b-tr>
-          <b-tr class="view-table-content">
-            <b-th>작성자</b-th>
-            <b-td
-              ><b-form-input
-                ref="login_id"
-                v-model="writer"
-              ></b-form-input
-            ></b-td>
-          </b-tr>
-          <b-tr class="view-table-content">
-            <b-th>내용</b-th>
-            <b-td>
+          <tr class="view-table-content">
+            <th>제목</th>
+            <td>
+              <b-form-input ref="title" v-model="title" placeholder="제목 입력">{{ title }}</b-form-input>
+            </td>
+          </tr>
+          <tr class="view-table-content">
+            <th>내용</th>
+            <td>
               <b-form-textarea
                 class="view-table-textarea"
+                :value="content"
                 v-model="content"
-                ref="content"
                 placeholder="내용 입력..."
                 rows="18"
                 max-rows="15"
-              ></b-form-textarea
-            ></b-td>
-          </b-tr>
+              >{{ content }}</b-form-textarea
+            ></td>
+          </tr>
         </table>
       </b-container>
       <div class="hr"/>
       <b-container style="padding-top: 15px" class="view-btn-group">
-        <b-button type="submit" class="p-1" variant="primary" v-if="this.type == 'write'">
+        <b-button type="submit" class="p-1" variant="primary" v-if="this.type=='write'">
           글작성
         </b-button>
-        <b-button type="submit" class="p-1" variant="primary" v-else>글수정</b-button>
-        <b-button type="reset" class="p-1" variant="danger">취소</b-button>
+        <b-button type="submit" class="p-1" variant="primary" v-else-if="this.type=='modify'">글수정</b-button>
+        <b-button type="reset" class="p-1" variant="danger">목록</b-button>
       </b-container>
     </b-form>
 	</div>
@@ -51,53 +42,61 @@
 
 <script>
 import http from "@/util/http-common";
-// import {mapState} from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
-	date() {
+	data() {
 		return {
-			no: 0,
-			writer: "",
-			title: "",
-			content: "",
-
-			isLoginid: false,
+      notice : {},
+      no : "",
+      writer : "",
+      title : "",
+      content : "",
 		}
 	},
 	props: {
-    type: { type: String },
+    type: String,
   },
-  // computed: {
-  //   ...mapState(["userInfo"]),
-  // },
+  computed: {
+    ...mapGetters({userinfo: "accountStore/GET_USER_INFO"}),
+  },
   created() {
-    // if (this.userInfo === null) {
-    //   alert("로그인을 해주세요.");
-    //   this.$router.push({ name: "Login" });
-    // }
-
-    if (this.type === "modify") {
-      http.get(`/notice/api/${this.$route.params.no}`).then(({ data }) => {
-        this.writer = data.writer;
-        this.title = data.title;
-        this.content = data.content;
-      });
-      this.isLoginid = true;
+    if (this.userinfo.role != 'A') {
+      alert("관리자만 접근할 수 있습니다.");
+      this.$router.push({ name: "NoticeList" });
     }
-    // } else {
-    //   this.login_id = this.userInfo.login_id;
-    // }
+
+    if (this.type == "modify") {
+      // this.getNotice(`/notice/${this.$route.params.no}`);
+      http.get(`/notice/${this.$route.params.no}`).then(({data}) => {
+				console.log(data);
+        // this.notice = data;
+        this.no = data.no;
+        this.writer = data.writer;
+				this.title = data.title;
+        this.content = data.content;
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+    }
   },
   methods: {
+    // getNotice(no) {
+		// 	http.get(no).then(({data}) => {
+		// 		console.log(data);
+		// 		this.title = data.title;
+    //     this.content = data.content;
+		// 	})
+		// 	.catch((error) => {
+		// 		console.log(error);
+		// 	});
+		// },
     onSubmit(event) {
       event.preventDefault();
 
       let err = true;
       let msg = "";
-      !this.writer &&
-        ((msg = "작성자 입력해주세요"),
-        (err = false),
-        this.$refs.writer.focus());
       err &&
         !this.title &&
         ((msg = "제목 입력해주세요"),
@@ -114,43 +113,41 @@ export default {
     },
     onReset(event) {
       event.preventDefault();
-      this.no = 0;
+      this.userid = "";
       this.title = "";
       this.content = "";
       this.$router.push({ name: "NoticeList" });
     },
     writeNotice() {
-      http
-        .post(`/notice/api/`, {
-          title: this.title,
-          writer: this.writer,
-          content: this.content,
-          // date : this.date,
-        })
-        .then(({ data }) => {
-          let msg = "등록 처리시 문제가 발생했습니다.";
-          if (data === "success") {
+      console.log(this.userinfo);
+        http.post(`/notice/`, {
+          title : this.title,
+          writer : this.userinfo.id,
+          content : this.content,
+        }).then((data) => {
+          let msg = "글 등록 처리시 문제가 발생했습니다.";
+          if(data.status == 200) {
             msg = "등록이 완료되었습니다.";
           }
-          console.log(msg);
+          alert(msg);
           this.moveList();
-        })
-        .catch(({ error }) => {
+        }).catch(({error}) => {
           console.log(error);
         });
     },
     modifyNotice() {
       http
         .put(`/notice/${this.$route.params.no}`, {
-          no: this.$route.params.no,
+          no : this.no,
+          writer : this.writer,
           title: this.title,
-          writer: this.writer,
           content: this.content,
         })
-        .then(({ data }) => {
+        .then((data) => {
           console.log(this.$route.params.no);
+          console.log(data);
           let msg = "수정 처리시 문제가 발생했습니다.";
-          if (data === "success") {
+          if (data.status == 200) {
             msg = "수정이 완료되었습니다.";
           }
           alert(msg);
@@ -166,7 +163,7 @@ export default {
 
 <style>
 .inputBox {
-  height: 40em;
+  height: 35em;
 }
 .view-table {
   width: 90%;
