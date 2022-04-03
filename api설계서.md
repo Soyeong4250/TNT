@@ -275,22 +275,160 @@ FAIL{
 ```
   
 ## 뉴스
+
+### 뉴스 크롤링(다른 서버를 이용)
+### - PORT 9990
+- URL
+```
+POST :9990/api/news/craw
+```
+- Header
+```
+Authorization : c3NhZnlCaWc2aXg=
+```
+- Request
+```json
+X
+```
+- Response
+``` json
+SUCCESS{
+    "code":200,"message":"Success : 크롤링한 뉴스 기사 개수 : n",
+}
+FAIL{
+    "code": 500, "message": "Error : 서버 오류 : 오류 내용",
+    "code": 401, "message": "올바르지 않는 Header 값 : 오류 내용"
+}
+```
 ---
 
-### 뉴스 검색 카테고리
+### 뉴스 카테고리 검색
+- URL
+```
+GET /news/find/category?<string:category>&<int:page>
+```
+- Request
+```json
+X
+```
+- Response
+``` json
+SUCCESS{
+    "content": [
+        {
+            "no": 141179,
+            "title": "\"일촌 신청 받아요\"…싸이월드 '도토리 감성' 돌아온다",
+            "category": "IT",
+            "date": "2022-04-03T03:04:00.000+00:00",
+            "reporter": "윤정원 기자",
+            "content": "내용",
+            "company": "언론사",
+            "tumbnailUrl": "섬네일 url",
+            "newsUrl": "news 원문 url"
+        },
+    ],
+        "pageable": {
+        "sort": {
+            "empty": true,
+            "unsorted": true,
+            "sorted": false
+        },
+        "offset": 10,
+        "pageSize": 10,
+        "pageNumber": 1,
+        "paged": true,
+        "unpaged": false
+    },
+        "last": false,
+        "totalPages": 122,
+        "totalElements": 1217,
+        "size": 10,
+        "number": 1,
+        "sort": {
+            "empty": true,
+            "unsorted": true,
+            "sorted": false
+        },
+        "numberOfElements": 10,
+        "first": false,
+        "empty": false
+}
+FAIL{
+    "code": 500, "message": "Error : 서버 오류 : 오류 내용",
+}
+```
 
-### 뉴스 검색 검색어 
+### 뉴스 단어 제목 검색 
+- URL
+```
+GET /news/find/title?<string:title>&<int:page>
+```
+- Request
+```json
+X
+```
+- Response
+``` 
+SUCCESS{
+    뉴스 카테고리 검색 결과와 같습니다.
+}
+FAIL{
+    "code": 500, "message": "Error : 서버 오류 : 오류 내용",
+}
+```
 
-### 뉴스 검색 상세검색
-
-### 뉴스 상세보기
-
+### 뉴스 단어 내용 검색
+- URL
+```
+GET /news/find/content?<string:content>&<int:page>
+```
+- Request
+```json
+X
+```
+- Response
+``` 
+SUCCESS{
+    뉴스 카테고리 검색 결과와 같습니다.
+}
+FAIL{
+    "code": 500, "message": "Error : 서버 오류 : 오류 내용",
+}
+```
   
 ## 통계
 ---
 ### 데이터 비율
 
 ### 인기 키워드
+- URL
+```
+GET /news/keyword
+```
+- Request
+```json
+X
+```
+- Response
+```
+SUCCESS{
+    [
+    "당",
+    "코로나",
+    ".kr",
+    "지난해",
+    "이날",
+    "위원회",
+    "윤석열",
+    "있다",
+    "관련",
+    "정보"
+    ]
+}
+FAIL{
+    "code": 500, "message": "Error : 서버 오류 : 오류 내용",
+}
+```
 
 ### 뉴스 현황 차트
 
