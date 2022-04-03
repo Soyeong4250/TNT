@@ -1,6 +1,6 @@
 <template>
     <div id="header">
-        <img @click="clickMain" id="logo" src="@/assets/logo.png" alt="로고 로딩 오류"/>
+        <img @click="clickMain" id="logo" src="@/assets/tntLogo.png" alt="로고 로딩 오류"/>
 
         <span id=header-btn>
             <div class="btn-group" role="group" aria-label="Basic outlined example">
@@ -42,9 +42,9 @@ export default {
     margin-top: 1em;    
 }
 #logo{
-    margin-left: 1em;
-    width: 1.5em;
-    height: 1.5em;
+    margin-left: 2em;
+    width: 4.5em;
+    height: 4.5em;
 }
 #header-btn{
     float: right;
@@ -57,8 +57,10 @@ export default {
 }
 #header-title-text{
     cursor: pointer;
+    font-size: 3.5rem;
 }
 .header-text{
+
 }
 .header-text:hover{
 

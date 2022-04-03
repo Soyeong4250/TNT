@@ -1,20 +1,23 @@
 <template>
-    <b-container>
+    <div class="mainPage">
       <category-btn></category-btn>
-      <dailykeyword/>
-      <article-number/>
-      <daily-chart/>
-      <div></div>
-      <!--공지사항 및 로그인-->
-      <div></div>
-    </b-container>
+      <div class="flexbox d-flex">
+        <div class="mainBox mx-auto">
+          <dailykeyword/>
+          <!-- <article-number/> -->
+        </div>
+        <div class="mainBox mx-auto">
+          <daily-chart/>
+        </div>
+      </div>
+    </div>
 </template>
 
 <script>
-import categoryBtn from "@/components/category-btn.vue";
-import dailykeyword from "@/components/daily-keyword.vue";
-import DailyChart from '@/components/daily-chart.vue';
-import ArticleNumber from '@/components/article-number.vue';
+import categoryBtn from "@/components/main/category-btn.vue";
+import dailykeyword from "@/components/main/daily-keyword.vue";
+import DailyChart from '@/components/main/daily-chart.vue';
+// import ArticleNumber from '@/components/main/article-number.vue';
 
 export default {
   name: "App",
@@ -22,11 +25,33 @@ export default {
     categoryBtn,
     dailykeyword,
     DailyChart,
-    ArticleNumber,
+    // ArticleNumber,
   },
 };
 </script>
 
 <style>
+.mainPage{
+  height: auto;
+  min-width: 600px;
+}
+.mainPage::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.flexbox{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  align-content: center;
+  
+}
 
+.mainBox {
+  width: 55em;
+  height: 100%;
+  float: left;
+  flex-grow: 0;
+}
 </style>

@@ -35,12 +35,9 @@
 				class="view-btn-group"
 				v-if="this.notice.writer== userinfo.id"
 				>
-				<router-link
-					:to="{name: `NoticeModify`, params: {no:no}}"
-					class="btn"
-					>수정</router-link
-				>
-				<a href="#" class="btn" @click="deleteNotice">삭제</a>
+				<b-button variant="primary" class="p-1" @click="moveModify()"> 수정 </b-button>
+				<b-button variant="danger" class="p-1" @click="deleteNotice()"> 삭제 </b-button>
+				
 				<!-- <router-link to="/notice" class="btn">목록</router-link> -->
 			</div>
 				<b-button v-else type="submit" class="p-1" variant="primary" @click="moveList()">목록</b-button>
@@ -96,6 +93,9 @@ export default {
           alert(msg);
           this.moveList();
         });
+		},
+		moveModify() {
+			this.$router.push({name:"NoticeModify",params:{no:this.no}});
 		},
 		moveList() {
 			this.$router.push("/notice");
