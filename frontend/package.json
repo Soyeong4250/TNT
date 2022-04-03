@@ -16,7 +16,6 @@
     "core-js": "^3.8.3",
     "dayjs": "^1.11.0",
     "dotenv": "^16.0.0",
-    "mdb-vue-ui-kit": "^1.11.0",
     "vee-validate": "^4.5.10",
     "vue": "^3.2.31",
     "vue-chartjs": "^4.0.3",

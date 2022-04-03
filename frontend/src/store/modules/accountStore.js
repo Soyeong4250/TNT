@@ -14,9 +14,9 @@ export const accountStore={
           // 로그아웃 시 vuex-persistance 데이터도 삭제
           logout(state) {
             state.accessToken = "";
-            state.userinfo = {};
+            state.userinfo = null;
             window.localStorage.clear();
-            router.push({ name: "Login" });
+            router.push({ name: "UserLogin" });
           },
           setAccounts(state, newAccounts) {
             state.accounts = newAccounts;
@@ -24,12 +24,13 @@ export const accountStore={
           },
           setUser(state, userinfo) {
             state.userinfo = userinfo;
+            console.log(state.userinfo);
             router.push({ name: "Main" });
             // console.log(state.accounts)
           },
           setUserId(state, userId){
               state.userId=userId;
-              router.push({})
+              router.push({name:"FindIdResult"})
           }
     },
     actions:{
@@ -49,6 +50,7 @@ export const accountStore={
                     },
                   })
                   .then((response) => {
+                    console.log(response.data);
                     commit("setUser", response.data);
                   });
               })
@@ -73,10 +75,11 @@ export const accountStore={
             axios.post(process.env.VUE_APP_API_URL+ "/users/find/pwd",{
                 user_id,
                 user_email
-            }).then(alert("이메일 전송 성공!")
+            }).then(alert("이메일 전송 성공!"),
+                router.push("FindPwdResult")
             ).catch((err) => {
                 console.log("에러", err.response);
-                alert("이름과 이메일이 맞지 않습니다.");
+                alert("아이디와 이메일이 맞지 않습니다.");
             });
           },
           getUserinfo({ commit }, accessToken) {
@@ -88,7 +91,7 @@ export const accountStore={
               })
               .then((response) => {
                 console.log(response);
-                commit("setUser", response.data);
+                commit("setUser", response.data.userinfo);
               })
               .catch((err) => {
                 console.log("에러", err.response);
@@ -96,6 +99,8 @@ export const accountStore={
             }
     },
     getters:{
-
+        getUserinfo(state){
+            return state.userinfo;
+        }
     }
 }

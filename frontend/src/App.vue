@@ -1,18 +1,13 @@
 <template>
-  <main-header></main-header>
-  <router-view></router-view>
-  <main-footer> </main-footer>
+  <main-page></main-page>
 </template>
 
 <script>
-import mainHeader from "@/components/main-header.vue";
-import mainFooter from "@/components/main-footer.vue";
-
+import MainPage from "./views/MainPage.vue";
 export default {
   name: "App",
   components: {
-    mainHeader,
-    mainFooter,
+    MainPage
   },
 };
 </script>

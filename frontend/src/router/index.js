@@ -1,10 +1,14 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Main from "@/views/MainPage.vue";
+import Main from "@/components/main-content.vue";
 import Search from "@/views/SearchPage.vue";
-import Login from "@/views/users/UserLogin.vue";
-import Register from "@/views/users/UserRegister.vue"
+import UserPage from "@/views/UserPage.vue";
+import UserLogin from "@/views/users/UserLogin.vue";
+import UserRegister from "@/views/users/UserRegister.vue"
+import Profile from "@/views/users/UserProfile.vue"
 import FindId from "@/views/users/find/FindId.vue";
 import FindPwd from "@/views/users/find/FindPwd.vue";
+import FindIdResult from "@/views/users/find/FindIdResult.vue";
+import FindPwdResult from "@/views/users/find/FindPwdResult.vue";
 
 import NoticePage from "@/views/NoticePage.vue";
 import NoticeList from "@/components/notice/NoticeList.vue";
@@ -24,24 +28,47 @@ const routes = [
     component: Search,
   },
   {
-    path: "/login",
-    name: "Login",
-    component: Login,
+    path:"/profile",
+    name:"Profile",
+    component: Profile,
   },
   {
-    path: "/register",
-    name: "Register",
-    component: Register,
-  },
-  {
-    path: "/find/id",
-    name: "FindId",
-    component: FindId,
-  },
-  {
-    path: "/find/pwd",
-    name: "FindPwd",
-    component: FindPwd,
+    path: '/users',
+    name : 'UserPage',
+    component: UserPage,
+    redirect: "/users/login",
+    children:[
+      {
+        path:"login",
+        name: "UserLogin",
+        component: UserLogin,
+      },
+      {
+        path:"register",
+        name:"UserRegister",
+        component: UserRegister,
+      },
+      {
+        path: "find/id",
+        name: "FindId",
+        component: FindId,
+      },
+      {
+        path: "find/pwd",
+        name: "FindPwd",
+        component: FindPwd,
+      },
+      {
+        path: "find/idResult",
+        name: "FindIdResult",
+        component: FindIdResult,
+      },
+      {
+        path: "find/pwdResult",
+        name: "FindPwdResult",
+        component: FindPwdResult,
+      },
+    ]
   },
   {
     path: '/notice',
