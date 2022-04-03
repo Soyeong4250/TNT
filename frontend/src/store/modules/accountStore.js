@@ -103,10 +103,4 @@ export const accountStore={
               });
             }
     },
-<<<<<<< HEAD
-    getters:{
-
-    }
-=======
->>>>>>> notice
 }
