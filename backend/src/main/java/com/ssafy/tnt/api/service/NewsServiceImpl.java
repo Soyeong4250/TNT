@@ -18,17 +18,17 @@ public class NewsServiceImpl implements NewsService{
 	@Override
 	public Page<News> findByCategory(String category, int page) {
 		PageRequest pageRequest = PageRequest.of(page, this.size);
-		return newsRepository.findByCategoryContainingOrderByNoDesc(category, pageRequest);
+		return newsRepository.findByCategoryContainingOrderByDateDesc(category, pageRequest);
 	}
 	@Override
 	public Page<News> findByTitle(String title, int page) {
 		PageRequest pageRequest = PageRequest.of(page, this.size);
-		return newsRepository.findByTitleContainingOrderByNoDesc(title, pageRequest);
+		return newsRepository.findByTitleContainingOrderByDateDesc(title, pageRequest);
 	}
 	@Override
 	public Page<News> findByContent(String content, int page) {
 		PageRequest pageRequest = PageRequest.of(page, this.size);
-		return newsRepository.findByContentContainingOrderByNoDesc(content, pageRequest);
+		return newsRepository.findByContentContainingOrderByDateDesc(content, pageRequest);
 	}
 	
 }
