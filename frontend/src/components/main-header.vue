@@ -1,7 +1,7 @@
 <template>
     <div id="header">
         <router-link class="header-router" to="/">
-        <img id="logo" src="@/assets/logo.png" alt="로고 로딩 오류"/>
+        <img id="logo" src="@/assets/tntLogo.png" alt="로고 로딩 오류"/>
         </router-link>
         <span id=header-btn>
             <div class="btn-group" role="group" aria-label="Basic outlined example">
