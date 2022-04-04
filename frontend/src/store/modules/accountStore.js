@@ -4,7 +4,7 @@ export const accountStore={
     namespaced : true,
     state:()=>({
         accessToken : "",
-        userinfo: {},
+        userinfo: null,
         userId: "",
     }),
     getters:{

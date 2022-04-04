@@ -2,8 +2,9 @@
     <div id="header-title" class = "">
         <span @click="clickMain" id="header-title-text">Today News Talk</span>
     </div>
+
     <main-search></main-search>
-      
+  
     <div class="category">
       <nav>
       <div class="nav nav-tabs nav-fill nav-tabs-category" id="nav-category-tab" role="tablist">
@@ -15,27 +16,57 @@
         <button class="nav-link category-button" id="opinion" data-bs-toggle="tab" data-bs-target="#nav-kitchen" type="button" role="tab" aria-controls="nav-kitchen" aria-selected="false">오피니언</button>
       </div>
     </nav>
+
+    <div class="mainPage">
+      <div class="flexbox d-flex">
+        <div class="mainBox mx-auto">
+          <dailykeyword/>
+          <!-- <article-number/> -->
+        </div>
+        <div class="mainBox mx-auto">
+          <daily-chart/>
+        </div>
+      </div>
     </div>
-    <dailykeyword/>
-    <article-number/>
-    <daily-chart/>
+    </div>
+
 </template>
 
 <script>
 import MainSearch from "@/components/main-search.vue";
-import dailykeyword from "@/components/daily-keyword.vue";
-import ArticleNumber from "@/components/article-number.vue";
-import DailyChart from "@/components/daily-chart.vue";
+import dailykeyword from "@/components/main/daily-keyword.vue";
+import DailyChart from "@/components/main/daily-chart.vue";
 export default {
     name: "MainContent",
     components:{
     MainSearch,
     dailykeyword,
-    ArticleNumber,
     DailyChart,},
 }
 </script>
 
 <style>
+.mainPage{
+  height: auto;
+  min-width: 600px;
+}
+.mainPage::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.flexbox{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  align-content: center;
+  
+}
 
+.mainBox {
+  width: 55em;
+  height: 100%;
+  float: left;
+  flex-grow: 0;
+}
 </style>
