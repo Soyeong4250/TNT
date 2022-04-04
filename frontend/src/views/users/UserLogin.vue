@@ -16,6 +16,13 @@
     <div class="pt-1 mb-4">
       <button class="login-btn" type="submit">로그인</button>
     </div>
+
+    <div id="kakao_id_login" class="pt-1 mb-4" @click="kakaoLogin">
+    </div>
+
+    <div id="naverIdLogin" class="pt-1 mb-4" style="display: none;"></div>
+    <div id="naver_id_login" class="pt-1 mb-4" @click="naverLogin"></div>
+
     <div class="mb-2 pb-lg-2">
     <span class="small"><router-link to="/users/find/id">아이디 찾기</router-link></span>
     <span class="small"> / </span>
@@ -30,6 +37,7 @@
 import { useForm, useField } from 'vee-validate';
 import { useStore } from "vuex";
 import * as yup from 'yup';
+import { onMounted } from '@vue/runtime-core';
 export default {
     name : 'UserLogin',
     setup(){
@@ -51,13 +59,76 @@ export default {
     const { value: user_id, errorMessage: userIdError } = useField('user_id');
     const { value: user_pwd, errorMessage: passwordError } = useField('user_pwd');
 
+    // 소셜 로그인 기능
+
+    //kakao
+    const kakaoLogout = () => {
+        if(window.Kakao.Auth.getAccessToken()){
+            console.log("토큰이 이미 존재합니다.", window.Kakao.Auth.getAccessToken());
+        }
+        window.Kakao.Auth.logout(()=>{
+            console.log('로그아웃 되었습니다.',window.Kakao.Auth.getAccessToken());
+        });
+    }    
+    const kakaoLogin = () => {
+      // console.log(window.Kakao);
+      window.Kakao.Auth.login({
+        success: GetMe,
+      });
+    }
+    const GetMe = () =>{
+      // console.log(authObj);
+      window.Kakao.API.request({
+        url:'/v2/user/me',
+        success : res => {
+          const kakao_account = res.kakao_account;
+          console.log(kakao_account);
+            const userInfo = {
+              nickname : kakao_account.profile.nickname,
+              email : kakao_account.email,
+              gender : kakao_account.gender,
+              age : kakao_account.age_range,
+              birthday : kakao_account.birthday,
+              account_type : 2,
+            }
+            console.log(userInfo);
+            alert("로그인 성공!");
+            // this.$bvModal.hide("bv-modal-example");
+        },
+        fail : error => {
+          this.$router.push("/errorPage");
+          console.log(error);
+        }
+      })
+    }
+
+    //naver
+    onMounted(() => {
+      console.log(process.env.VUE_APP_NAVER_KEY+" "+process.env.VUE_APP_NAVER_CALLBACK_URL);
+      var naverLogin = new window.naver.LoginWithNaverId({
+        clientId: process.env.VUE_APP_NAVER_KEY,
+        callbackUrl: process.env.VUE_APP_NAVER_CALLBACK_URL,
+        isPopup: true,
+        loginButton: {color: "green", type: 3, height: '60'}
+      });
+      naverLogin.init();
+      
+     })
     
+    const naverLogin = () =>{
+      var btnNaverLogin = document.getElementById("naverIdLogin").firstChild;
+      btnNaverLogin.click();
+    }
     return {
       onSubmit,
       user_id,
       userIdError,
       user_pwd,
       passwordError,
+      GetMe,
+      kakaoLogin,
+      kakaoLogout, 
+      naverLogin,
     };
     }
 }
@@ -101,6 +172,19 @@ overflow: hidden;
 background-repeat: no-repeat;
 background-position: right center;
 background-size: auto 100%;
+}
+#kakao_id_login{
+  background-image: url("/src/assets/kakao_login.png");
+  background-repeat: no-repeat;
+  cursor: pointer;
+  height: 48px;
+}
+#naver_id_login{
+  background-image: url("/src/assets/naver_login.png");
+  cursor: pointer;
+  height: 48px;
+  /* max-height: 48px; */
+  max-width: 100%;
 }
 
 @media (min-width: 1025px) {
