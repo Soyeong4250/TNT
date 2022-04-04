@@ -2,7 +2,7 @@
   <div class="container-fluid">
       <div id="searchBar" class="search-box">
           <select class="category-select" v-model="state.searchCategory">
-              <option selected disabled>카테고리</option>
+              <option selected disabled>전체</option>
               <option class="option-category">정치</option>
               <option class="option-category">경제</option>
               <option class="option-category">사회</option>

@@ -4,7 +4,7 @@
 			<b-col class = "text-right">
 				<div class="listMenu">
 					<!-- <input type="text"><img class="searchImg" src="@/assets/search.png" alt="search.png"> -->
-					<b-button v-if="this.userinfo.role == 'A'" variant="primary" class="p-1" @click="moveWrite()"> 글쓰기 </b-button>
+					<b-button v-if="this.userinfo != null && this.userinfo.role == 'A'" variant="primary" class="p-1" @click="moveWrite()"> 글쓰기 </b-button>
 				</div>
 			</b-col>
 		</b-row>
