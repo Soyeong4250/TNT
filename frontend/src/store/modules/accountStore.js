@@ -7,6 +7,14 @@ export const accountStore={
         userinfo: {},
         userId: "",
     }),
+    getters:{
+      GET_TOKEN (state) {
+        return state.accessToken;
+      },
+      GET_USER_INFO(state) {
+        return state.userinfo;
+      }
+    },
     mutations:{
         setToken(state, newAccessToken) {
             state.accessToken = newAccessToken;
@@ -98,9 +106,4 @@ export const accountStore={
               });
             }
     },
-    getters:{
-        getUserinfo(state){
-            return state.userinfo;
-        }
-    }
 }

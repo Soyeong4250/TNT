@@ -3,7 +3,7 @@
 		<b-td>{{ cnt }}</b-td>
 		<b-td class="text-left">
 			<router-link 
-			id="title"
+			class="title"
 			:to="{name:`NoticeView`, params: { no: no}}">
 			{{ title }}
 			</router-link>
@@ -74,5 +74,8 @@ export default {
 </script>
 
 <style>
-
+.title, .title:hover {
+  text-decoration: none;
+  color: black
+}
 </style>

@@ -4,7 +4,7 @@
 			<b-col class = "text-right">
 				<div class="listMenu">
 					<!-- <input type="text"><img class="searchImg" src="@/assets/search.png" alt="search.png"> -->
-					<b-button variant="primary" class="p-1" @click="moveWrite()"> 글쓰기 </b-button>
+					<b-button v-if="this.userinfo.role == 'A'" variant="primary" class="p-1" @click="moveWrite()"> 글쓰기 </b-button>
 				</div>
 			</b-col>
 		</b-row>
@@ -32,7 +32,7 @@
 							:cnt="`${index + 1}`"
 							:no="notice.no"
 							:title="notice.title"
-							:writer="notice.writer"
+							:writer="notice.userName" 
 							:date="notice.date"
 							/>
 					</b-tbody>
@@ -72,6 +72,7 @@ import NoticeListItem from "@/components/notice/child/NoticeListItem.vue";
 // import NoticePagenation from "@/components/notice/child/NoticePagenation.vue";
 // import { mapGetters } from "vuex";
 import http from "@/util/http-common.js";
+import { mapGetters } from 'vuex';
 
 export default {
 	components: {
@@ -87,7 +88,14 @@ export default {
 		console.log("리스트 created");
 		this.getNoticeList();
 		// await this.getNoticeList();
+		console.log(this.userinfo);
 		console.log("리스트 createdEnd");
+	},
+	mounted() {
+		console.log(this.userinfo);
+	},
+	computed: {
+		...mapGetters({userinfo: "accountStore/GET_USER_INFO"})
 	},
 	methods: {
 		getNoticeList(){

@@ -11,6 +11,6 @@ public interface NoticeService {
 	public List<Notice> findAllNotice();
 	public Notice registNotice(NoticeDTO noticeDto);
 	public Notice modifyNotice(NoticeDTO noticeDto);
-	public Notice deleteNotice(int notice_no);
+	public Notice deleteNotice(Long notice_no);
 //	Notice findByNo(int no);
 }

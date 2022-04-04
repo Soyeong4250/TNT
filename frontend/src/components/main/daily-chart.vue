@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <canvas id="chart" width="200" height="200"></canvas>
+    <div class="chartPage">
+        <canvas id="chart" height="100%"></canvas>
     </div>
 </template>
 <script>
@@ -60,7 +60,9 @@ export default {
 </script>
 
 <style scoped>
-#chart{
-    width : 200px;
+.chartPage {
+    width: 100%;
+    height: 720px;
+    padding: 2em 1em 5.5em 1em;
 }
 </style>

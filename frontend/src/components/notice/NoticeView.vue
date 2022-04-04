@@ -30,26 +30,23 @@
 		</div>
 		<div class="hr"/>
 		<b-container style="padding-top: 15px" class="view-btn-group">
-      <!-- <div
+      <div
 				style="padding-top: 15px"
 				class="view-btn-group"
-				v-if="isUpdate === true"
+				v-if="this.notice.writer== userinfo.id"
 				>
-				<router-link
-					:to="`/notice/modify/${this.$route.params.no}`"
-					class="btn"
-					>수정</router-link
-				>
-				<a href="#" class="btn" @click="deleteNotice">삭제</a>
-				<router-link to="/notice" class="btn">목록</router-link>
-			</div> -->
-				<b-button type="submit" class="p-1" variant="primary" @click="moveList()">목록</b-button>
+				<b-button variant="primary" class="p-1" @click="moveModify()"> 수정 </b-button>
+				<b-button variant="danger" class="p-1" @click="deleteNotice()"> 삭제 </b-button>
+				
+				<!-- <router-link to="/notice" class="btn">목록</router-link> -->
+			</div>
+				<b-button v-else type="submit" class="p-1" variant="primary" @click="moveList()">목록</b-button>
     </b-container>
 	</b-container>
 </template>
 
 <script>
-// import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 import http from "@/util/http-common.js";
 
 export default {
@@ -60,7 +57,7 @@ export default {
 		}
 	},
 	computed: {
-		
+		...mapGetters({userinfo: "accountStore/GET_USER_INFO"}),
 	},
   created() {
 		console.log("created")
@@ -77,6 +74,28 @@ export default {
 			.catch((error) => {
 				console.log(error);
 			});
+		},
+		deleteNotice() {
+			http
+        .delete(`/notice/${this.$route.params.no}`, {
+          no : this.no,
+          writer : this.writer,
+          title: this.title,
+          content: this.content,
+        })
+        .then((data) => {
+          console.log(this.$route.params.no);
+          console.log(data);
+          let msg = "삭제 처리시 문제가 발생했습니다.";
+          if (data.status == 200) {
+            msg = "삭제가 완료되었습니다.";
+          }
+          alert(msg);
+          this.moveList();
+        });
+		},
+		moveModify() {
+			this.$router.push({name:"NoticeModify",params:{no:this.no}});
 		},
 		moveList() {
 			this.$router.push("/notice");

@@ -13,6 +13,9 @@ export default {
 </script>
 
 <style>
-
+main-footer{
+  position: relative;
+  transform: translateY(-100%);
+}
 
 </style>
