@@ -9,6 +9,4 @@ public interface UserService {
     User getUserByUserId(String userId);
     void deleteByUserId(String userId);
     User updateUser(String id, UserUpdatePutReq userUpdateInfo);
-    String getUserId(String name, String email);
-    String getRandomPassword();
 }

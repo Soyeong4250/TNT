@@ -1,32 +1,25 @@
 package com.ssafy.tnt.api.controller;
 
-import com.ssafy.tnt.api.request.UserFindIdPostReq;
-import com.ssafy.tnt.api.request.UserFindPwdPostReq;
 import com.ssafy.tnt.api.request.UserRegisterPostReq;
 import com.ssafy.tnt.api.request.UserUpdatePutReq;
-import com.ssafy.tnt.api.response.UserFindIdPostRes;
-import com.ssafy.tnt.api.response.UserFindPwdPostRes;
 import com.ssafy.tnt.api.response.UserInfoGetRes;
-import com.ssafy.tnt.api.service.MailService;
 import com.ssafy.tnt.api.service.UserService;
 import com.ssafy.tnt.common.auth.TNTUserDetails;
 import com.ssafy.tnt.common.model.response.BaseResponseBody;
 import com.ssafy.tnt.db.entity.User;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/users")
-@RequiredArgsConstructor
 public class UserController {
-    private final UserService userService;
-    private final MailService mailService;
+    @Autowired
+    UserService userService;
+
     /**
      * 회원 등록.
      * 등록 성공시 응답 코드 200을 보낸다.
@@ -47,10 +40,10 @@ public class UserController {
      * 액세스 토큰이 없다면 에러 발생
      */
     @GetMapping("/{id}")
-    public ResponseEntity<? extends BaseResponseBody> getUserInfo(@PathVariable String id, Authentication authentication) {
+    public ResponseEntity<UserInfoGetRes> getUserInfo(@PathVariable String userId, Authentication authentication) {
 
         TNTUserDetails userDetails = (TNTUserDetails) authentication.getDetails();
-        User user = userService.getUserByUserId(id);
+        User user = userService.getUserByUserId(userId);
 
         return ResponseEntity.status(200).body(UserInfoGetRes.of(user));
     }
@@ -93,37 +86,4 @@ public class UserController {
             return ResponseEntity.status(404).body(BaseResponseBody.of(404, "Fail"));
     }
 
-    @PostMapping("/find/id")
-    public ResponseEntity<? extends BaseResponseBody> findUserId(@RequestBody UserFindIdPostReq userFindIdPostReq) {
-
-
-        String userId = userService.getUserId(userFindIdPostReq.getUser_name(),userFindIdPostReq.getUser_email());
-        if(userId.equals(null)){
-            return ResponseEntity.status(401).body(UserFindIdPostRes.of(401,"존재하지 않는 아이디"));
-        }else
-            return ResponseEntity.status(200).body(UserFindIdPostRes.of(200,"Success",userId));
-    }
-
-    @PostMapping("/find/pwd")
-    public ResponseEntity<? extends BaseResponseBody> findUserPwd(@RequestBody UserFindPwdPostReq userFindPwdPostReq) {
-        // 아이디와 이메일이 db에 존재하는지 확인
-        User user = userService.getUserByUserId(userFindPwdPostReq.getUser_id());
-        if(user==null){
-            return ResponseEntity.status(401).body(UserFindPwdPostRes.of(401,"존재하지 않는 유저"));
-        }
-        // 임시 비밀번호 발부
-        String tempPassword=userService.getRandomPassword();
-        // 이메일 만들기
-        String result=mailService.sendPwdToken(userFindPwdPostReq,tempPassword);
-        // 비밀번호 임시 비밀번호로 변경
-        UserUpdatePutReq userUpdatePutReq=new UserUpdatePutReq();
-        userUpdatePutReq.setUser_name(user.getName());
-        userUpdatePutReq.setUser_pwd(tempPassword);
-        User updatedUser=userService.updateUser(user.getUserId(),userUpdatePutReq);
-        if(updatedUser==null) return ResponseEntity.status(403).body(UserFindPwdPostRes.of(403,"문제 발생"));
-
-        if(result.equals("Success")){
-            return ResponseEntity.status(200).body(UserFindPwdPostRes.of(200,"Success"));
-        }else return ResponseEntity.status(403).body(UserFindPwdPostRes.of(403,"Fail"));
-    }
 }
