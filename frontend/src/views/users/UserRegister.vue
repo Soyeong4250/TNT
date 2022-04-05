@@ -45,12 +45,14 @@
 
 <script>
 import { useForm, useField } from 'vee-validate';
+import {useRouter} from 'vue-router';
 import axios from "axios";
 import * as yup from 'yup';
 import { ref } from "vue";
 export default {
     name:"UserRegister",
     setup(){
+        const router=useRouter();
       const schema = yup.object({
       user_id: yup.string().required("아이디를 입력하세요."),
         user_name: yup.string().required("이름은 필수 기입사항 입니다."),
@@ -89,6 +91,7 @@ export default {
           .then((response) => {
             console.log(response);
             if(response.data.message==="Success") alert("회원 등록 성공!");
+            router.push({name: "Main"})
           })//.catch(alert("회원 등록 실패!"));
           
       }
