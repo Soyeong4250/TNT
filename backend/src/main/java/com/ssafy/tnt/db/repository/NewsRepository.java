@@ -10,4 +10,5 @@ public interface NewsRepository extends JpaRepository<News, Long>{
 	Page<News> findByCategoryContainingOrderByDateDesc(String category, Pageable pageable);
 	Page<News> findByTitleContainingOrderByDateDesc(String title, Pageable pageable);
 	Page<News> findByContentContainingOrderByDateDesc(String content, Pageable pageable);
+	Page<News> findByCompanyContainingOrderByDateDesc(String company, Pageable pageable);
 }

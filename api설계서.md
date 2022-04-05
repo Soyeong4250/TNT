@@ -395,6 +395,25 @@ FAIL{
     "code": 500, "message": "Error : 서버 오류 : 오류 내용",
 }
 ```
+
+### 뉴스 언론사 검색
+- URL
+```
+GET /news/find/company?<string:company>&<int:page>
+```
+- Request
+```json
+X
+```
+- Response
+``` 
+SUCCESS{
+    뉴스 카테고리 검색 결과와 같습니다.
+}
+FAIL{
+    "code": 500, "message": "Error : 서버 오류 : 오류 내용",
+}
+```
   
 ## 통계
 ---

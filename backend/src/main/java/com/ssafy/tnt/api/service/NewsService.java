@@ -8,4 +8,5 @@ public interface NewsService {
 	Page<News> findByCategory(String category, int page);
 	Page<News> findByTitle(String title, int page);
 	Page<News> findByContent(String content, int page);
+	Page<News> findByCompany(String company, int page);
 }
