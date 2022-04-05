@@ -150,7 +150,6 @@ export default {
 
     //naver
     onMounted(() => {
-      console.log(process.env.VUE_APP_NAVER_KEY+" "+process.env.VUE_APP_NAVER_CALLBACK_URL);
       var naverLogin = new window.naver.LoginWithNaverId({
         clientId: process.env.VUE_APP_NAVER_KEY,
         callbackUrl: process.env.VUE_APP_NAVER_CALLBACK_URL,
