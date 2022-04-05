@@ -3,12 +3,8 @@
       <div id="searchBar" class="search-box">
           <select class="category-select" v-model="state.searchCategory">
               <option selected disabled>전체</option>
-              <option class="option-category">정치</option>
-              <option class="option-category">경제</option>
-              <option class="option-category">사회</option>
-              <option class="option-category">생활</option>
-              <option class="option-category">IT</option>
-              <option class="option-category">오피니언</option>
+              <option class="option-category">제목</option>
+              <option class="option-category">내용</option>
           </select>
           <input type="text" class="search-text" placeholder="검색" v-model="state.searchWord" @keyup.enter="clickSearchBtn" @click="clickSearchBar"/>
           <a class="search-btn" @click="clickSearchBtn">
@@ -23,7 +19,7 @@ import {reactive} from "vue";
 export default {
     setup(){
         const state=reactive({
-            searchCategory: "카테고리",
+            searchCategory: "전체",
         })
         return{
             state,
@@ -37,6 +33,8 @@ export default {
     border:none;
     outline:none;
     background-color: white;
+    width : 5em;
+    text-align: center;
 }
 
 .search-box{

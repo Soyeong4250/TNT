@@ -29,7 +29,6 @@
             </div>
         </span>
     </div>
-    <div/>
 </template>
 
 <script>
