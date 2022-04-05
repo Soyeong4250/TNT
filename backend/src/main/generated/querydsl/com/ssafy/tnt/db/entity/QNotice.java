@@ -23,11 +23,11 @@ public class QNotice extends EntityPathBase<Notice> {
 
     public final DateTimePath<java.time.LocalDateTime> date = createDateTime("date", java.time.LocalDateTime.class);
 
-    public final NumberPath<Integer> no = createNumber("no", Integer.class);
+    public final NumberPath<Long> no = createNumber("no", Long.class);
 
     public final StringPath title = createString("title");
 
-    public final StringPath writer = createString("writer");
+    public final NumberPath<Long> writer = createNumber("writer", Long.class);
 
     public QNotice(String variable) {
         super(Notice.class, forVariable(variable));

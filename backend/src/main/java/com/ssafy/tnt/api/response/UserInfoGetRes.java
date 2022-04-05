@@ -16,18 +16,21 @@ import java.time.LocalDate;
 @Setter
 @Builder
 public class UserInfoGetRes extends BaseResponseBody {
+    private Long id;
     private String name;
     private String userId;
     private String email;
     private LocalDate birth;
     private LocalDate reg;
-
+    private String Role;
     public static UserInfoGetRes of(User user) {
        UserInfoGetRes userInfoGetRes= UserInfoGetRes.builder()
+               .id(user.getId())
                .userId(user.getUserId())
                .name(user.getName())
                .email(user.getEmail())
                .birth(user.getBirth())
+               .Role(user.getRole())
                 .build();
         return userInfoGetRes;
     }

@@ -1,32 +1,26 @@
 <template>
-    <b-container>
-      <category-btn></category-btn>
-      <dailykeyword/>
-      <article-number/>
-      <daily-chart/>
-      <div></div>
-      <!--공지사항 및 로그인-->
-      <div></div>
-    </b-container>
+<div class="main-size">
+  <main-header></main-header>
+  <router-view></router-view>
+  <main-footer> </main-footer>
+</div>
 </template>
 
 <script>
-import categoryBtn from "@/components/category-btn.vue";
-import dailykeyword from "@/components/daily-keyword.vue";
-import DailyChart from '@/components/daily-chart.vue';
-import ArticleNumber from '@/components/article-number.vue';
-
+import MainHeader from "@/components/main-header.vue";
+import MainFooter from "@/components/main-footer.vue";
 export default {
-  name: "App",
+  name: "MainPage",
   components: {
-    categoryBtn,
-    dailykeyword,
-    DailyChart,
-    ArticleNumber,
-  },
+    MainHeader,
+    MainFooter,  
+    },
 };
 </script>
 
 <style>
-
+.main-size{
+  margin-left: 15%;
+  margin-right: 15%;
+}
 </style>

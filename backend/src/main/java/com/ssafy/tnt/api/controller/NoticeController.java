@@ -1,5 +1,6 @@
 package com.ssafy.tnt.api.controller;
 
+import com.ssafy.tnt.db.repository.NoticeCustomRepository;
 import com.ssafy.tnt.db.repository.NoticeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import com.ssafy.tnt.api.service.NoticeService;
 import com.ssafy.tnt.db.entity.Notice;
 import com.ssafy.tnt.db.entity.NoticeDTO;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -22,15 +24,20 @@ public class NoticeController {
 	NoticeService noticeService;
 	@Autowired
 	private NoticeRepository noticeRepository;
+	@Autowired
+	private NoticeCustomRepository noticeCustomRepository;
 
 	@GetMapping
-	public ResponseEntity<List<Notice>> findAllNotice(){
+	public ResponseEntity<List<NoticeDTO>> findAllNotice(){
 		System.out.println("접속");
-		return new ResponseEntity<>(noticeService.findAllNotice(), HttpStatus.OK);
+//		return new ResponseEntity<>(noticeService.findAllNotice(), HttpStatus.OK);
+		List<NoticeDTO> list = noticeCustomRepository.findAllNotice();
+		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	@GetMapping("/{no}")
-	public ResponseEntity<Notice> findByNoNotice(@PathVariable("no") int no) {
-		Notice notice = noticeRepository.findById(no).orElseThrow(() -> new IllegalArgumentException("no such data"));
+	public ResponseEntity<NoticeDTO> findByNoNotice(@PathVariable("no") Long no) {
+		NoticeDTO notice = noticeCustomRepository.getNoticeById(no);
+//		System.out.println(notice);
 		return new ResponseEntity<>(notice, HttpStatus.OK);
 	}
 	@PostMapping
@@ -42,7 +49,7 @@ public class NoticeController {
 		return new ResponseEntity<>(noticeService.modifyNotice(noticeDto), HttpStatus.OK);
 	}
 	@DeleteMapping("/{no}")
-	public ResponseEntity<Notice> deleteNotice(@PathVariable("no") int no){
+	public ResponseEntity<Notice> deleteNotice(@PathVariable("no") Long no){
 		return new ResponseEntity<>(noticeService.deleteNotice(no), HttpStatus.OK);
 	}
 
