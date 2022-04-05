@@ -40,7 +40,6 @@ export default {
         const store=useStore();
         const state=reactive({
             userInfo: computed(()=>{
-                console.log(store.state.accountStore.userinfo)
                 return store.state.accountStore.userinfo;
             })
         })
