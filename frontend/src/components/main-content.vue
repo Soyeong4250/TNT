@@ -8,15 +8,22 @@
     <div class="category">
       <nav>
       <div class="nav nav-tabs nav-fill nav-tabs-category" id="nav-category-tab" role="tablist">
-        <button class="nav-link active category-button" id="politics" data-bs-toggle="tab" data-bs-target="#nav-best" type="button" role="tab" aria-controls="nav-best" aria-selected="true">정치</button>
-        <button class="nav-link category-button" id="economy" data-bs-toggle="tab" data-bs-target="#nav-weather" type="button" role="tab" aria-controls="nav-weather" aria-selected="false">경제</button>
-        <button class="nav-link category-button" id="social" data-bs-toggle="tab" data-bs-target="#nav-digital" type="button" role="tab" aria-controls="nav-digital" aria-selected="false">사회</button>
-        <button class="nav-link category-button" id="life-culture" data-bs-toggle="tab" data-bs-target="#nav-life" type="button" role="tab" aria-controls="nav-life" aria-selected="false">생활/문화</button>
-        <button class="nav-link category-button" id="it" data-bs-toggle="tab" data-bs-target="#nav-kitchen" type="button" role="tab" aria-controls="nav-kitchen" aria-selected="false">IT</button>
-        <button class="nav-link category-button" id="opinion" data-bs-toggle="tab" data-bs-target="#nav-kitchen" type="button" role="tab" aria-controls="nav-kitchen" aria-selected="false">오피니언</button>
+        <button class="nav-link active category-button" id="politics" data-bs-toggle="tab" data-bs-target="#nav-politics" type="button" role="tab" aria-controls="nav-politics" aria-selected="true">정치</button>
+        <button class="nav-link category-button" id="economy" data-bs-toggle="tab" data-bs-target="#nav-economy" type="button" role="tab" aria-controls="nav-economy" aria-selected="false">경제</button>
+        <button class="nav-link category-button" id="social" data-bs-toggle="tab" data-bs-target="#nav-social" type="button" role="tab" aria-controls="nav-social" aria-selected="false">사회</button>
+        <button class="nav-link category-button" id="life-culture" data-bs-toggle="tab" data-bs-target="#nav-life-culture" type="button" role="tab" aria-controls="nav-life-culture" aria-selected="false">생활/문화</button>
+        <button class="nav-link category-button" id="it" data-bs-toggle="tab" data-bs-target="#nav-it" type="button" role="tab" aria-controls="nav-it" aria-selected="false">IT</button>
+        <button class="nav-link category-button" id="opinion" data-bs-toggle="tab" data-bs-target="#nav-opinion" type="button" role="tab" aria-controls="nav-opinion" aria-selected="false">오피니언</button>
       </div>
     </nav>
-
+        <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="politics" role="tabpanel" aria-labelledby="nav-politics-tab">...</div>
+        <div class="tab-pane fade" id="economy" role="tabpanel" aria-labelledby="nav-economy-tab">...</div>
+        <div class="tab-pane fade" id="social" role="tabpanel" aria-labelledby="nav-social-tab">...</div>
+        <div class="tab-pane fade" id="life-culture" role="tabpanel" aria-labelledby="nav-life-culture-tab">...</div>
+        <div class="tab-pane fade" id="it" role="tabpanel" aria-labelledby="nav-it-tab">...</div>
+        <div class="tab-pane fade" id="opinion" role="tabpanel" aria-labelledby="nav-opinion-tab">...</div>
+        </div>
     <div class="mainPage">
       <div class="flexbox d-flex">
         <div class="mainBox mx-auto">
@@ -34,6 +41,7 @@
 
 <script>
 import MainSearch from "@/components/main-search.vue";
+//import MainTab from "@/components/main/main-tab.vue";
 import dailykeyword from "@/components/main/daily-keyword.vue";
 import DailyChart from "@/components/main/daily-chart.vue";
 export default {
@@ -41,11 +49,18 @@ export default {
     components:{
     MainSearch,
     dailykeyword,
-    DailyChart,},
+    DailyChart,
+    //MainTab,
+    },
 }
 </script>
 
-<style>
+<style scoped>
+button{
+    border: none;
+    background: none;
+}
+
 .mainPage{
   height: auto;
   min-width: 600px;
@@ -68,5 +83,33 @@ export default {
   height: 100%;
   float: left;
   flex-grow: 0;
+}
+
+.category{
+    padding-top: 30px;
+    border-bottom: 1px solid rgb(blue, blue, blue);
+    margin-left:auto;
+    margin-right: auto;
+    font-size: 15px;
+}
+
+.nav-link.active{
+    color : rgb(26, 112, 211);
+    font-weight: bold;
+    background-color: #fff;
+    border-color: #fff #fff #1f57f1;
+    border-width: 3px;
+}
+
+.nav-link{
+    color : grey;
+}
+
+.category-button:hover{
+    border-color:white;
+}
+
+.tab-content{
+    height: 20%;
 }
 </style>

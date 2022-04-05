@@ -1,32 +1,50 @@
 <template>
+<nav>
   <div class="container-fluid">
       <div id="searchBar" class="search-box">
           <select class="category-select" v-model="state.searchCategory">
-              <option selected disabled>카테고리</option>
-              <option class="option-category">정치</option>
-              <option class="option-category">경제</option>
-              <option class="option-category">사회</option>
-              <option class="option-category">생활</option>
-              <option class="option-category">IT</option>
-              <option class="option-category">오피니언</option>
+              <option selected disabled>선택</option>
+              <option class="option-category" value="title">제목</option>
+              <option class="option-category" value="content">내용</option>
           </select>
-          <input type="text" class="search-text" placeholder="검색" v-model="state.searchWord" @keyup.enter="clickSearchBtn" @click="clickSearchBar"/>
+          <input type="text" class="search-text" placeholder="검색" v-model="state.searchTxt" @keyup.enter="clickSearchBtn" @click="clickSearchBar"/>
           <a class="search-btn" @click="clickSearchBtn">
-              <i class="bi bi-search"></i>
+              <i class="fas fa-search"></i>
           </a>
       </div>
   </div>
+</nav>
 </template>
 
 <script>
 import {reactive} from "vue";
+import {useStore} from "vuex";
+import {useRouter} from "vue-router";
 export default {
     setup(){
+        const router=useRouter();
+        const store=useStore();
         const state=reactive({
-            searchCategory: "카테고리",
+            searchTxt: "",
+            searchCategory: "선택",
         })
+        const clickSearchBtn=()=>{
+            if(!state.searchTxt){
+                alert("검색어를 입력해주세요!");
+                return
+            }
+            if(state.searchCategory=="선택"){
+                alert("제목/내용을 선택해주세요")
+                return;
+            }
+            store.commit("newsStore/setSearchSelect",state.searchCategory)
+            store.commit("newsStore/setSearchText",state.searchTxt)
+
+            router.push({name : "Search"});
+        }
         return{
             state,
+            clickSearchBtn
         }
     }
 }
@@ -34,6 +52,7 @@ export default {
 
 <style>
 .category-select{
+    border-radius: 20px;
     border:none;
     outline:none;
     background-color: white;
@@ -41,6 +60,7 @@ export default {
 
 .search-box{
     margin: 10%;
+    display: flex;
     padding: auto;
     border:1px solid rgb(62, 62, 253);
     padding-left: 10px;
@@ -53,8 +73,8 @@ export default {
     padding-right: 5px;
     text-decoration: none;
     float: right;
-    width:40px;
-    height: 40px;
+    width: 38px;
+    height: 35px;
     background-color: white;
     border-radius: 50%;
     display: flex;
