@@ -25,8 +25,13 @@ const routes = [
     component: Main,
   },
   {
-    path: "/search",
+    path: "/search/1",
     name: "Search",
+    component: Search,
+  },
+  {
+    path: "/search/2",
+    name: "Search2",
     component: Search,
   },
   {

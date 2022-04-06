@@ -20,7 +20,7 @@ export default {
 
 <style>
 .main-size{
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 8%;
+  margin-right: 8%;
 }
 </style>

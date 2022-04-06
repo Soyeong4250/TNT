@@ -9,7 +9,7 @@
         <tr class="view-table-content">
 					<th>제목</th>
           <td
-            ><b-form-input v-model="notice.title"> {{ notice.title }}</b-form-input>
+            ><b-form-input v-model="notice.title" readonly style="background-color : white;"> {{ notice.title }}</b-form-input>
 						</td
           >
         </tr>
@@ -22,6 +22,7 @@
               rows="18"
               max-rows="15"
               readonly
+							style="background-color : white;"
               >{{ notice.content }}</b-form-textarea
             ></td
           >
@@ -33,7 +34,7 @@
       <div
 				style="padding-top: 15px"
 				class="view-btn-group"
-				v-if="this.notice.writer== userinfo.id"
+				v-if="this.userinfo != null && this.notice.writer== userinfo.id"
 				>
 				<b-button variant="primary" class="p-1" @click="moveModify()"> 수정 </b-button>
 				<b-button variant="danger" class="p-1" @click="deleteNotice()"> 삭제 </b-button>

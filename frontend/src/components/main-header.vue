@@ -29,11 +29,10 @@
             </div>
         </span>
     </div>
-    <div/>
 </template>
 
 <script>
-import { computed, reactive} from "vue";
+import {computed, reactive} from "vue";
 import {useStore} from "vuex";
 export default {    
     setup(){
@@ -59,8 +58,8 @@ export default {
 }
 #logo{
     margin-left: 1em;
-    width: 1.5em;
-    height: 1.5em;
+    width: 3em;
+    height: 4em;
 }
 #header-btn{
     float: right;
