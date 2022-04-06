@@ -59,7 +59,7 @@ export default {
 #logo{
     margin-left: 1em;
     width: 3em;
-    height: 4em;
+    height: 3em;
 }
 #header-btn{
     float: right;
