@@ -47,8 +47,6 @@ export default {
     },
 }
 </script>
-,
-        SearchPage
 <style>
 .mainPage{
   height: auto;

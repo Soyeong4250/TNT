@@ -1,30 +1,38 @@
 <template>
   <div class="container-fluid">
       <div id="searchBar" class="search-box">
-          <select class="category-select" v-model="state.searchCategory">
-              <option selected disabled>전체</option>
+          <select class="category-select" v-model="selected">
+              <option class="option-category" disabled>선택</option>
               <option class="option-category">제목</option>
               <option class="option-category">내용</option>
+              <option class="option-category">언론사</option>
           </select>
-          <input type="text" class="search-text" placeholder="검색" v-model="state.searchWord" @keyup.enter="clickSearchBtn" @click="clickSearchBar"/>
+          <input type="text" class="search-text" placeholder="검색" v-model="searchWord" @keyup.enter="clickSearchBtn" @click="clickSearchBar"/>
           <a class="search-btn" @click="clickSearchBtn">
               <i class="bi bi-search"></i>
           </a>
       </div>
   </div>
 </template>
-
 <script>
-import {reactive} from "vue";
 export default {
-    setup(){
-        const state=reactive({
-            searchCategory: "전체",
-        })
-        return{
-            state,
+
+    data() {
+        return {
+            selected: "선택",
+            searchWord: null,
+        };
+    },
+    methods: {
+        clickSearchBtn() {
+            console.log(this.searchWord + "을(를) 검색했습니다.");
+            this.$router.push({
+                name : "Search",
+                params: {selected : this.selected, searchWord : this.searchWord}
+            })
         }
     }
+
 }
 </script>
 

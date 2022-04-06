@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { computed, reactive} from "vue";
+import {computed, reactive} from "vue";
 import {useStore} from "vuex";
 export default {    
     setup(){
