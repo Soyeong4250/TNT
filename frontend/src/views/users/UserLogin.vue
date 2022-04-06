@@ -30,6 +30,8 @@
 import { useForm, useField } from 'vee-validate';
 import { useStore } from "vuex";
 import * as yup from 'yup';
+import {axios} from 'axios';
+import {onMounted} from 'vue';
 export default {
     name : 'UserLogin',
     setup(){
@@ -51,13 +53,113 @@ export default {
     const { value: user_id, errorMessage: userIdError } = useField('user_id');
     const { value: user_pwd, errorMessage: passwordError } = useField('user_pwd');
 
-    
+    // 소셜 로그인 기능
+
+    //kakao
+    const kakaoLogout = () => {
+        if(window.Kakao.Auth.getAccessToken()){
+            console.log("토큰이 이미 존재합니다.", window.Kakao.Auth.getAccessToken());
+        }
+        window.Kakao.Auth.logout(()=>{
+            console.log('로그아웃 되었습니다.',window.Kakao.Auth.getAccessToken());
+        });
+    }    
+    const kakaoLogin = () => {
+      // console.log(window.Kakao);
+      window.Kakao.Auth.login({
+        success: GetMe,
+      });
+    }
+    const GetMe = () =>{
+      // console.log(authObj);
+      window.Kakao.API.request({
+        url:'/v2/user/me',
+        success : res => {
+          const kakao_account = res.kakao_account;
+          console.log(kakao_account);
+            const userInfo = {
+              nickname : kakao_account.profile.nickname,
+              email : kakao_account.email,
+              gender : kakao_account.gender,
+              age : kakao_account.age_range,
+              birthday : kakao_account.birthday,
+              account_type : 2,
+            }
+            console.log(userInfo);            
+            axios.post(process.env.VUE_APP_API_URL + "/auth/login", {
+              user_id: kakao_account.email,
+              user_pwd: kakao_account.email+"ssafy6"
+            })
+            .then(()=>{             // 로그인 성공 시       
+              const payload = {
+                user_id: kakao_account.email,
+                user_pwd: kakao_account.email+"ssafy6"
+              };
+              store.dispatch("accountStore/getToken", payload);
+                                           
+            })
+            .catch(()=>{    // 로그인 실패           
+              // 회원가입 진행
+              let now = new Date();
+              let tmpYear = kakao_account.age_range+"";
+              let year = tmpYear.substring(0,2);
+              year *=1;
+              year = now.getFullYear() - year;        
+              let tmpDate =kakao_account.birthday+"";
+              let month = tmpDate.substring(0,2);
+              let day = tmpDate.substring(2,4);
+              let values = {
+                user_name: kakao_account.profile.nickname,
+                user_id: kakao_account.email,
+                user_email: kakao_account.email,
+                user_pwd : kakao_account.email+"ssafy6",
+                user_birth: year+"-"+month+"-"+day
+              }
+              axios.post(process.env.VUE_APP_API_URL + "/users/register/", values)
+              .then(()=>{
+                axios.post(process.env.VUE_APP_API_URL + "/auth/login", { // 다시 로그인
+                  user_id: kakao_account.email,
+                  user_pwd: kakao_account.email+"ssafy6"
+                })
+                .then(()=>{
+                  const payload = {
+                    user_id: kakao_account.email,
+                    user_pwd: kakao_account.email+"ssafy6"
+                  };
+                  store.dispatch("accountStore/getToken", payload);
+                })
+              })
+              .catch(()=>{
+              });
+            })
+            // this.$bvModal.hide("bv-modal-example");
+        },
+        fail : error => {
+          this.$router.push("/errorPage");
+          console.log(error);
+        }
+      })
+    }
+
+    //naver    
+    onMounted(() => {
+      var naverLogin = new window.naver.LoginWithNaverId({
+        clientId: process.env.VUE_APP_NAVER_KEY,
+        callbackUrl: process.env.VUE_APP_NAVER_CALLBACK_URL,
+        isPopup: false,
+        loginButton: {color: "green", type: 3, height: '60'}
+      });
+      naverLogin.init();
+      
+     })    
     return {
       onSubmit,
       user_id,
       userIdError,
       user_pwd,
       passwordError,
+      kakaoLogin,
+      kakaoLogout
     };
     }
 }
