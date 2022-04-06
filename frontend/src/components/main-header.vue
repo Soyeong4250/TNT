@@ -60,7 +60,7 @@ export default {
 #logo{
     margin-left: 1em;
     width: 3em;
-    height: 3em;
+    height: 4em;
 }
 #header-btn{
     float: right;

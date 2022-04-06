@@ -35,6 +35,8 @@ export const searchStore={
 		// },
 		SET_SEARCH_NEWS(state, result) {
 			console.log(result);
+			state.searchWord = "";
+			state.news = [];
 			state.news = result.content;
 			state.searchWord = result.searchWord;
 			router.push({name: "Search"});
@@ -42,13 +44,14 @@ export const searchStore={
 	},
 	actions: {
 		GET_SEARCH_TITLE({ commit }, searchData) {
+			
 			http.get(`/news/find/title`, {params : {title: searchData.searchWord, page: searchData.page}})
       .then((response) => {
         console.log("제목 검색 결과");
 				console.log(response.data.content);
         let msg = "제목 검색시 문제가 발생했습니다.";
         if(response.status == 200) {
-          msg = "제목 검색이 완료되었습니다s.";
+          msg = "제목 검색이 완료되었습니다.";
           // this.news = data;
 					// commit("SET_SEARCH_TITLE", {content : response.data.content, searchWord: searchData.searchWord});
 					commit("SET_SEARCH_NEWS", {content : response.data.content, searchWord: searchData.searchWord});
@@ -57,6 +60,7 @@ export const searchStore={
         });
 		},
 		GET_SEARCH_CONTENT({ commit }, searchData) {
+			
 			http.get(`/news/find/content`, {params : {content: searchData.searchWord, page: searchData.page}})
       .then((response) => {
 				console.log("내용 검색 결과")
@@ -72,6 +76,7 @@ export const searchStore={
         });
 		},
 		GET_SEARCH_COMPANY({ commit }, searchData) {
+			
 			console.log(searchData);
 			http.get(`/news/find/company`, {params : {company: searchData.searchWord, page: searchData.page}})
 			.then((response) => {

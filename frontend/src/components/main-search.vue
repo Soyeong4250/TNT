@@ -26,10 +26,20 @@ export default {
     methods: {
         clickSearchBtn() {
             console.log(this.searchWord + "을(를) 검색했습니다.");
-            this.$router.push({
-                name : "Search",
-                params: {selected : this.selected, searchWord : this.searchWord}
-            })
+            console.log(document.location.href);
+            if(document.location.href=="http://localhost:8080/search/1"){
+                this.$router.push({
+                    name : "Search2",
+                    params: {selected : this.selected, searchWord : this.searchWord}
+                });
+            }else{
+                this.$router.push({
+                    name : "Search",
+                    params: {selected : this.selected, searchWord : this.searchWord}
+                });
+            }
+            
+            
         }
     }
 
