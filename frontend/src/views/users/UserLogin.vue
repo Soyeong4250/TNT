@@ -37,6 +37,7 @@
 import { useForm, useField } from 'vee-validate';
 import { useStore } from "vuex";
 import * as yup from 'yup';
+import { onMounted } from '@vue/runtime-core';
 import axios from "axios";
 export default {
     name : 'UserLogin',
@@ -146,6 +147,23 @@ export default {
       })
     }
 
+    //naver
+    onMounted(() => {
+      var naverLogin = new window.naver.LoginWithNaverId({
+        clientId: process.env.VUE_APP_NAVER_KEY,
+        callbackUrl: process.env.VUE_APP_NAVER_CALLBACK_URL,
+        isPopup: false,
+        loginButton: {color: "green", type: 3, height: '60'}
+      });
+      naverLogin.init();
+      
+     })
+    
+    const naverLogin = () =>{
+      var btnNaverLogin = document.getElementById("naverIdLogin").firstChild;
+      btnNaverLogin.click();
+      // location.href="/";
+    }
     return {
       onSubmit,
       user_id,
@@ -155,6 +173,7 @@ export default {
       GetMe,
       kakaoLogin,
       kakaoLogout, 
+      naverLogin,
     };
     }
 }
