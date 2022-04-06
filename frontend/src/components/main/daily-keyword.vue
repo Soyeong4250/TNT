@@ -1,6 +1,7 @@
 <template>
         <!-- 내용 -->
         <div id = "keyword-box">
+            <h5>this.keywordRank : {{ keywordRank }}</h5>
             <p>오늘의 키워드</p>
             <div class="cateBtn">
                 <b-button class = "button" pill variant="outline-primary" :key="key.num" v-for="key in categories">
@@ -8,18 +9,18 @@
                 </b-button>
             </div>
             <div id="keyword-inbox">
-                <div class = "rank-box" v-for = "rank in ranks5" :key = "rank.rank" >
+                <div class = "rank-box" v-for="(rank, index) in this.rank0" :key="index">
                     <!-- 순위 가져오기-->
                     <b-button class="ranking" pill variant = "secondary"> 
-                    {{ rank.rank }}   {{rank.content}} {{rank.change}}
+                    {{ index+1 }} {{rank}}
                     <!-- 순위 변화는 나중에 함수 구현 -->
                     </b-button>
-
                 </div>
-                <div class ="rank-box" v-for = "rank in ranks10" :key = "rank.rank" >
+                 <div class ="rank-box"  v-for="(rank, index) in this.rank5" :key="index">
                     <!-- 순위 가져오기-->
                     <b-button class="ranking" pill variant = "secondary"> 
-                    {{ rank.rank }}   {{rank.content}} {{rank.change}}
+                    <!-- {{ rank.rank }}   {{rank.content}} {{rank.change}} -->
+                     {{ index+6 }} {{rank}}
                     <!-- 순위 변화는 나중에 함수 구현 -->
                     </b-button>
                 </div>
@@ -53,8 +54,6 @@
                 </div>
             </div>
 
-
-            
         </div>
 
 
@@ -64,39 +63,40 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
 
-data() {
-    return {
-        articles : [
-                {name: "조선일보",
-                num:100},
-                {name : "동아일보",
-                num:70},
-                {name: "중앙일보",
-                num:60},
-                {name: "한겨레",
-                num:30},
-                {name: "경향신문",
-                num:10},
+// data() {
+//     return {
+//         articles : [
+//                 {name: "조선일보",
+//                 num:100},
+//                 {name : "동아일보",
+//                 num:70},
+//                 {name: "중앙일보",
+//                 num:60},
+//                 {name: "한겨레",
+//                 num:30},
+//                 {name: "경향신문",
+//                 num:10},
                 
-                ],
-                keywords : [
-                {name: "삼성전자",
-                num:100},
-                {name : "삼성SDI",
-                num:70},
-                {name: "코로나19",
-                num:60},
-                {name: "싸피",
-                num:30},
-                {name: "삼성증권",
-                num:10},
+//                 ],
+//                 keywords : [
+//                 {name: "삼성전자",
+//                 num:100},
+//                 {name : "삼성SDI",
+//                 num:70},
+//                 {name: "코로나19",
+//                 num:60},
+//                 {name: "싸피",
+//                 num:30},
+//                 {name: "삼성증권",
+//                 num:10},
                 
-                ]
+//                 ]
          
-    }
-},
+//     }
+// },
     setup() {
         const categories =[
                 { category : "전체",
@@ -152,6 +152,33 @@ data() {
             ranks5,
             ranks10
         }
+    },
+
+    data() {
+        return{
+            categoriess: [
+                { category : "전체", num : 1},
+                { category : "정치", num : 2},
+                { category : "경제", num : 3},
+                { category : "사회", num : 4},
+                { category : "생활/문화", num : 5},
+                { category : "IT/과학", num : 6},
+                { category : "오피니언", num : 7},
+            ],
+            rank0: [],
+            rank5: [],
+        }
+    },
+    
+    computed: {
+        ...mapGetters({
+           keywordRank: "keywordStore/keywordRank",
+        //    keywordWord: "keywordStore/keywordWord",
+        })
+    },
+    created() {
+        this.$store.dispatch("keywordStore/GET_UPDATE_KEYWORD");
+
     }
 }
 </script>
@@ -176,6 +203,7 @@ data() {
     height : 20em;
     width: 95%;
     margin: 0 auto;
+    flex-direction: column;
 }
 /* #keyword-inbox::after {
     content: '';
@@ -184,6 +212,7 @@ data() {
 } */
 .rank-box{
     width : 50%;
+    /* flex-direction: column; */
     display: inline-block;
     text-align: center;
 }

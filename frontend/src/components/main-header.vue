@@ -39,6 +39,7 @@ export default {
         const store=useStore();
         const state=reactive({
             userInfo: computed(()=>{
+                console.log(store.state.accountStore.userinfo)
                 return store.state.accountStore.userinfo;
             })
         })
@@ -59,7 +60,7 @@ export default {
 #logo{
     margin-left: 1em;
     width: 3em;
-    height: 3em;
+    height: 4em;
 }
 #header-btn{
     float: right;

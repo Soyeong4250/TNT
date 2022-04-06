@@ -16,8 +16,6 @@ import NoticeWrite from "@/components/notice/NoticeWrite.vue";
 import NoticeView from "@/components/notice/NoticeView.vue";
 import NoticeModify from "@/components/notice/NoticeModify.vue";
 
-import NaverLogin from "@/views/social/NaverLogin.vue";
-
 const routes = [
   {
     path: "/",
@@ -25,7 +23,7 @@ const routes = [
     component: Main,
   },
   {
-    path: "/search",
+    path: "/search/:searchWord",
     name: "Search",
     component: Search,
   },
@@ -99,11 +97,6 @@ const routes = [
         component: NoticeModify,
       }],
   },
-  {
-    path: '/social/naver',
-    name: 'NaverLogin',
-    component: NaverLogin,
-  }
 ]
 
 const router = createRouter({

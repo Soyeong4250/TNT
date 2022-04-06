@@ -12,9 +12,9 @@
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <div class="thumbnail" style="display:inline-block">
+            <div class="thumbnail" :style="{backgroundImage: 'url('+this.news[0].tumbnailUrl+')'}">
               <!-- <img src="https://mimgnews.pstatic.net/image/origin/014/2022/04/03/4813743.jpg?type=nf264_176&ut=20220403184504" class="thumbnail d-inline w-25 m-3" alt="첫번째 뉴스"> -->
-              <img :src="this.news[0].tumbnailUrl" class="thumbnail d-inline w-25 m-5" alt="첫번째 뉴스" width="500px" height="500px" style="float:left"> 
+              <!-- <img :src="this.news[0].tumbnailUrl" class="thumbnail d-inline w-25 m-5" alt="첫번째 뉴스" width="500px" height="500px" style="float:left">  -->
             </div>
             <div class="newsDesc" style="">
               <h5>{{ this.news[0].title }}</h5>
@@ -23,6 +23,7 @@
             <button type="button ml-9" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
               뉴스보기
             </button>
+            </div>
           </div>
           <div class="carousel-item">
             <img :src="this.news[1].tumbnailUrl" class="thumbnail d-inline w-25 m-3" alt="두번째 뉴스" >
@@ -48,7 +49,6 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
-    </div>
 
     <!--뉴스 리스트-->
     <div>
