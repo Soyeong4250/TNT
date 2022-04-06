@@ -16,6 +16,13 @@
     <div class="pt-1 mb-4">
       <button class="login-btn" type="submit">로그인</button>
     </div>
+
+    <div id="kakao_id_login" class="pt-1 mb-4" @click="kakaoLogin">
+    </div>
+
+    <div id="naverIdLogin" class="pt-1 mb-4" style="display: none;"></div>
+    <div id="naver_id_login" class="pt-1 mb-4" @click="naverLogin"></div>
+
     <div class="mb-2 pb-lg-2">
     <span class="small"><router-link to="/users/find/id">아이디 찾기</router-link></span>
     <span class="small"> / </span>
@@ -30,8 +37,8 @@
 import { useForm, useField } from 'vee-validate';
 import { useStore } from "vuex";
 import * as yup from 'yup';
-import {axios} from 'axios';
-import {onMounted} from 'vue';
+import { onMounted } from '@vue/runtime-core';
+import axios from "axios";
 export default {
     name : 'UserLogin',
     setup(){
@@ -141,7 +148,7 @@ export default {
       })
     }
 
-    //naver    
+    //naver
     onMounted(() => {
       var naverLogin = new window.naver.LoginWithNaverId({
         clientId: process.env.VUE_APP_NAVER_KEY,
@@ -151,15 +158,23 @@ export default {
       });
       naverLogin.init();
       
-     })    
+     })
+    
+    const naverLogin = () =>{
+      var btnNaverLogin = document.getElementById("naverIdLogin").firstChild;
+      btnNaverLogin.click();
+      // location.href="/";
+    }
     return {
       onSubmit,
       user_id,
       userIdError,
       user_pwd,
       passwordError,
+      GetMe,
       kakaoLogin,
-      kakaoLogout
+      kakaoLogout, 
+      naverLogin,
     };
     }
 }
@@ -203,6 +218,19 @@ overflow: hidden;
 background-repeat: no-repeat;
 background-position: right center;
 background-size: auto 100%;
+}
+#kakao_id_login{
+  background-image: url("/src/assets/kakao_login.png");
+  background-repeat: no-repeat;
+  cursor: pointer;
+  height: 48px;
+}
+#naver_id_login{
+  background-image: url("/src/assets/naver_login.png");
+  cursor: pointer;
+  height: 48px;
+  /* max-height: 48px; */
+  max-width: 100%;
 }
 
 @media (min-width: 1025px) {
