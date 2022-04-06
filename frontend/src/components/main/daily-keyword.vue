@@ -1,28 +1,29 @@
 <template>
         <!-- 내용 -->
         <div id = "keyword-box">
-            <h5>this.keywordRank : {{ keywordRank }}</h5>
+            <!-- <h5>this.keywordRank : {{ keywordRank }}</h5> -->
+            <!-- <h5>{{ this.rank5 }}</h5> -->
             <p>오늘의 키워드</p>
             <div class="cateBtn">
                 <b-button class = "button" pill variant="outline-primary" :key="key.num" v-for="key in categories">
                     {{key.category}}
                 </b-button>
             </div>
-            <div id="keyword-inbox">
-                <div class = "rank-box" v-for="(rank, index) in this.rank0" :key="index">
-                    <!-- 순위 가져오기-->
-                    <b-button class="ranking" pill variant = "secondary"> 
-                    {{ index+1 }} {{rank}}
-                    <!-- 순위 변화는 나중에 함수 구현 -->
-                    </b-button>
+            <div id="keyword-inbox" style="display:flex">
+                <div class="flex-container column mx-auto my-auto" >
+                    <div class = "rank-box" v-for="(rank, index) in this.rank0" :key="index">
+                        <b-button class="ranking" pill variant = "secondary"> 
+                        {{ rank.rank+1 }} {{ rank.value }}
+                        </b-button>
+                    </div>
                 </div>
-                 <div class ="rank-box"  v-for="(rank, index) in this.rank5" :key="index">
-                    <!-- 순위 가져오기-->
+                <div class="flex-container column mx-auto my-auto" >
+                 <div class ="rank-box "  v-for="(rank, index) in this.rank5" :key="index">
                     <b-button class="ranking" pill variant = "secondary"> 
                     <!-- {{ rank.rank }}   {{rank.content}} {{rank.change}} -->
-                     {{ index+6 }} {{rank}}
-                    <!-- 순위 변화는 나중에 함수 구현 -->
+                     {{ rank.rank+1 }} {{ rank.value }}
                     </b-button>
+                </div>
                 </div>
             </div>
             <div class="articleNumber d-flex" style="width:95%; padding:1em;">
@@ -173,12 +174,13 @@ export default {
     computed: {
         ...mapGetters({
            keywordRank: "keywordStore/keywordRank",
-        //    keywordWord: "keywordStore/keywordWord",
+        // keywordWord: "keywordStore/keywordWord",
         })
     },
     created() {
         this.$store.dispatch("keywordStore/GET_UPDATE_KEYWORD");
-
+        this.rank0 = this.keywordRank.slice(0, 5);
+        this.rank5 = this.keywordRank.slice(5);
     }
 }
 </script>
@@ -203,21 +205,17 @@ export default {
     height : 20em;
     width: 95%;
     margin: 0 auto;
-    flex-direction: column;
 }
-/* #keyword-inbox::after {
-    content: '';
-    display: block;
-    clear: both;
-} */
+
 .rank-box{
-    width : 50%;
-    /* flex-direction: column; */
-    display: inline-block;
+    width : 100%;
+    margin-right : 30px;
+    margin-bottom : 11px;
+    /* display: inline-block; */
     text-align: center;
 }
 .ranking {
-    width: 70%;
+    width: 100%;
 }
 
 .artnum, .keynum {
