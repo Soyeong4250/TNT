@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import com.ssafy.tnt.db.entity.KeywordEntity;
 import com.ssafy.tnt.db.repository.KeywordRedisRepository;
+import com.ssafy.tnt.db.repository.KeywordRepository;
 
 @Service
 public class KeywordServiceImpl implements KeywordService {
@@ -19,10 +21,18 @@ public class KeywordServiceImpl implements KeywordService {
 	private RedisTemplate<String, String> redisTemplate;
 	
 	@Autowired
+	KeywordRepository keywordRepository;
+	
+	@Autowired
 	KeywordRedisRepository keywordRedisRepository;
 	
 	@Override
 	public Set<String> findKeyword() {
 		return redisTemplate.opsForZSet().range(this.key, 0, this.size);
+	}
+
+	@Override
+	public KeywordEntity findKeywordRank(String word) {
+		return keywordRepository.findByWordOrderByDate(word);
 	}
 }
