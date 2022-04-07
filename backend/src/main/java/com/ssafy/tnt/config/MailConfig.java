@@ -16,8 +16,8 @@ public class MailConfig {
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
         // 구글 아이디와 비밀번호 등록(발신자)
-        mailSender.setUsername("ssafytest206@gmail.com");
-        mailSender.setPassword("testssafy1234");
+        mailSender.setUsername("");
+        mailSender.setPassword("");
 
         Properties properties=mailSender.getJavaMailProperties();
         properties.put("mail.smtp.auth","true");
