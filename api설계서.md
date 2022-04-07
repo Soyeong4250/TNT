@@ -368,7 +368,7 @@ GET /news/find/title?<string:title>&<int:page>
 X
 ```
 - Response
-``` 
+```
 SUCCESS{
     뉴스 카테고리 검색 결과와 같습니다.
 }
@@ -429,19 +429,27 @@ GET /news/keyword
 X
 ```
 - Response
-```
+> (인기 키워드 50개 추출)
+```json
 SUCCESS{
     [
-    "당",
-    "코로나",
-    ".kr",
-    "지난해",
-    "이날",
-    "위원회",
-    "윤석열",
-    "있다",
-    "관련",
-    "정보"
+        {
+            "value":"카카오",
+            "count":61
+        }
+        {
+            "value":"한국노총",
+            "count":50
+        }
+        {
+            "value":"북한",
+            "count":40
+        }
+        {
+            "value":"확진",
+            "count":30
+        }
+        ...
     ]
 }
 FAIL{
@@ -449,9 +457,46 @@ FAIL{
 }
 ```
 
-### 뉴스 현황 차트
-
-### 워드 클라우드
-
-
-
+### 뉴스 카테고리 기사 수 검색
+- URL
+```
+GET /news/find/category/count
+```
+- Request
+```json
+X
+```
+- Response
+```json
+SUCCESS{
+    "오피니언":133,
+    "생활":581,
+    "사회":3824,
+    "전체":10322,
+    "정치":1990,
+    "경제":2798,
+    "IT":644,
+}
+FAIL{
+    "code": 500, "message": "Error : 서버 오류 : 오류 내용",
+}
+```
+### 뉴스 언론사 기사 수 검색
+- URL
+```
+GET /news/find/company/count
+```
+- Request
+```json
+X
+```
+- Response
+``` json
+SUCCESS{
+    "연합뉴스" : 1000,
+    "뉴시스1" : 500
+}
+FAIL{
+    "code": 500, "message": "Error : 서버 오류 : 오류 내용",
+}
+```
