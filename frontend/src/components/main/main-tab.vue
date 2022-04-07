@@ -2,7 +2,7 @@
   <!--Section: News of the day-->
 <div class="news-wrap">
 <div class="row gx-5">
-  <div class="news-thumb col-4" data-bs-toggle="modal" :data-bs-target="'#newsModal'+category+state.thumbnailnews">
+  <div class="news-thumb col-5" data-bs-toggle="modal" :data-bs-target="'#newsModal'+category+state.thumbnailnews">
       <img class="thumb" :src="state.news.tumbnailUrl" alt="">
       <div class="thumb-info"><span>{{state.news.title}}</span></div>
         <!-- Modal -->
@@ -26,7 +26,7 @@
         </div>
         </div>
   </div>
-  <div class="col-8 sub-news-group">
+  <div class="col-7 sub-news-group">
       <div class="subnews" :key="index" v-for="(news,index) in state.newsList">
           <div v-if="index!=state.thumbnailnews">
             <span class="thumb-info" data-bs-toggle="modal" :data-bs-target="'#newsModal'+category+index">{{news.title}}</span>
@@ -117,6 +117,7 @@ setup(props){
     display:block;
     width: 100%;
     height: 60%;
+    margin-right:5px;
     margin-top: 30px;
     margin-bottom: 10px;
     border-radius: 5px;
@@ -146,8 +147,8 @@ setup(props){
 }
 
 .news-wrap {
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 .news-content {
