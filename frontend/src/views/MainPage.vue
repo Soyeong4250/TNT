@@ -2,8 +2,8 @@
 <div class="main-size">
   <main-header></main-header>
   <router-view :key="$route.fullPath"></router-view>
-  <main-footer> </main-footer>
 </div>
+  <main-footer> </main-footer>
 </template>
 
 <script>

@@ -180,7 +180,7 @@ export default {
     created() {
         this.$store.dispatch("keywordStore/GET_UPDATE_KEYWORD");
         this.rank0 = this.keywordRank.slice(0, 5);
-        this.rank5 = this.keywordRank.slice(5);
+        this.rank5 = this.keywordRank.slice(5,11);
     }
 }
 </script>

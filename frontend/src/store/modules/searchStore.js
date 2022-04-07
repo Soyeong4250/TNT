@@ -76,7 +76,7 @@ export const searchStore={
         });
 		},
 		GET_SEARCH_COMPANY({ commit }, searchData) {
-			
+			console.log(searchData.page);
 			console.log(searchData);
 			http.get(`/news/find/company`, {params : {company: searchData.searchWord, page: searchData.page}})
 			.then((response) => {
