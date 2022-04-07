@@ -1,33 +1,39 @@
 <template>
-  <main-header></main-header>
-  <div>
-    <header>
-      <category-btn></category-btn>
-      <div></div>
-      <!--공지사항 및 로그인-->
-      <div></div>
-    </header>
-
-    <router-view></router-view>
-
-    바닥
-    <main-footer> </main-footer>
-  </div>
+  <main-page></main-page>
 </template>
 
 <script>
-import mainHeader from "@/components/main-header.vue";
-import mainFooter from "@/components/main-footer.vue";
-import categoryBtn from "@/components/category-btn.vue";
-
+import MainPage from "./views/MainPage.vue";
 export default {
   name: "App",
   components: {
-    mainHeader,
-    mainFooter,
-    categoryBtn,
+    MainPage
   },
 };
 </script>
 
-<style></style>
+<style>
+main-footer{
+  position: relative;
+  transform: translateY(-100%);
+}
+
+
+@font-face {
+  font-family: 'NanumBarunGothic';
+  src: url('assets/font/NanumBarunGothic.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'NanumBarunGothicBold';
+  src: url('assets/font/NanumBarunGothicBold.ttf') format('truetype');
+  font-weight: 400;
+}
+/*
+@font-face {
+  font-family: 'NanumBarunGothic';
+  src: url('assets/font/NanumBarunGothicBold.ttf') format('truetype');
+  font-weight: 400;
+} */
+</style>
