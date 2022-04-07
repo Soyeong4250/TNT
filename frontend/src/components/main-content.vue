@@ -137,7 +137,7 @@ export default {
     border-bottom: 0.5px solid rgb(227, 227, 227);
     border-left: 0.5px solid rgb(227, 227, 227);
     border-right: 0.5px solid rgb(227, 227, 227);
-    height: 400px;
+    height: 450px;
 }
 
 .fa-bell{
