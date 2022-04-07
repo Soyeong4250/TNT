@@ -20,8 +20,8 @@ export default {
 
 <style>
 .main-size{
-  margin-left: 8%;
-  margin-right: 8%;
+  margin-left: 15%;
+  margin-right: 15%;
   font-family: 'NanumBarunGothic', sans-serif;
 }
 </style>

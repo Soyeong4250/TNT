@@ -25,7 +25,7 @@ const routes = [
     component: Main,
   },
   {
-    path: "/search/:selected/:searchWord",
+    path: "/search/:selected/:searchWord/:page",
     name: "Search",
     component: Search,
   },
@@ -76,10 +76,10 @@ const routes = [
     path: '/notice',
     name: 'NoticePage',
     component: NoticePage,
-    redirect: "/notice/list",
+    redirect: "/notice/list/1",
     children: [
       {
-        path: "list",
+        path: "list/:page",
         name: "NoticeList",
         component: NoticeList,
       },

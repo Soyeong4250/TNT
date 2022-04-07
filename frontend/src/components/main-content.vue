@@ -40,6 +40,7 @@
           <!-- <article-number/> -->
         </div>
         <div class="mainBox mx-auto">
+          <h3 style="width: 95%; padding-left: 1.5em; color:#1f57f1; font-weight:bold">WordCloud</h3>
           <word-cloud></word-cloud>
         </div>
         <div class="mainBox mx-auto">
