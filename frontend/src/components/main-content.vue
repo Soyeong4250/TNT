@@ -33,21 +33,9 @@
             <main-tab :category="`오피니언`"></main-tab>
         </div>
         </div>
-    <div class="mainPage">
-      <div class="flexbox d-flex">
-        <div class="mainBox mx-auto">
-          <dailykeyword/>
-          <!-- <article-number/> -->
-        </div>
-        <div class="mainBox mx-auto">
-          <h3 style="width: 95%; padding-left: 1.5em; color:#1f57f1; font-weight:bold">WordCloud</h3>
-          <word-cloud></word-cloud>
-        </div>
-        <div class="mainBox mx-auto">
-          <daily-chart/>
-        </div>
-      </div>
-    </div>
+        <dailykeyword/>
+        <word-cloud></word-cloud>
+        <daily-chart/>
 </template>
 
 <script>
@@ -87,7 +75,6 @@ export default {
   clear: both;
 }
 .flexbox{
-  display: flex;
   flex-wrap: wrap;
   gap: 1em;
   align-content: center;
@@ -95,6 +82,7 @@ export default {
 }
 
 .mainBox {
+    margin-left:10%;
   width: 55em;
   height: 100%;
   float: left;
@@ -137,7 +125,8 @@ export default {
     border-bottom: 0.5px solid rgb(227, 227, 227);
     border-left: 0.5px solid rgb(227, 227, 227);
     border-right: 0.5px solid rgb(227, 227, 227);
-    height: 450px;
+    height: 30%;
+    margin-bottom : 50px;
 }
 
 .fa-bell{

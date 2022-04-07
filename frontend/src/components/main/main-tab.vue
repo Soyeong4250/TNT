@@ -115,9 +115,9 @@ setup(props){
 
 .news-thumb .thumb{
     display:block;
-    width: 100%;
-    height: 60%;
-    margin-right:5px;
+    width: 65%;
+    height: 65%;
+    margin-right:5%;
     margin-top: 30px;
     margin-bottom: 10px;
     border-radius: 5px;

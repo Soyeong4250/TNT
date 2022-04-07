@@ -1,5 +1,6 @@
 <template>
-  <div class="d-flex" id="word-cloud"></div>
+  <span class="word-cloud-name"><i class="fas fa-cloud"></i>워드 클라우드</span>
+  <div id="word-cloud"></div>
 </template>
 
 <script>
@@ -52,7 +53,7 @@ export default {
         .attr("width", width)
         .attr("height", height)
         .style("background", "white")        
-        .style("border","1px solid black")
+        .style("border","0.5px solid rgb(227, 227, 227)")
         .attr("class","mx-auto")
         .append("g")
         .attr("style", "width:50em;height:50em")
@@ -84,4 +85,20 @@ export default {
 </script>
 
 <style>
+.word-cloud-name{
+    margin-left: 10%;
+    font-family: 'NanumBarunGothicBold',sans-serif;
+    font-size : 18px;
+    margin-bottom: 20px;
+}
+
+.fa-cloud{
+  color:blue;
+}
+
+#word-cloud{
+  margin-left: 10%;
+  margin-top:40px;
+  margin-bottom: 40px;
+}
 </style>
