@@ -1,5 +1,8 @@
 package com.ssafy.tnt.api.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -34,5 +37,9 @@ public class NewsServiceImpl implements NewsService{
 	public Page<News> findByCompany(String company, int page) {
 		PageRequest pageRequest = PageRequest.of(page, this.size);
 		return newsRepository.findByCompanyContainingOrderByDateDesc(company, pageRequest);
+	}
+	@Override
+	public List<Map<String, Object>> findCategoryCount() {
+		return newsRepository.findCategoryCount();
 	}
 }
