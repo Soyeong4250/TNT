@@ -26,7 +26,7 @@
         </div>
         </div>
   </div>
-  <div class="col-8">
+  <div class="col-8 sub-news-group">
       <div class="subnews" :key="index" v-for="(news,index) in state.newsList">
           <div v-if="index!=state.thumbnailnews">
             <span class="thumb-info" data-bs-toggle="modal" :data-bs-target="'#newsModal'+category+index">{{news.title}}</span>
@@ -117,7 +117,7 @@ setup(props){
     display:block;
     width: 100%;
     height: 60%;
-    padding-top: 10px;
+    margin-top: 30px;
     margin-bottom: 10px;
     border-radius: 5px;
 }
@@ -129,6 +129,8 @@ setup(props){
 
 .subnews {
     margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .modal-title{
@@ -144,7 +146,8 @@ setup(props){
 }
 
 .news-wrap {
-    border : 1px grey;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .news-content {
@@ -153,5 +156,9 @@ setup(props){
     width : 90%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.sub-news-group{
+    margin-top:20px;
 }
 </style>

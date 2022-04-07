@@ -33,6 +33,7 @@ public class NoticeCustomRepository {
                 .leftJoin(user).on(notice.writer.eq(user.id))
                 .offset((page-1)*size)
                 .limit(size)
+                .orderBy(notice.date.desc())
                 .fetch();
     }
 

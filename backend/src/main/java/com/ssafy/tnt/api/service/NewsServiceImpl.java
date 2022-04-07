@@ -64,4 +64,9 @@ public class NewsServiceImpl implements NewsService{
 		}
 		return resultMap;
 	}
+
+	@Override
+	public List<Map<String, Object>> findCompanyCount() {
+		return newsRepository.findCompanyCount();
+	}
 }

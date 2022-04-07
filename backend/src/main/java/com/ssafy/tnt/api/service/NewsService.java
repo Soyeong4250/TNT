@@ -14,4 +14,5 @@ public interface NewsService {
 	Page<News> findByContent(String content, int page);
 	Page<News> findByCompany(String company, int page);
 	HashMap<String, Integer> findCategoryCount();
+	List<Map<String, Object>> findCompanyCount();
 }

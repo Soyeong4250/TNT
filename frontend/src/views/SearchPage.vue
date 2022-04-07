@@ -12,7 +12,7 @@
 						<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
 					</div>
 					<div class="carousel-inner">
-						<div class="carousel-item active">
+						<div class="carousel-item active" data-bs-interval="5000">
 							<div class="card mb-3 newsCard">
 								<div class="row g-0">
 									<div v-if="this.news[0].tumbnailUrl!=null" class="col-md-4">
@@ -55,7 +55,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="carousel-item">
+						<div class="carousel-item" data-bs-interval="5000">
 							<div class="card mb-3 newsCard">
 								<div class="row g-0">
 									<div v-if="this.news[1].tumbnailUrl!=null" class="col-md-4">
@@ -96,7 +96,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="carousel-item">
+						<div class="carousel-item" data-bs-interval="5000">
 							<div class="card mb-3 newsCard">
 								<div class="row g-0">
 									<div v-if="this.news[2].tumbnailUrl!=null" class="col-md-4">
@@ -262,7 +262,7 @@ export default {
       // searchWord:"searchStore/searchWord",
       news: "searchStore/news",
     }),
-	changeDateFormat1() {
+		changeDateFormat1() {
 			return dayjs(this.news[0].date).format("YYYY.MM.DD");
 		},
 		changeDateFormat2() {
@@ -298,8 +298,6 @@ export default {
 }
 .carousel-item {
   /* min-height: 15em; */
-  margin: 1em;
-  margin-bottom: 20px;
   /* border: 1px solid black; */
 }
 .ellipsis {

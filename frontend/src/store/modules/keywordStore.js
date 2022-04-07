@@ -4,7 +4,7 @@ import http from "@/util/http-common.js";
 export const keywordStore={
 	namespaced : true,
 	state:() => ({
-		preKeywords: [{ value: null, count: 0 }],
+		// preKeywords: [{ value: null, count: 0 }],
 		nowKeywords: [{ value: null, count: 0 }],
 	}),
 	getters:{

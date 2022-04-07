@@ -72,6 +72,7 @@ export default {
 }
 #header-title{
     margin-top: 1em;
+    margin-bottom : 1em;
     font-family: 'NanumBarunGothic', sans-serif;
     font-size: 2em;
     text-align: center;
@@ -80,6 +81,7 @@ export default {
 #header-title-text{
     cursor: pointer;
 }
+
 .header-text{
 }
 .header-text:hover{

@@ -4,7 +4,7 @@
     <h3 class="fw-normal pb-3" style="letter-spacing: 1px;">회원가입</h3>
 
     <div class="form-outline mb-4">
-        <input type="text" name="user_id" v-model="user_id" placeholder="ID 입력" class="form-control form-control-lg"  @keyup="memberCheck"/>
+        <input type="text" name="user_id" v-on="idCk" v-model="user_id" placeholder="ID 입력" class="form-control form-control-lg"  @keyup="memberCheck"/>
         <span>{{ userIdError }}</span>
         <p v-if="bool" id="check-id">중복된 아이디입니다.</p>
     </div>
@@ -53,6 +53,7 @@ export default {
     name:"UserRegister",
     setup(){
         const router=useRouter();
+    
       const schema = yup.object({
       user_id: yup.string().required("아이디를 입력하세요."),
         user_name: yup.string().required("이름은 필수 기입사항 입니다."),
@@ -73,8 +74,22 @@ export default {
    
     let bool = ref(false);
     let idCk = ref("");
+    const memberCheck = () => {
+        if(idCk.value.length<1) return;
+        else{
+        axios
+            .get(process.env.VUE_APP_API_URL + "/users/IdCheck/" + idCk.value)
+            .then((response) => {
+
+            let cnt = response.data;
+            if (cnt) bool.value = true;
+            else bool.value = false;
+            })
+            return;
+        }
+    };
     // No need to define rules for fields
-    const { value: user_id, errorMessage: userIdError } = useField('user_id');
+    const {  errorMessage: userIdError, value: user_id} = useField('user_id');
     const { value: user_pwd, errorMessage: user_pwdError } = useField('user_pwd');
     const { value: user_email, errorMessage: user_emailError } = useField('user_email');
     const { value: confirmPassword, errorMessage: confirmPasswordError } = useField('confirmPassword');
@@ -96,19 +111,6 @@ export default {
           
       }
     });
-
-    const memberCheck = () => {
-        if(idCk.value.length<1) return;
-      axios
-        .get(process.env.VUE_APP_API_URL + "/users/IdCheck/" + idCk.value)
-        .then((response) => {
-
-          let cnt = response.data;
-          if (cnt) bool.value = true;
-          else bool.value = false;
-        })
-        
-    };
 
     return {
       onSubmit,
