@@ -99,7 +99,10 @@ export default {
 			this.$router.push({name:"NoticeModify",params:{no:this.no}});
 		},
 		moveList() {
-			this.$router.push("/notice");
+			this.$router.push({
+                name : "NoticeList",
+                params: {page: 1}
+        });
 		},
 	}
 };
