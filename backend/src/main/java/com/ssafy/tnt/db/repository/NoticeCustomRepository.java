@@ -21,8 +21,9 @@ import static com.ssafy.tnt.db.entity.QUser.user;
 public class NoticeCustomRepository {
 
     private final JPAQueryFactory queryFactory;
+    int size = 10;
 
-    public List<NoticeDTO> findAllNotice () {
+    public List<NoticeDTO> findAllNotice (int page) {
         return queryFactory
                 .select(Projections.constructor(NoticeDTO.class,
                         notice,
@@ -30,6 +31,8 @@ public class NoticeCustomRepository {
                 ))
                 .from(notice)
                 .leftJoin(user).on(notice.writer.eq(user.id))
+                .offset((page-1)*size)
+                .limit(size)
                 .fetch();
     }
 

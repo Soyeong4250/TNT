@@ -28,7 +28,7 @@ export const keywordStore={
 			Object.keys(results).forEach((k)=>{
 				state.nowKeywords.push({
 					value: k,
-					count:  results[k],
+					count: results[k],
 				})
 			})
 			console.log("키워드 결과");
@@ -37,7 +37,7 @@ export const keywordStore={
 	},
 	actions: {
 		GET_UPDATE_KEYWORD({ commit }) {
-			http.get(`/keyword`)
+			http.get(`/keyword`,)
 			.then((response) => {
 					console.log("가져온 키워드 결과");
 					console.log(response);
