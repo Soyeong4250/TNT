@@ -54,7 +54,10 @@ export default {
 }
 
 .search-box{
-    margin: 10%;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top:10%;
+    margin-bottom:10%;
     display: flex;
     padding: auto;
     border:1px solid rgb(62, 62, 253);
@@ -79,7 +82,7 @@ export default {
 
 .search-text{
     margin-left: 3px;
-    width:80%;
+    width:88%;
     align-self: center;
     border:none;
     background: none;

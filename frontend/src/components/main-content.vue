@@ -1,6 +1,6 @@
 <template>
     <main-search></main-search>
-  
+    <span class="today-issue"><i class="fas fa-bell"></i> 오늘의 이슈</span>
     <div class="category">
       <nav>
       <div class="nav nav-tabs nav-fill nav-tabs-category" id="nav-category-tab" role="tablist">
@@ -97,10 +97,9 @@ export default {
 }
 
 .category{
-    padding-top: 30px;
     border-bottom: 1px solid rgb(227, 227, 227);
-    margin-left:auto;
-    margin-right: auto;
+    margin-left:10%;
+    margin-right: 10%;
     font-size: 15px;
 }
 
@@ -120,7 +119,23 @@ export default {
     border-color:white;
 }
 
+.today-issue{
+    margin-left:10%;
+    margin-right: 10%;
+    font-family: 'NanumBarunGothicBold',sans-serif;
+    font-size : 18px;
+}
+
 .tab-content{
+    margin-left:10%;
+    margin-right: 10%;
+    border-bottom: 0.5px solid rgb(227, 227, 227);
+    border-left: 0.5px solid rgb(227, 227, 227);
+    border-right: 0.5px solid rgb(227, 227, 227);
     height: 400px;
+}
+
+.fa-bell{
+    color: rgb(46, 72, 221);
 }
 </style>
