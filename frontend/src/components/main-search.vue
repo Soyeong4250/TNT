@@ -8,7 +8,7 @@
               <option class="option-category">내용</option>
               <option class="option-category">언론사</option>
           </select>
-          <input type="text" class="search-text" placeholder="검색" v-model="state.searchTxt" @keyup.enter="clickSearchBtn" @click="clickSearchBar"/>
+          <input type="text" class="search-text" placeholder="검색" v-model="searchWord" @keyup.enter="clickSearchBtn" @click="clickSearchBar"/>
           <a class="search-btn" @click="clickSearchBtn">
               <i class="fas fa-search"></i>
           </a>
@@ -18,36 +18,28 @@
 </template>
 
 <script>
-import {reactive} from "vue";
-import {useStore} from "vuex";
-import {useRouter} from "vue-router";
 export default {
-    setup(){
-        const router=useRouter();
-        const store=useStore();
-        const state=reactive({
-            searchTxt: "",
-            searchCategory: "선택",
-        })
-        const clickSearchBtn=()=>{
-            if(!state.searchTxt){
-                alert("검색어를 입력해주세요!");
-                return
-            }
-            if(state.searchCategory=="선택"){
-                alert("제목/내용을 선택해주세요")
-                return;
-            }
-            store.commit("newsStore/setSearchSelect",state.searchCategory)
-            store.commit("newsStore/setSearchText",state.searchTxt)
-
-            router.push({name : "Search"});
-        }
-        return{
-            state,
-            clickSearchBtn
+    data() {
+        return {
+            selected: "선택",
+            searchWord: null,
+        };
+    },
+    methods: {
+        clickSearchBtn() {
+            console.log(this.searchWord + "을(를) 검색했습니다.");
+            console.log(document.location.href);
+            
+            this.$router.push({
+                name : "Search",
+                params: {selected : this.selected, searchWord : this.searchWord}
+            });
+            
+            
+            
         }
     }
+
 }
 </script>
 
