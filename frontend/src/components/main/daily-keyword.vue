@@ -49,9 +49,9 @@
                                 <td class="result_value">{{keyword.value}}</td>
                                 <td>{{keyword.count}}</td>
                             </tr>
-                            <tr v-for="(keyword, index) in rank5" :key="index">
-                                <td>{{ index+1 }}</td>
-                                <td>{{keyword.value}}</td>
+                            <tr class="result_row" v-for="(keyword, index) in rank5" :key="index">
+                                <td>{{ index+6 }}</td>
+                                <td class="result_value">{{keyword.value}}</td>
                                 <td>{{keyword.count}}</td>
                             </tr>
                         </tbody>
