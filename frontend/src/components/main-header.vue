@@ -29,6 +29,9 @@
             </div>
         </span>
     </div>
+    <div id="header-title" class = "">
+        <span @click="clickMain" id="header-title-text">Today News Talk</span>
+    </div>
 </template>
 
 <script>
@@ -53,9 +56,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
 #header{
     margin: 1em;
+    font-family: 'NanumBarunGothic', sans-serif;
 }
 #logo{
     margin-left: 1em;
@@ -67,6 +72,7 @@ export default {
 }
 #header-title{
     margin-top: 1em;
+    font-family: 'NanumBarunGothic', sans-serif;
     font-size: 2em;
     text-align: center;
     font-weight: bold;    

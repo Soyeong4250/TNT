@@ -4,8 +4,8 @@ import http from "@/util/http-common.js";
 export const keywordStore={
 	namespaced : true,
 	state:() => ({
-		preKeywords: [{ value: null, rank: 0 }],
-		nowKeywords: [{ value: null, rank: 0 }],
+		preKeywords: [{ value: null, count: 0 }],
+		nowKeywords: [{ value: null, count: 0 }],
 	}),
 	getters:{
 		keywordRank (state){
@@ -23,18 +23,21 @@ export const keywordStore={
 	mutations: {
 		SET_UPDATE_KEYWORD(state, results) {
 			state.preKeywords = state.nowKeywords;
-			state.nowKeywords= [{ keyword: null, rank: 0 }];
-			console.log(results);
-			results.forEach((result) => {
-				// console.log(results.indexOf(result));
-				state.nowKeywords.push({ value: result, rank: results.indexOf(result)});
+			state.nowKeywords= [];
+			console.log(results);			
+			Object.keys(results).forEach((k)=>{
+				state.nowKeywords.push({
+					value: k,
+					count: results[k],
+				})
 			})
-	
+			console.log("키워드 결과");
+			console.log(state.nowKeywords);	
 		},
 	},
 	actions: {
 		GET_UPDATE_KEYWORD({ commit }) {
-			http.get(`/keyword`)
+			http.get(`/keyword`,)
 			.then((response) => {
 					console.log("가져온 키워드 결과");
 					console.log(response);

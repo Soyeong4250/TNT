@@ -28,10 +28,10 @@ public class NoticeController {
 	private NoticeCustomRepository noticeCustomRepository;
 
 	@GetMapping
-	public ResponseEntity<List<NoticeDTO>> findAllNotice(){
+	public ResponseEntity<List<NoticeDTO>> findAllNotice(@RequestParam(name="page") int page){
 		System.out.println("접속");
 //		return new ResponseEntity<>(noticeService.findAllNotice(), HttpStatus.OK);
-		List<NoticeDTO> list = noticeCustomRepository.findAllNotice();
+		List<NoticeDTO> list = noticeCustomRepository.findAllNotice(page);
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	@GetMapping("/{no}")
