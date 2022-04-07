@@ -1,56 +1,79 @@
 <template>
     <div id="header">
-        <img @click="clickMain" id="logo" src="@/assets/logo.png" alt="로고 로딩 오류"/>
-
+        <router-link class="header-router" to="/">
+        <img id="logo" src="@/assets/tntLogo.png" alt="로고 로딩 오류"/>
+        </router-link>
         <span id=header-btn>
             <div class="btn-group" role="group" aria-label="Basic outlined example">
                 <router-link class="header-router" to="/notice">
                     <span class="header-text">공지사항</span>
                 </router-link>
+                <div v-if="!state.userInfo">
+                    <router-link class="header-router" to="/users">
+                        <span class="header-text">로그인</span>                    
+                    </router-link>
 
-                <router-link class="header-router" to="/login">
-                    <span class="header-text">로그인</span>                    
-                </router-link>
+                    <router-link class="header-router" to="/users/register">
+                        <span class="header-text">회원가입</span>
+                    </router-link>
+                </div>
+                <div v-else>
+                    <router-link class="header-router" to="/users/login">
+                        <span class="header-text" v-on:click="logout">로그아웃</span>                    
+                    </router-link>
 
-                <router-link class="header-router" to="/register">
-                    <span class="header-text">회원가입</span>
-                </router-link>
+                    <router-link class="header-router" to="/profile">
+                        <span class="header-text">내정보</span>
+                    </router-link>
+                </div>
             </div>
         </span>
     </div>
-        <div id="header-title" class = "">
-            <span @click="clickMain" id="header-title-text">Today News Talk</span>
-        </div>
+    <div id="header-title" class = "">
+        <span @click="clickMain" id="header-title-text">Today News Talk</span>
+    </div>
 </template>
 
 <script>
+import {computed, reactive} from "vue";
+import {useStore} from "vuex";
 export default {    
-    setup(){        
-        const clickMain = () =>{
-            location.href = "/"
-        }
+    setup(){
+        const store=useStore();
+        const state=reactive({
+            userInfo: computed(()=>{
+                console.log(store.state.accountStore.userinfo)
+                return store.state.accountStore.userinfo;
+            })
+        })
+        const logout = () => store.commit("accountStore/logout");
         return{
-            clickMain,
+            logout,
+            state,
         }
     }
 
 }
 </script>
 
-<style>
+<style scoped>
+
 #header{
-    margin-top: 1em;    
+    margin: 1em;
+    font-family: 'NanumBarunGothic', sans-serif;
 }
 #logo{
     margin-left: 1em;
-    width: 1.5em;
-    height: 1.5em;
+    width: 3em;
+    height: 4em;
 }
 #header-btn{
     float: right;
 }
 #header-title{
     margin-top: 1em;
+    margin-bottom : 1em;
+    font-family: 'NanumBarunGothic', sans-serif;
     font-size: 2em;
     text-align: center;
     font-weight: bold;    
@@ -58,6 +81,7 @@ export default {
 #header-title-text{
     cursor: pointer;
 }
+
 .header-text{
 }
 .header-text:hover{

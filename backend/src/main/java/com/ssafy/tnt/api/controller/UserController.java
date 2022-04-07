@@ -34,7 +34,7 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<? extends BaseResponseBody> register(
             @RequestBody UserRegisterPostReq registerInfo) {
-
+    	System.out.println(registerInfo.toString());
         User user = userService.createUser(registerInfo);
 
         return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));

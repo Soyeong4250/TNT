@@ -1,23 +1,39 @@
 <template>
-  <main-header></main-header>
-  <router-view></router-view>
-  <main-footer> </main-footer>
+  <main-page></main-page>
 </template>
 
 <script>
-import mainHeader from "@/components/main-header.vue";
-import mainFooter from "@/components/main-footer.vue";
-
+import MainPage from "./views/MainPage.vue";
 export default {
   name: "App",
   components: {
-    mainHeader,
-    mainFooter,
+    MainPage
   },
 };
 </script>
 
 <style>
+main-footer{
+  position: relative;
+  transform: translateY(-100%);
+}
 
 
+@font-face {
+  font-family: 'NanumBarunGothic';
+  src: url('assets/font/NanumBarunGothic.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'NanumBarunGothicBold';
+  src: url('assets/font/NanumBarunGothicBold.ttf') format('truetype');
+  font-weight: 400;
+}
+/*
+@font-face {
+  font-family: 'NanumBarunGothic';
+  src: url('assets/font/NanumBarunGothicBold.ttf') format('truetype');
+  font-weight: 400;
+} */
 </style>

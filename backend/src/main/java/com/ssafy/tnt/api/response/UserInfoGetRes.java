@@ -22,8 +22,7 @@ public class UserInfoGetRes extends BaseResponseBody {
     private String email;
     private LocalDate birth;
     private LocalDate reg;
-    private String role;
-
+    private String Role;
     public static UserInfoGetRes of(User user) {
        UserInfoGetRes userInfoGetRes= UserInfoGetRes.builder()
                .id(user.getId())
@@ -31,7 +30,7 @@ public class UserInfoGetRes extends BaseResponseBody {
                .name(user.getName())
                .email(user.getEmail())
                .birth(user.getBirth())
-               .role(user.getRole())
+               .Role(user.getRole())
                 .build();
         return userInfoGetRes;
     }

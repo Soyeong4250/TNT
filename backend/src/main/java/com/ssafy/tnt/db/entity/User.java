@@ -7,7 +7,8 @@ import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import java.time.LocalDate;
 
 @Entity
@@ -18,9 +19,11 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @DynamicInsert
+@Table(name="User", uniqueConstraints = {@UniqueConstraint(
+        name = "USERID_UNIQUE",
+        columnNames = {"userId"} ),
+        @UniqueConstraint(name="EMAIL_UNIQUE", columnNames = {"email"})})
 public class User extends BaseTimeEntity{
-    @Id
-    private Long id;
     private String name;
     private String userId;
     @JsonIgnore

@@ -4,7 +4,7 @@
 			<b-col class = "text-right">
 				<div class="listMenu">
 					<!-- <input type="text"><img class="searchImg" src="@/assets/search.png" alt="search.png"> -->
-					<b-button v-if="this.userinfo.role == 'A'" variant="primary" class="p-1" @click="moveWrite()"> 글쓰기 </b-button>
+					<b-button v-if="this.userinfo != null && this.userinfo.role == 'A'" variant="primary" class="p-1" @click="moveWrite()"> 글쓰기 </b-button>
 				</div>
 			</b-col>
 		</b-row>
@@ -37,6 +37,16 @@
 							/>
 					</b-tbody>
 				</b-table-simple>
+				<!-- pagenation -->
+				<div class="overflow-auto">
+						<b-pagination
+							v-model= "this.page"
+							:total-rows="this.rows"
+							:per-page="this.perPage"
+							class="justify-content-center"
+							@page-click="pageClick"
+						></b-pagination>
+				</div>
 			</b-col>
 			<b-col v-else>
 				<b-table-simple hover responsive outlined>
@@ -82,6 +92,10 @@ export default {
 	data(){
 		return{
 			notices: [],
+			rows : 2,
+			perPage: 1,
+			page: this.$route.params.page,
+			
 		};
 	},
 	created() {
@@ -99,7 +113,7 @@ export default {
 	},
 	methods: {
 		getNoticeList(){
-			http.get(`/notice`)
+			http.get(`/notice`, {params: {page: this.page}})
 			.then(response => {
 				console.log(response.data);
 				this.notices = response.data;
@@ -108,6 +122,16 @@ export default {
 				console.log(error);
 			});
 		},
+		pageClick: function (button, page){
+		this.page = page;
+		this.changePage(page);
+	},
+	changePage(page) {
+		this.$router.push({
+                name : "NoticeList",
+                params: {page: page}
+        });
+	},
 		moveWrite() {
 			this.$router.push({ name:"NoticeWrite" });
 		},
