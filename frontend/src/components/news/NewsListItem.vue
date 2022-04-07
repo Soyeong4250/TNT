@@ -23,7 +23,7 @@
 							<div style="text-align:right; padding-left: 1em; padding-top:1em">{{	company	}}</div>
 					</div>
 					<div class="modal-footer">
-							<a :href="this.news[2].newsUrl" class="btn btn-primary btn-md">원문보러가기</a>
+							<a :href="url" class="btn btn-primary btn-md">원문보러가기</a>
 					</div>
 				</div>
 			</div>
