@@ -1,6 +1,10 @@
 package com.ssafy.tnt.api.controller;
 
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -35,5 +39,10 @@ public class NewsController {
 	@GetMapping("find/company")
 	public ResponseEntity<Page<News>> findNewsByCompany(@RequestParam(name="company") String company, @RequestParam(name="page") int page){
 		return new ResponseEntity<>(newsService.findByCompany(company, page), HttpStatus.OK);
+	}
+	
+	@GetMapping("find/category/count")
+	public ResponseEntity<HashMap<String,Integer>> findCategoryCount(){		
+		return new ResponseEntity<>(newsService.findCategoryCount(), HttpStatus.OK);		
 	}
 }

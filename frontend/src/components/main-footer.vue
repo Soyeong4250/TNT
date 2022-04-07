@@ -35,13 +35,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #footer-main{
   margin-top : 40px;
+  border-top: 1px solid black;
   bottom: 0px;  
   height: 150px;
   width: 100%;
-  background-color: grey;
+  background-color: white;
 } 
 .footer-text{
   margin-left: 10px;

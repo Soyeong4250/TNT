@@ -3,26 +3,23 @@
         <div id = "keyword-box">
             <!-- <h5>this.keywordRank : {{ keywordRank }}</h5> -->
             <!-- <h5>{{ this.rank5 }}</h5> -->
-            <p>오늘의 키워드</p>
-            <div class="cateBtn">
-                <b-button class = "button" pill variant="outline-primary" :key="key.num" v-for="key in categories">
-                    {{key.category}}
-                </b-button>
-            </div>
+            <h3 style="width: 95%; padding-left: 1em; color:#1f57f1; font-weight:bold">오늘의 키워드</h3>
             <div id="keyword-inbox" style="display:flex">
                 <div class="flex-container column mx-auto my-auto" >
                     <div class = "rank-box" v-for="(rank, index) in this.rank0" :key="index">
                         <b-button class="ranking" pill variant = "secondary"> 
-                        {{ rank.rank+1 }} {{ rank.value }}
+                        {{ index+1 }} {{ rank.value }}
                         </b-button>
+                        
                     </div>
                 </div>
                 <div class="flex-container column mx-auto my-auto" >
-                 <div class ="rank-box "  v-for="(rank, index) in this.rank5" :key="index">
+                    <div class ="rank-box "  v-for="(rank, index) in this.rank5" :key="index">
                     <b-button class="ranking" pill variant = "secondary"> 
-                    <!-- {{ rank.rank }}   {{rank.content}} {{rank.change}} -->
-                     {{ rank.rank+1 }} {{ rank.value }}
+                        <!-- {{ rank.rank }}   {{rank.content}} {{rank.change}} -->
+                     {{ index+6 }} {{ rank.value }}
                     </b-button>
+                        
                 </div>
                 </div>
             </div>
@@ -66,90 +63,10 @@
 <script>
 import { mapGetters } from 'vuex';
 export default {
-
-// data() {
-//     return {
-//         articles : [
-//                 {name: "조선일보",
-//                 num:100},
-//                 {name : "동아일보",
-//                 num:70},
-//                 {name: "중앙일보",
-//                 num:60},
-//                 {name: "한겨레",
-//                 num:30},
-//                 {name: "경향신문",
-//                 num:10},
-                
-//                 ],
-//                 keywords : [
-//                 {name: "삼성전자",
-//                 num:100},
-//                 {name : "삼성SDI",
-//                 num:70},
-//                 {name: "코로나19",
-//                 num:60},
-//                 {name: "싸피",
-//                 num:30},
-//                 {name: "삼성증권",
-//                 num:10},
-                
-//                 ]
-         
-//     }
-// },
     setup() {
-        const categories =[
-                { category : "전체",
-                  num : 1},
-                  { category : "정치",
-                  num : 2},
-                  { category : "경제",
-                  num : 3},
-                  { category : "사회",
-                  num : 4},
-                  { category : "생활/문화",
-                  num : 5},
-                  { category : "IT/과학",
-                  num : 6},
-                  { category : "오피니언",
-                  num : 7},
-                  
-            ];
-        const ranks5 = [{rank:1,
-                    content : "삼성전자",
-                    change : 0},
-                    {rank:2,
-                    content : "삼성전자",
-                    change : 0},
-                    {rank:3,
-                    content : "삼성전자",
-                    change : 0},
-                    {rank:4,
-                    content : "삼성전자",
-                    change : 0},
-                    {rank:5,
-                    content : "삼성전자",
-                    change : 0},
-                    ];
-        const ranks10 = [ {rank:6,
-                    content : "삼성전자",
-                    change : 0},
-                    {rank:7,
-                    content : "삼성전자",
-                    change : 0},
-                    {rank:8,
-                    content : "삼성전자",
-                    change : 0},
-                    {rank:9,
-                    content : "삼성전자",
-                    change : 0},
-                    {rank:10,
-                    content : "삼성전자",
-                    change : 0},
-        ];
+        const ranks5 = [];
+        const ranks10 = [];
         return{
-            categories,
             ranks5,
             ranks10
         }
@@ -180,7 +97,7 @@ export default {
     created() {
         this.$store.dispatch("keywordStore/GET_UPDATE_KEYWORD");
         this.rank0 = this.keywordRank.slice(0, 5);
-        this.rank5 = this.keywordRank.slice(5,11);
+        this.rank5 = this.keywordRank.slice(5,10);
     }
 }
 </script>

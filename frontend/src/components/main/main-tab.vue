@@ -7,7 +7,7 @@
       <div class="thumb-info"><span>{{state.news.title}}</span></div>
         <!-- Modal -->
         <div class="modal fade" :id="'newsModal'+category+state.thumbnailnews" tabindex="-1" aria-labelledby="newsModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
             <div class="modal-content">
             <div class="modal-header">
                 <p class="modal-title" id="newsModalLabel">{{state.news.title}}</p>
@@ -16,7 +16,7 @@
             <div class="modal-body">
                 <p>{{state.news.company}}</p>
                 <img class="modal-image" :src="state.news.tumbnailUrl" alt="">
-                <div>{{state.news.content}}</div>
+                <div class="news-content">{{state.news.content}}</div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -27,7 +27,7 @@
         </div>
   </div>
   <div class="col-8">
-      <div :key="index" v-for="(news,index) in state.newsList">
+      <div class="subnews" :key="index" v-for="(news,index) in state.newsList">
           <div v-if="index!=state.thumbnailnews">
             <span class="thumb-info" data-bs-toggle="modal" :data-bs-target="'#newsModal'+category+index">{{news.title}}</span>
             <!-- Modal -->
@@ -35,13 +35,13 @@
                 <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="newsModalLabel">{{news.title}}</h5>
+                <span class="modal-title" id="newsModalLabel">{{news.title}}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <p>{{news.company}}</p>
                     <img class="modal-image" :src="news.tumbnailUrl" alt="">
-                    <div>{{news.content}}</div>
+                    <div class="news-content">{{news.content}}</div>
                 </div>
                 <div class="modal-footer">
                     <span>기사 원문 : </span><a :href="news.newsUrl">{{news.newsUrl}}</a>
@@ -127,14 +127,31 @@ setup(props){
     cursor: pointer;
 }
 
+.subnews {
+    margin-bottom: 10px;
+}
+
+.modal-title{
+    font-size:2em;
+    font-family: 'NanumBarunGothicBold',sans-serif;
+}
+
 .modal-image {
     width: 90%;
     height : 30%;
-    padding-left: 20px;
     margin-bottom: 10px;
+    padding-left: 50px;
 }
 
 .news-wrap {
     border : 1px grey;
+}
+
+.news-content {
+    line-height: 200%;
+    font-size : 17px;
+    width : 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 </style>

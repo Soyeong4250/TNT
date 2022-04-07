@@ -2,12 +2,12 @@
 	<b-tr>
 		<!-- <b-td>{{ cnt }}</b-td> -->
 		<b-td class="text-left">
-			<span class="thumb-info" data-bs-toggle="modal" :data-bs-target="'#newsModal'+category+index">{{ title }}</span>
+			<span class="thumb-info" data-bs-toggle="modal" :data-bs-target="'#newsModal'+index">{{ title }}</span>
 		</b-td>
 		<b-td>{{ company }}</b-td>
 		<!-- <b-td>{{ changeDateFormat }}</b-td> -->
 		<!-- Modal -->
-		<div class="modal fade" :id="'newsModal'+category+index" tabindex="-1" aria-labelledby="newsModalLabel" aria-hidden="true">
+		<div class="modal fade" :id="'newsModal'+index" tabindex="-1" aria-labelledby="newsModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-lg modal-dialog-scrollable">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -23,7 +23,7 @@
 							<div style="text-align:right; padding-left: 1em; padding-top:1em">{{	company	}}</div>
 					</div>
 					<div class="modal-footer">
-							<span>기사 원문 : </span><a :href="url">{{ url }}</a>
+							<a :href="this.news[2].newsUrl" class="btn btn-primary btn-md">원문보러가기</a>
 					</div>
 				</div>
 			</div>
@@ -65,7 +65,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .title, .title:hover {
   text-decoration: none;
   color: black
@@ -75,5 +75,9 @@ export default {
     height : 30%;
     padding-left: 20px;
     margin-bottom: 10px;
+}
+.btn{
+	display: block;
+	width: 10em;
 }
 </style>
