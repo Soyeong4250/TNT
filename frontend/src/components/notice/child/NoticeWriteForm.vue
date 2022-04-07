@@ -116,7 +116,10 @@ export default {
       this.userid = "";
       this.title = "";
       this.content = "";
-      this.$router.push({ name: "NoticeList" });
+      this.$router.push({
+                name : "NoticeList",
+                params: {page: 1}
+        });
     },
     writeNotice() {
       console.log(this.userinfo);
@@ -155,7 +158,10 @@ export default {
         });
     },
     moveList() {
-      this.$router.push({ name: "NoticeList" });
+      this.$router.push({
+                name : "NoticeList",
+                params: {page: 1}
+        });
     },
   },
 };
