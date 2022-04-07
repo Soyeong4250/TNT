@@ -25,27 +25,34 @@
             </div>
             <div class="articleNumber d-flex" style="width:95%; padding:1em;">
                 <div class="artnum">
-                    <table class="mx-auto">
+                    <table class="mx-auto result_table">
                         <thead>
                             <th colspan="2">언론사별 기사 수</th>
                         </thead>
                         <tbody id="article-number">
-                            <tr :key="article" v-for="article in articles">
-                                <td>{{article.name}}</td>
-                                <td>{{article.num}}</td>
+                            <tr class="result_row" v-for="(company, index) in this.companyCnt" :key="index">
+                                <td>{{ index+1 }}</td>
+                                <td class="result_value">{{ company.news_company }}</td>
+                                <td>{{ company.count }}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="keynum">
-                    <table class="mx-auto">
+                    <table class="mx-auto result_table">
                         <thead>
                             <th colspan="2">키워드 개수</th>
                         </thead>
                         <tbody id="article-number">
-                            <tr :key="keyword" v-for="keyword in keywords">
-                                <td>{{keyword.name}}</td>
-                                <td>{{keyword.num}}</td>
+                            <tr class="result_row" v-for="(keyword, index) in rank0" :key="index">
+                                <td>{{ index+1 }}</td>
+                                <td class="result_value">{{keyword.value}}</td>
+                                <td>{{keyword.count}}</td>
+                            </tr>
+                            <tr v-for="(keyword, index) in rank5" :key="index">
+                                <td>{{ index+1 }}</td>
+                                <td>{{keyword.value}}</td>
+                                <td>{{keyword.count}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -61,33 +68,17 @@
 </template>
 
 <script>
+import http from "@/util/http-common.js";
 import { mapGetters } from 'vuex';
 export default {
-    setup() {
-        const ranks5 = [];
-        const ranks10 = [];
-        return{
-            ranks5,
-            ranks10
-        }
-    },
-
     data() {
-        return{
-            categoriess: [
-                { category : "전체", num : 1},
-                { category : "정치", num : 2},
-                { category : "경제", num : 3},
-                { category : "사회", num : 4},
-                { category : "생활/문화", num : 5},
-                { category : "IT/과학", num : 6},
-                { category : "오피니언", num : 7},
-            ],
+        return {
+            categories:  [],
             rank0: [],
             rank5: [],
+            companyCnt: [],
         }
     },
-    
     computed: {
         ...mapGetters({
            keywordRank: "keywordStore/keywordRank",
@@ -98,6 +89,22 @@ export default {
         this.$store.dispatch("keywordStore/GET_UPDATE_KEYWORD");
         this.rank0 = this.keywordRank.slice(0, 5);
         this.rank5 = this.keywordRank.slice(5,10);
+    },
+    mounted() {
+        this.getCompanyCnt();
+    },
+    methods: {
+        getCompanyCnt() {
+            http.get(`/news/find/company/count`)
+            .then((response) => {
+                console.log("언론사별 cnt 결과")
+				console.log(response.data);
+				this.companyCnt = response.data.slice(0, 10);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+        }
     }
 }
 </script>
@@ -138,7 +145,13 @@ export default {
 .artnum, .keynum {
     width: 50%;
 }
-
+.result_table{
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+.result_value{
+    font-weight: bold;
+}
 /* #artnum {
     position: relative;
     width: 30%;

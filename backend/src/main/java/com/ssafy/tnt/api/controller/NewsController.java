@@ -42,7 +42,12 @@ public class NewsController {
 	}
 	
 	@GetMapping("find/category/count")
-	public ResponseEntity<HashMap<String,Integer>> findCategoryCount(){		
+	public ResponseEntity<HashMap<String,Integer>> findCategoryCount(){
 		return new ResponseEntity<>(newsService.findCategoryCount(), HttpStatus.OK);		
+	}
+
+	@GetMapping("find/company/count")
+	public ResponseEntity<List<Map<String, Object>>> findCompanyCount(){
+		return new ResponseEntity<>(newsService.findCompanyCount(), HttpStatus.OK);
 	}
 }

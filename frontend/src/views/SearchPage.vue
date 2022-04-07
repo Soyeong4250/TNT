@@ -262,7 +262,7 @@ export default {
       // searchWord:"searchStore/searchWord",
       news: "searchStore/news",
     }),
-	changeDateFormat1() {
+		changeDateFormat1() {
 			return dayjs(this.news[0].date).format("YYYY.MM.DD");
 		},
 		changeDateFormat2() {
