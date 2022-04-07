@@ -3,10 +3,6 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-6 text-black">
-        
-        <div class="px-5 ms-xl-4">
-          <span class="h1 fw-bold mb-0">Today News Talk</span>
-        </div>
 
         <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 pt-5 pt-xl-0 mt-xl-n5">
             <router-view></router-view>
