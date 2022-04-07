@@ -43,7 +43,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .category-select{
     border-radius: 20px;
     border:none;

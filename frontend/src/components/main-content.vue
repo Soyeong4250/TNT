@@ -1,8 +1,4 @@
 <template>
-    <div id="header-title" class = "">
-        <span @click="clickMain" id="header-title-text">Today News Talk</span>
-    </div>
-
     <main-search></main-search>
   
     <div class="category">
@@ -68,11 +64,14 @@ export default {
 </script>
 
 <style scoped>
-button{
+
+.nav-tab-category button{
     border: none;
     background: none;
 }
-
+.nav-tab-category button:focus{
+    outline: none;
+}
 .mainPage{
   height: auto;
   min-width: 600px;
@@ -99,17 +98,13 @@ button{
 
 .category{
     padding-top: 30px;
-    border-bottom: 1px solid rgb(blue, blue, blue);
+    border-bottom: 1px solid rgb(227, 227, 227);
     margin-left:auto;
     margin-right: auto;
     font-size: 15px;
 }
 
-.nav-tabs{
-    border-bottom: 1px solid rgb(blue, blue, blue);
-}
-
-.nav-link.active{
+#nav-category-tab .nav-link.active{
     color : rgb(26, 112, 211);
     font-weight: bold;
     background-color: #fff;
@@ -126,6 +121,6 @@ button{
 }
 
 .tab-content{
-    height: 20%;
+    height: 400px;
 }
 </style>

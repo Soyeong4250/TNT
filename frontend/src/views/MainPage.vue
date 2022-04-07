@@ -22,5 +22,6 @@ export default {
 .main-size{
   margin-left: 8%;
   margin-right: 8%;
+  font-family: 'NanumBarunGothic', sans-serif;
 }
 </style>
