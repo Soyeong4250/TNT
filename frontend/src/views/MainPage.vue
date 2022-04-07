@@ -1,7 +1,7 @@
 <template>
 <div class="main-size">
   <main-header></main-header>
-  <router-view></router-view>
+  <router-view :key="$route.fullPath"></router-view>
   <main-footer> </main-footer>
 </div>
 </template>
@@ -20,7 +20,7 @@ export default {
 
 <style>
 .main-size{
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 8%;
+  margin-right: 8%;
 }
 </style>

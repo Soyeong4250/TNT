@@ -55,6 +55,7 @@ import MainSearch from "@/components/main-search.vue";
 import MainTab from "@/components/main/main-tab.vue";
 import dailykeyword from "@/components/main/daily-keyword.vue";
 import DailyChart from "@/components/main/daily-chart.vue";
+
 export default {
     name: "MainContent",
     components:{

@@ -12,7 +12,7 @@ export default {
         var naverLogin = new window.naver.LoginWithNaverId(
             {
                 clientId: process.env.VUE_APP_NAVER_KEY,
-                callbackUrl: "http://localhost:8080",
+                callbackUrl: process.env.VUE_APP_NAVER_CALLBACK2_URL,
                 isPopup: false,
                 callbackHandle: true
             }

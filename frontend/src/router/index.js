@@ -25,7 +25,7 @@ const routes = [
     component: Main,
   },
   {
-    path: "/search",
+    path: "/search/:searchWord",
     name: "Search",
     component: Search,
   },

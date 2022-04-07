@@ -13,7 +13,7 @@ public class NewsServiceImpl implements NewsService{
 	@Autowired
 	NewsRepository newsRepository;
 
-	int size = 10; // 한 페이지에 제공할 개수
+	int size = 13; // 한 페이지에 제공할 개수
 	
 	@Override
 	public Page<News> findByCategory(String category, int page) {
@@ -30,5 +30,9 @@ public class NewsServiceImpl implements NewsService{
 		PageRequest pageRequest = PageRequest.of(page, this.size);
 		return newsRepository.findByContentContainingOrderByDateDesc(content, pageRequest);
 	}
-	
+	@Override
+	public Page<News> findByCompany(String company, int page) {
+		PageRequest pageRequest = PageRequest.of(page, this.size);
+		return newsRepository.findByCompanyContainingOrderByDateDesc(company, pageRequest);
+	}
 }

@@ -2,10 +2,11 @@
 <nav>
   <div class="container-fluid">
       <div id="searchBar" class="search-box">
-          <select class="category-select" v-model="state.searchCategory">
-              <option selected disabled>선택</option>
-              <option class="option-category" value="title">제목</option>
-              <option class="option-category" value="content">내용</option>
+          <select class="category-select" v-model="selected">
+              <option class="option-category" disabled>선택</option>
+              <option class="option-category">제목</option>
+              <option class="option-category">내용</option>
+              <option class="option-category">언론사</option>
           </select>
           <input type="text" class="search-text" placeholder="검색" v-model="state.searchTxt" @keyup.enter="clickSearchBtn" @click="clickSearchBar"/>
           <a class="search-btn" @click="clickSearchBtn">
@@ -56,6 +57,8 @@ export default {
     border:none;
     outline:none;
     background-color: white;
+    width : 5em;
+    text-align: center;
 }
 
 .search-box{

@@ -32,4 +32,8 @@ public class NewsController {
 	public ResponseEntity<Page<News>> findNewsByContent(@RequestParam(name="content") String content, @RequestParam(name="page") int page){
 		return new ResponseEntity<>(newsService.findByContent(content, page), HttpStatus.OK);			
 	}
+	@GetMapping("find/company")
+	public ResponseEntity<Page<News>> findNewsByCompany(@RequestParam(name="company") String company, @RequestParam(name="page") int page){
+		return new ResponseEntity<>(newsService.findByCompany(company, page), HttpStatus.OK);
+	}
 }

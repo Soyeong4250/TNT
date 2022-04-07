@@ -37,7 +37,6 @@
 import { useForm, useField } from 'vee-validate';
 import { useStore } from "vuex";
 import * as yup from 'yup';
-import { onMounted } from '@vue/runtime-core';
 import axios from "axios";
 export default {
     name : 'UserLogin',
@@ -103,7 +102,6 @@ export default {
                 user_pwd: kakao_account.email+"ssafy6"
               };
               store.dispatch("accountStore/getToken", payload);
-                                           
             })
             .catch(()=>{    // 로그인 실패           
               // 회원가입 진행
@@ -148,24 +146,6 @@ export default {
       })
     }
 
-    //naver
-    onMounted(() => {
-      console.log(process.env.VUE_APP_NAVER_KEY+" "+process.env.VUE_APP_NAVER_CALLBACK_URL);
-      var naverLogin = new window.naver.LoginWithNaverId({
-        clientId: process.env.VUE_APP_NAVER_KEY,
-        callbackUrl: process.env.VUE_APP_NAVER_CALLBACK_URL,
-        isPopup: false,
-        loginButton: {color: "green", type: 3, height: '60'}
-      });
-      naverLogin.init();
-      
-     })
-    
-    const naverLogin = () =>{
-      var btnNaverLogin = document.getElementById("naverIdLogin").firstChild;
-      btnNaverLogin.click();
-      // location.href="/";
-    }
     return {
       onSubmit,
       user_id,
@@ -175,7 +155,6 @@ export default {
       GetMe,
       kakaoLogin,
       kakaoLogout, 
-      naverLogin,
     };
     }
 }
