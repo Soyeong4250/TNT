@@ -25,6 +25,9 @@
           <!-- <article-number/> -->
         </div>
         <div class="mainBox mx-auto">
+          <word-cloud></word-cloud>
+        </div>
+        <div class="mainBox mx-auto">
           <daily-chart/>
         </div>
       </div>
@@ -37,12 +40,13 @@
 import MainSearch from "@/components/main-search.vue";
 import dailykeyword from "@/components/main/daily-keyword.vue";
 import DailyChart from "@/components/main/daily-chart.vue";
-
+import WordCloud from "@/components/main/word-cloud.vue";
 export default {
     name: "MainContent",
     components:{
       MainSearch,
       dailykeyword,
+      WordCloud,
       DailyChart,
     },
 }

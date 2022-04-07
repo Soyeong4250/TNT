@@ -26,7 +26,7 @@ export const keywordStore={
 			state.nowKeywords= [{ keyword: null, rank: 0 }];
 			console.log(results);
 			results.forEach((result) => {
-				// console.log(results.indexOf(result));
+				// console.log(results.indexOf(result));s
 				state.nowKeywords.push({ value: result, rank: results.indexOf(result)});
 			})
 	
