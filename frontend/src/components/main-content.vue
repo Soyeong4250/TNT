@@ -40,6 +40,10 @@
           <!-- <article-number/> -->
         </div>
         <div class="mainBox mx-auto">
+          <h3 style="width: 95%; padding-left: 1.5em; color:#1f57f1; font-weight:bold">WordCloud</h3>
+          <word-cloud></word-cloud>
+        </div>
+        <div class="mainBox mx-auto">
           <daily-chart/>
         </div>
       </div>
@@ -51,14 +55,15 @@ import MainSearch from "@/components/main-search.vue";
 import MainTab from "@/components/main/main-tab.vue";
 import dailykeyword from "@/components/main/daily-keyword.vue";
 import DailyChart from "@/components/main/daily-chart.vue";
-
+import WordCloud from "@/components/main/word-cloud.vue";
 export default {
     name: "MainContent",
     components:{
-    MainSearch,
-    dailykeyword,
-    DailyChart,
-    MainTab,
+      MainSearch,
+      MainTab,
+      dailykeyword,
+      DailyChart,
+      WordCloud,
     },
 }
 </script>

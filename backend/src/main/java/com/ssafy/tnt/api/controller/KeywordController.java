@@ -1,5 +1,6 @@
 package com.ssafy.tnt.api.controller;
 
+import java.util.LinkedHashMap;
 import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class KeywordController {
 	KeywordService keywordService;
 	
 	@GetMapping()
-	public ResponseEntity<TreeMap<Integer, String>> findKeyword() {
+	public ResponseEntity<LinkedHashMap<String, Integer>> findKeyword() {
 		return new ResponseEntity<> (keywordService.findKeyword(), HttpStatus.OK);
 	}
 	

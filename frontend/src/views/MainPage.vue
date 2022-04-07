@@ -2,8 +2,8 @@
 <div class="main-size">
   <main-header></main-header>
   <router-view :key="$route.fullPath"></router-view>
-  <main-footer> </main-footer>
 </div>
+  <main-footer> </main-footer>
 </template>
 
 <script>
@@ -20,8 +20,8 @@ export default {
 
 <style>
 .main-size{
-  margin-left: 8%;
-  margin-right: 8%;
+  margin-left: 15%;
+  margin-right: 15%;
   font-family: 'NanumBarunGothic', sans-serif;
 }
 </style>

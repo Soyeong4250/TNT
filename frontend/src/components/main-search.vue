@@ -32,7 +32,7 @@ export default {
             
             this.$router.push({
                 name : "Search",
-                params: {selected : this.selected, searchWord : this.searchWord}
+                params: {selected : this.selected, searchWord : this.searchWord,page: 1}
             });
             
             

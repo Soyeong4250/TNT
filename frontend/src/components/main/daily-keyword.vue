@@ -3,52 +3,56 @@
         <div id = "keyword-box">
             <!-- <h5>this.keywordRank : {{ keywordRank }}</h5> -->
             <!-- <h5>{{ this.rank5 }}</h5> -->
-            <p>오늘의 키워드</p>
-            <div class="cateBtn">
-                <b-button class = "button" pill variant="outline-primary" :key="key.num" v-for="key in categories">
-                    {{key.category}}
-                </b-button>
-            </div>
+            <h3 style="width: 95%; padding-left: 1em; color:#1f57f1; font-weight:bold">오늘의 키워드</h3>
             <div id="keyword-inbox" style="display:flex">
                 <div class="flex-container column mx-auto my-auto" >
                     <div class = "rank-box" v-for="(rank, index) in this.rank0" :key="index">
                         <b-button class="ranking" pill variant = "secondary"> 
-                        {{ rank.rank+1 }} {{ rank.value }}
+                        {{ index+1 }} {{ rank.value }}
                         </b-button>
+                        
                     </div>
                 </div>
                 <div class="flex-container column mx-auto my-auto" >
-                 <div class ="rank-box "  v-for="(rank, index) in this.rank5" :key="index">
+                    <div class ="rank-box "  v-for="(rank, index) in this.rank5" :key="index">
                     <b-button class="ranking" pill variant = "secondary"> 
-                    <!-- {{ rank.rank }}   {{rank.content}} {{rank.change}} -->
-                     {{ rank.rank+1 }} {{ rank.value }}
+                        <!-- {{ rank.rank }}   {{rank.content}} {{rank.change}} -->
+                     {{ index+6 }} {{ rank.value }}
                     </b-button>
+                        
                 </div>
                 </div>
             </div>
             <div class="articleNumber d-flex" style="width:95%; padding:1em;">
                 <div class="artnum">
-                    <table class="mx-auto">
+                    <table class="mx-auto result_table">
                         <thead>
                             <th colspan="2">언론사별 기사 수</th>
                         </thead>
                         <tbody id="article-number">
-                            <tr :key="article" v-for="article in articles">
-                                <td>{{article.name}}</td>
-                                <td>{{article.num}}</td>
+                            <tr class="result_row" v-for="(company, index) in this.companyCnt" :key="index">
+                                <td>{{ index+1 }}</td>
+                                <td class="result_value">{{ company.news_company }}</td>
+                                <td>{{ company.count }}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="keynum">
-                    <table class="mx-auto">
+                    <table class="mx-auto result_table">
                         <thead>
                             <th colspan="2">키워드 개수</th>
                         </thead>
                         <tbody id="article-number">
-                            <tr :key="keyword" v-for="keyword in keywords">
-                                <td>{{keyword.name}}</td>
-                                <td>{{keyword.num}}</td>
+                            <tr class="result_row" v-for="(keyword, index) in rank0" :key="index">
+                                <td>{{ index+1 }}</td>
+                                <td class="result_value">{{keyword.value}}</td>
+                                <td>{{keyword.count}}</td>
+                            </tr>
+                            <tr v-for="(keyword, index) in rank5" :key="index">
+                                <td>{{ index+1 }}</td>
+                                <td>{{keyword.value}}</td>
+                                <td>{{keyword.count}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -64,113 +68,17 @@
 </template>
 
 <script>
+import http from "@/util/http-common.js";
 import { mapGetters } from 'vuex';
 export default {
-
-// data() {
-//     return {
-//         articles : [
-//                 {name: "조선일보",
-//                 num:100},
-//                 {name : "동아일보",
-//                 num:70},
-//                 {name: "중앙일보",
-//                 num:60},
-//                 {name: "한겨레",
-//                 num:30},
-//                 {name: "경향신문",
-//                 num:10},
-                
-//                 ],
-//                 keywords : [
-//                 {name: "삼성전자",
-//                 num:100},
-//                 {name : "삼성SDI",
-//                 num:70},
-//                 {name: "코로나19",
-//                 num:60},
-//                 {name: "싸피",
-//                 num:30},
-//                 {name: "삼성증권",
-//                 num:10},
-                
-//                 ]
-         
-//     }
-// },
-    setup() {
-        const categories =[
-                { category : "전체",
-                  num : 1},
-                  { category : "정치",
-                  num : 2},
-                  { category : "경제",
-                  num : 3},
-                  { category : "사회",
-                  num : 4},
-                  { category : "생활/문화",
-                  num : 5},
-                  { category : "IT/과학",
-                  num : 6},
-                  { category : "오피니언",
-                  num : 7},
-                  
-            ];
-        const ranks5 = [{rank:1,
-                    content : "삼성전자",
-                    change : 0},
-                    {rank:2,
-                    content : "삼성전자",
-                    change : 0},
-                    {rank:3,
-                    content : "삼성전자",
-                    change : 0},
-                    {rank:4,
-                    content : "삼성전자",
-                    change : 0},
-                    {rank:5,
-                    content : "삼성전자",
-                    change : 0},
-                    ];
-        const ranks10 = [ {rank:6,
-                    content : "삼성전자",
-                    change : 0},
-                    {rank:7,
-                    content : "삼성전자",
-                    change : 0},
-                    {rank:8,
-                    content : "삼성전자",
-                    change : 0},
-                    {rank:9,
-                    content : "삼성전자",
-                    change : 0},
-                    {rank:10,
-                    content : "삼성전자",
-                    change : 0},
-        ];
-        return{
-            categories,
-            ranks5,
-            ranks10
-        }
-    },
-
     data() {
-        return{
-            categoriess: [
-                { category : "전체", num : 1},
-                { category : "정치", num : 2},
-                { category : "경제", num : 3},
-                { category : "사회", num : 4},
-                { category : "생활/문화", num : 5},
-                { category : "IT/과학", num : 6},
-                { category : "오피니언", num : 7},
-            ],
+        return {
+            categories:  [],
             rank0: [],
             rank5: [],
+            companyCnt: [],
         }
     },
-    
     computed: {
         ...mapGetters({
            keywordRank: "keywordStore/keywordRank",
@@ -180,7 +88,23 @@ export default {
     created() {
         this.$store.dispatch("keywordStore/GET_UPDATE_KEYWORD");
         this.rank0 = this.keywordRank.slice(0, 5);
-        this.rank5 = this.keywordRank.slice(5);
+        this.rank5 = this.keywordRank.slice(5,10);
+    },
+    mounted() {
+        this.getCompanyCnt();
+    },
+    methods: {
+        getCompanyCnt() {
+            http.get(`/news/find/company/count`)
+            .then((response) => {
+                console.log("언론사별 cnt 결과")
+				console.log(response.data);
+				this.companyCnt = response.data.slice(0, 10);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+        }
     }
 }
 </script>
@@ -221,7 +145,13 @@ export default {
 .artnum, .keynum {
     width: 50%;
 }
-
+.result_table{
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+.result_value{
+    font-weight: bold;
+}
 /* #artnum {
     position: relative;
     width: 30%;

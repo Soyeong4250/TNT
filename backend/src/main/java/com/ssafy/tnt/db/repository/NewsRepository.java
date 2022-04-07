@@ -18,4 +18,7 @@ public interface NewsRepository extends JpaRepository<News, Long>{
 	
 	@Query(value = "select news_category, count(*) as count from news group by(news_category)", nativeQuery=true)
 	public List<Map<String, Object>> findCategoryCount();
+
+	@Query(value = "SELECT news_company, count(*) as count from news GROUP BY(news_company) ORDER BY count DESC;", nativeQuery=true)
+	public List<Map<String, Object>> findCompanyCount();
 }
