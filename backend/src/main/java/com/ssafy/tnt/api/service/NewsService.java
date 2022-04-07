@@ -1,5 +1,6 @@
 package com.ssafy.tnt.api.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,5 +13,5 @@ public interface NewsService {
 	Page<News> findByTitle(String title, int page);
 	Page<News> findByContent(String content, int page);
 	Page<News> findByCompany(String company, int page);
-	List<Map<String, Object>> findCategoryCount();
+	HashMap<String, Integer> findCategoryCount();
 }

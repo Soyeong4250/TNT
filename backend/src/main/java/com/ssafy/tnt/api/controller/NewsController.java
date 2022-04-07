@@ -1,6 +1,7 @@
 package com.ssafy.tnt.api.controller;
 
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,7 +42,7 @@ public class NewsController {
 	}
 	
 	@GetMapping("find/category/count")
-	public ResponseEntity<List<Map<String,Object>>> findCategoryCount(){
+	public ResponseEntity<HashMap<String,Integer>> findCategoryCount(){		
 		return new ResponseEntity<>(newsService.findCategoryCount(), HttpStatus.OK);		
 	}
 }

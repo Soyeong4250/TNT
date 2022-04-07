@@ -20,8 +20,8 @@
     <div id="kakao_id_login" class="pt-1 mb-4" @click="kakaoLogin">
     </div>
 
-    <div id="naverIdLogin" class="pt-1 mb-4" style="display: none;"></div>
-    <div id="naver_id_login" class="pt-1 mb-4" @click="naverLogin"></div>
+    <!-- <div id="naverIdLogin" class="pt-1 mb-4" style="display: none;"></div>
+    <div id="naver_id_login" class="pt-1 mb-4" @click="naverLogin"></div> -->
 
     <div class="mb-2 pb-lg-2">
     <span class="small"><router-link to="/users/find/id">아이디 찾기</router-link></span>
