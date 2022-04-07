@@ -121,9 +121,9 @@ export const accountStore={
                     alert("회원 탈퇴 실패")
                 })
         },
-        updateUser({commit},user_id,{user_name, user_pwd}){
+        updateUser({commit},{user_id,user_name, user_pwd}){
             axios.
-                put(process.env.VUE_APP_API_URL + `/user/${user_id}`,{user_name, user_pwd})
+                put(process.env.VUE_APP_API_URL + `/users/${user_id}`,{user_name, user_pwd})
                 .then(()=>{
                     commit("setUpdateUser", user_name);
                 })

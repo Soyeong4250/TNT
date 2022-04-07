@@ -42,15 +42,17 @@ export default {
         .required("비밀번호 확인은 필수 기입사항 입니다."),
     });
     const state=ref({
-            userId: store.state.accountStore.userId
+            userId: store.state.accountStore.userinfo.userId
         })
     const { handleSubmit } = useForm({validationSchema: schema,});
     const onSubmit = handleSubmit(values => {
+        console.log(store.state.accountStore.userinfo.userId)
       const payload = {
+        user_id: state.value.userId,
         user_name: values.user_name,
         user_pwd: values.user_pwd,
       };
-      store.dispatch("accountStore/updateUser",state.value.userId, payload);
+      store.dispatch("accountStore/updateUser", payload);
     });
     // No need to define rules for fields
     const { value: user_name, errorMessage: userNameError } = useField('user_name');

@@ -4,6 +4,7 @@ import Search from "@/views/SearchPage.vue";
 import UserPage from "@/views/UserPage.vue";
 import UserLogin from "@/views/users/UserLogin.vue";
 import UserRegister from "@/views/users/UserRegister.vue"
+import UserUpdate from "@/views/users/UserUpdate.vue"
 import Profile from "@/views/users/UserProfile.vue"
 import FindId from "@/views/users/find/FindId.vue";
 import FindPwd from "@/views/users/find/FindPwd.vue";
@@ -49,6 +50,11 @@ const routes = [
         path:"register",
         name:"UserRegister",
         component: UserRegister,
+      },
+      {
+        path:"update",
+        name:"UserUpdate",
+        component: UserUpdate,
       },
       {
         path: "find/id",
