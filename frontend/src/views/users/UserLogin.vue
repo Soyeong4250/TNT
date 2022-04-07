@@ -178,11 +178,6 @@ export default {
   /* background-color: transparent; */
   border-radius: 0.3rem;
   background-image: linear-gradient(310deg, #04e4a1 0%, #5ffce7 100%);
-  /* 밑에 두개가 내가 한 것 */
-  /* background-color: #aae9e5; */
-  /* background-image: linear-gradient(310deg, rgb(55, 211, 190) 0%, #aae9e5 100%); */
-  /* 원본 색 */
-  /* background-image: linear-gradient(310deg, #2dce89 0%, #2dcecc 100%); */
 }
 .link-color {
   color: rgb(49, 180, 242);

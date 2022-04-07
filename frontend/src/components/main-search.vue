@@ -1,4 +1,5 @@
 <template>
+<nav>
   <div class="container-fluid">
       <div id="searchBar" class="search-box">
           <select class="category-select" v-model="selected">
@@ -9,14 +10,15 @@
           </select>
           <input type="text" class="search-text" placeholder="검색" v-model="searchWord" @keyup.enter="clickSearchBtn" @click="clickSearchBar"/>
           <a class="search-btn" @click="clickSearchBtn">
-              <i class="bi bi-search"></i>
+              <i class="fas fa-search"></i>
           </a>
       </div>
   </div>
+</nav>
 </template>
+
 <script>
 export default {
-
     data() {
         return {
             selected: "선택",
@@ -43,6 +45,7 @@ export default {
 
 <style>
 .category-select{
+    border-radius: 20px;
     border:none;
     outline:none;
     background-color: white;
@@ -52,6 +55,7 @@ export default {
 
 .search-box{
     margin: 10%;
+    display: flex;
     padding: auto;
     border:1px solid rgb(62, 62, 253);
     padding-left: 10px;
@@ -64,8 +68,8 @@ export default {
     padding-right: 5px;
     text-decoration: none;
     float: right;
-    width:40px;
-    height: 40px;
+    width: 38px;
+    height: 35px;
     background-color: white;
     border-radius: 50%;
     display: flex;

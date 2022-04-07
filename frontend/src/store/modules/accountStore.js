@@ -39,6 +39,10 @@ export const accountStore={
           setUserId(state, userId){
               state.userId=userId;
               router.push({name:"FindIdResult"})
+          },
+          setUpdateUser(state, username){
+              state.userinfo.name=username;
+              router.push({name:"Profile"});
           }
     },
     actions:{
@@ -104,6 +108,29 @@ export const accountStore={
               .catch((err) => {
                 console.log("에러", err.response);
               });
-            }
+            },
+        deleteUser({commit}, user_id){
+            axios.
+                delete(process.env.VUE_APP_API_URL + `/users/${user_id}`)
+                .then(()=>{
+                    commit("logout")
+                    router.push({name:"Main"});
+                })
+                .catch((err)=>{
+                    console.log("에러",err.response);
+                    alert("회원 탈퇴 실패")
+                })
+        },
+        updateUser({commit},user_id,{user_name, user_pwd}){
+            axios.
+                put(process.env.VUE_APP_API_URL + `/user/${user_id}`,{user_name, user_pwd})
+                .then(()=>{
+                    commit("setUpdateUser", user_name);
+                })
+                .catch((err)=>{
+                    console.log("에러",err.response);
+                    alert("회원 수정 실패");
+                })
+        }
     },
 }

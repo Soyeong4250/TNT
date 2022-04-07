@@ -17,7 +17,7 @@
             <button type="button" class="btn btn-primary btn-rounded btn-lg">
               정보수정
             </button>
-            <button type="button" class="btn btn-primary btn-rounded btn-lg">
+            <button type="button"  @click="userDelete" class="btn btn-primary btn-rounded btn-lg">
               회원탈퇴
             </button>
           </div>
@@ -40,7 +40,12 @@ export default {
                 return store.state.accountStore.userinfo;
             })
         })
+        
+        const userDelete=(()=>{
+            return store.dispatch("accountStore/deleteUser",state.userInfo.userId);
+        });
         return{
+            userDelete,
             state,
         }
     }
