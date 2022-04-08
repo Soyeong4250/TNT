@@ -69,15 +69,15 @@ export default {
     if (this.type == "modify") {
       // this.getNotice(`/notice/${this.$route.params.no}`);
       http.get(`/notice/${this.$route.params.no}`).then(({data}) => {
-				console.log(data);
+				//console.log(data);
         // this.notice = data;
         this.no = data.no;
         this.writer = data.writer;
 				this.title = data.title;
         this.content = data.content;
 			})
-			.catch((error) => {
-				console.log(error);
+			.catch(() => {
+				//console.log(error);
 			});
     }
   },
@@ -122,7 +122,7 @@ export default {
         });
     },
     writeNotice() {
-      console.log(this.userinfo);
+      //console.log(this.userinfo);
         http.post(`/notice/`, {
           title : this.title,
           writer : this.userinfo.id,
@@ -134,8 +134,8 @@ export default {
           }
           alert(msg);
           this.moveList();
-        }).catch(({error}) => {
-          console.log(error);
+        }).catch(() => {
+          //console.log(error);
         });
     },
     modifyNotice() {
@@ -147,8 +147,8 @@ export default {
           content: this.content,
         })
         .then((data) => {
-          console.log(this.$route.params.no);
-          console.log(data);
+          //console.log(this.$route.params.no);
+          //console.log(data);
           let msg = "수정 처리시 문제가 발생했습니다.";
           if (data.status == 200) {
             msg = "수정이 완료되었습니다.";

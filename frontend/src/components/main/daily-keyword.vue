@@ -79,12 +79,12 @@ export default {
         getCompanyCnt() {
             http.get(`/news/find/company/count`)
             .then((response) => {
-                console.log("언론사별 cnt 결과")
-				console.log(response.data);
+                //console.log("언론사별 cnt 결과")
+				//console.log(response.data);
 				this.companyCnt = response.data.slice(0, 10);
 			})
-			.catch((error) => {
-				console.log(error);
+			.catch(() => {
+				//console.log(error);
 			});
         }
     }

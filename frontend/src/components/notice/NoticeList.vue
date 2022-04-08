@@ -99,14 +99,14 @@ export default {
 		};
 	},
 	created() {
-		console.log("리스트 created");
+		//console.log("리스트 created");
 		this.getNoticeList();
 		// await this.getNoticeList();
-		console.log(this.userinfo);
-		console.log("리스트 createdEnd");
+		//console.log(this.userinfo);
+		//console.log("리스트 createdEnd");
 	},
 	mounted() {
-		console.log(this.userinfo);
+		//console.log(this.userinfo);
 	},
 	computed: {
 		...mapGetters({userinfo: "accountStore/GET_USER_INFO"})
@@ -115,11 +115,11 @@ export default {
 		getNoticeList(){
 			http.get(`/notice`, {params: {page: this.page}})
 			.then(response => {
-				console.log(response.data);
+				//console.log(response.data);
 				this.notices = response.data;
 			})
-			.catch((error) => {
-				console.log(error);
+			.catch(() => {
+				//console.log(error);
 			});
 		},
 		pageClick: function (button, page){

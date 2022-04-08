@@ -97,14 +97,14 @@ export default {
     const { value: user_birth, errorMessage: birthError } = useField('user_birth');
 
     const onSubmit = handleSubmit(values=>{
-        console.log("작동?")
+        //console.log("작동?")
       if (bool.value) {
         alert("중복된 아이디입니다.");
       } else {
         axios
           .post(process.env.VUE_APP_API_URL + "/users/register/", values)
           .then((response) => {
-            console.log(response);
+            //console.log(response);
             if(response.data.message==="Success") alert("회원 등록 성공!");
             router.push({name: "Main"})
           })//.catch(alert("회원 등록 실패!"));

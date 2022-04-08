@@ -46,7 +46,7 @@ export default {
         })
     const { handleSubmit } = useForm({validationSchema: schema,});
     const onSubmit = handleSubmit(values => {
-        console.log(store.state.accountStore.userinfo.userId)
+        //console.log(store.state.accountStore.userinfo.userId)
       const payload = {
         user_id: state.value.userId,
         user_name: values.user_name,

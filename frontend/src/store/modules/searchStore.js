@@ -34,7 +34,7 @@ export const searchStore={
 		// 	router.push({name: "Search"});
 		// },
 		SET_SEARCH_NEWS(state, result) {
-			console.log(result);
+			//console.log(result);
 			state.searchWord = "";
 			state.news = [];
 			state.news = result.content;
@@ -47,49 +47,49 @@ export const searchStore={
 			
 			http.get(`/news/find/title`, {params : {title: searchData.searchWord, page: searchData.page}})
       .then((response) => {
-        console.log("제목 검색 결과");
-				console.log(response.data.content);
-        let msg = "제목 검색시 문제가 발생했습니다.";
+        //console.log("제목 검색 결과");
+				//console.log(response.data.content);
+        //let msg = "제목 검색시 문제가 발생했습니다.";
         if(response.status == 200) {
-          msg = "제목 검색이 완료되었습니다.";
+         // msg = "제목 검색이 완료되었습니다.";
           // this.news = data;
 					// commit("SET_SEARCH_TITLE", {content : response.data.content, searchWord: searchData.searchWord});
 					commit("SET_SEARCH_NEWS", {content : response.data.content, searchWord: searchData.searchWord});
         }
-        console.log(msg);
+        //console.log(msg);
         });
 		},
 		GET_SEARCH_CONTENT({ commit }, searchData) {
 			
 			http.get(`/news/find/content`, {params : {content: searchData.searchWord, page: searchData.page}})
       .then((response) => {
-				console.log("내용 검색 결과")
-        console.log(response.data.content);
-        let msg = "내용 검색시 문제가 발생했습니다.";
+				//console.log("내용 검색 결과")
+        //console.log(response.data.content);
+        //let msg = "내용 검색시 문제가 발생했습니다.";
         if(response.status == 200) {
-          msg = "내용 검색이 완료되었습니다.";
+          //msg = "내용 검색이 완료되었습니다.";
           // this.news = data;
 					// commit("SET_SEARCH_CONTENT", {content : response.data.content, searchWord: searchData.searchWord});
 					commit("SET_SEARCH_NEWS", {content : response.data.content, searchWord: searchData.searchWord});
         }
-        console.log(msg);
+        //console.log(msg);
         });
 		},
 		GET_SEARCH_COMPANY({ commit }, searchData) {
-			console.log(searchData.page);
-			console.log(searchData);
+			//console.log(searchData.page);
+			//console.log(searchData);
 			http.get(`/news/find/company`, {params : {company: searchData.searchWord, page: searchData.page}})
 			.then((response) => {
-				console.log("언론사 검색 결과")
-				console.log(response.data.content);
-				let msg = "언론사 검색시 문제가 발생했습니다.";
+				//console.log("언론사 검색 결과")
+				//console.log(response.data.content);
+				//let msg = "언론사 검색시 문제가 발생했습니다.";
 				if(response.status == 200) {
-					msg = "언론사 검색이 완료되었습니다.";
+					//msg = "언론사 검색이 완료되었습니다.";
 					// this.news = data;
 					// commit("SET_SEARCH_COMPANY", {content : response.data.content, searchWord: searchData.searchWord});
 					commit("SET_SEARCH_NEWS", {content : response.data.content, searchWord: searchData.searchWord});
 				}
-				console.log(msg);
+				//console.log(msg);
 				});
 		}
 	},

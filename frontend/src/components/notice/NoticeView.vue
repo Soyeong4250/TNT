@@ -61,10 +61,10 @@ export default {
 		...mapGetters({userinfo: "accountStore/GET_USER_INFO"}),
 	},
   created() {
-		console.log("created")
+		//console.log("created")
 		this.getNotice(`/notice/${this.no}`);
 		// console.log(this.notice.title);
-		console.log("createdEnd");
+		//console.log("createdEnd");
 	},
 	methods: {
 		getNotice(no) {
@@ -72,8 +72,8 @@ export default {
 				console.log(data);
 				this.notice = data;
 			})
-			.catch((error) => {
-				console.log(error);
+			.catch(() => {
+				//console.log(error);
 			});
 		},
 		deleteNotice() {
@@ -85,8 +85,8 @@ export default {
           content: this.content,
         })
         .then((data) => {
-          console.log(this.$route.params.no);
-          console.log(data);
+          //console.log(this.$route.params.no);
+         // console.log(data);
           let msg = "삭제 처리시 문제가 발생했습니다.";
           if (data.status == 200) {
             msg = "삭제가 완료되었습니다.";

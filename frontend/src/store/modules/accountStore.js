@@ -32,7 +32,7 @@ export const accountStore={
           },
           setUser(state, userinfo) {
             state.userinfo = userinfo;
-            console.log(state.userinfo);
+            //console.log(state.userinfo);
             router.push({ name: "Main" });
             // console.log(state.accounts)
           },
@@ -62,12 +62,12 @@ export const accountStore={
                     },
                   })
                   .then((response) => {
-                    console.log(response.data);
+                    //console.log(response.data);
                     commit("setUser", response.data);
                   });
               })
-              .catch((err) => {
-                console.log("에러", err.response);
+              .catch(() => {
+                //console.log("에러", err.response);
                 alert("존재하지 않는 아이디 혹은 맞지 않는 비밀번호 입니다.");
               });
           },
@@ -77,9 +77,9 @@ export const accountStore={
                 user_email
             }).then((response)=>{
                 commit("setUserId",response.data.userId);
-                console.log(response.data.userId);
-            }).catch((err) => {
-                console.log("에러", err.response);
+                //console.log(response.data.userId);
+            }).catch(() => {
+                //console.log("에러", err.response);
                 alert("이름과 이메일이 맞지 않습니다.");
             });
           },
@@ -102,11 +102,11 @@ export const accountStore={
                 },
               })
               .then((response) => {
-                console.log(response);
+                //console.log(response);
                 commit("setUser", response.data.userinfo);
               })
-              .catch((err) => {
-                console.log("에러", err.response);
+              .catch(() => {
+                //console.log("에러", err.response);
               });
             },
         deleteUser({commit}, user_id){
@@ -116,8 +116,8 @@ export const accountStore={
                     commit("logout")
                     router.push({name:"Main"});
                 })
-                .catch((err)=>{
-                    console.log("에러",err.response);
+                .catch(()=>{
+                    //console.log("에러",err.response);
                     alert("회원 탈퇴 실패")
                 })
         },
@@ -127,8 +127,8 @@ export const accountStore={
                 .then(()=>{
                     commit("setUpdateUser", user_name);
                 })
-                .catch((err)=>{
-                    console.log("에러",err.response);
+                .catch(()=>{
+                    //console.log("에러",err.response);
                     alert("회원 수정 실패");
                 })
         }
