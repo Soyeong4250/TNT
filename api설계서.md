@@ -1,5 +1,5 @@
 # API 명세서
-- ### 기본 포트 : http://localhost:9999/api/v1  |   http://j6b206.p.ssafy.io:9999/api/v1
+- ### 기본 포트 : http://localhost:9999/api  |   http://j6b206.p.ssafy.io:9999/api
 [회원](#회원)  
 [공지사항 게시판](#공지사항-게시판)  
 [뉴스](#뉴스)
@@ -275,26 +275,228 @@ FAIL{
 ```
   
 ## 뉴스
+
+### 뉴스 크롤링(다른 서버를 이용)
+### - PORT 9990
+- URL
+```
+POST :9990/api/news/craw
+```
+- Header
+```
+Authorization : c3NhZnlCaWc2aXg=
+```
+- Request
+```json
+X
+```
+- Response
+``` json
+SUCCESS{
+    "code":200,"message":"Success : 크롤링한 뉴스 기사 개수 : n",
+}
+FAIL{
+    "code": 500, "message": "Error : 서버 오류 : 오류 내용",
+    "code": 401, "message": "올바르지 않는 Header 값 : 오류 내용"
+}
+```
 ---
 
-### 뉴스 검색 카테고리
+### 뉴스 카테고리 검색
+- URL
+```
+GET /news/find/category?<string:category>&<int:page>
+```
+- Request
+```json
+X
+```
+- Response
+``` json
+SUCCESS{
+    "content": [
+        {
+            "no": 141179,
+            "title": "\"일촌 신청 받아요\"…싸이월드 '도토리 감성' 돌아온다",
+            "category": "IT",
+            "date": "2022-04-03T03:04:00.000+00:00",
+            "reporter": "윤정원 기자",
+            "content": "내용",
+            "company": "언론사",
+            "tumbnailUrl": "섬네일 url",
+            "newsUrl": "news 원문 url"
+        },
+    ],
+        "pageable": {
+        "sort": {
+            "empty": true,
+            "unsorted": true,
+            "sorted": false
+        },
+        "offset": 10,
+        "pageSize": 10,
+        "pageNumber": 1,
+        "paged": true,
+        "unpaged": false
+    },
+        "last": false,
+        "totalPages": 122,
+        "totalElements": 1217,
+        "size": 10,
+        "number": 1,
+        "sort": {
+            "empty": true,
+            "unsorted": true,
+            "sorted": false
+        },
+        "numberOfElements": 10,
+        "first": false,
+        "empty": false
+}
+FAIL{
+    "code": 500, "message": "Error : 서버 오류 : 오류 내용",
+}
+```
 
-### 뉴스 검색 검색어 
+### 뉴스 단어 제목 검색 
+- URL
+```
+GET /news/find/title?<string:title>&<int:page>
+```
+- Request
+```json
+X
+```
+- Response
+```
+SUCCESS{
+    뉴스 카테고리 검색 결과와 같습니다.
+}
+FAIL{
+    "code": 500, "message": "Error : 서버 오류 : 오류 내용",
+}
+```
 
-### 뉴스 검색 상세검색
+### 뉴스 단어 내용 검색
+- URL
+```
+GET /news/find/content?<string:content>&<int:page>
+```
+- Request
+```json
+X
+```
+- Response
+``` 
+SUCCESS{
+    뉴스 카테고리 검색 결과와 같습니다.
+}
+FAIL{
+    "code": 500, "message": "Error : 서버 오류 : 오류 내용",
+}
+```
 
-### 뉴스 상세보기
-
+### 뉴스 언론사 검색
+- URL
+```
+GET /news/find/company?<string:company>&<int:page>
+```
+- Request
+```json
+X
+```
+- Response
+``` 
+SUCCESS{
+    뉴스 카테고리 검색 결과와 같습니다.
+}
+FAIL{
+    "code": 500, "message": "Error : 서버 오류 : 오류 내용",
+}
+```
   
 ## 통계
 ---
 ### 데이터 비율
 
 ### 인기 키워드
+- URL
+```
+GET /news/keyword
+```
+- Request
+```json
+X
+```
+- Response
+> (인기 키워드 50개 추출)
+```json
+SUCCESS{
+    [
+        {
+            "value":"카카오",
+            "count":61
+        }
+        {
+            "value":"한국노총",
+            "count":50
+        }
+        {
+            "value":"북한",
+            "count":40
+        }
+        {
+            "value":"확진",
+            "count":30
+        }
+        ...
+    ]
+}
+FAIL{
+    "code": 500, "message": "Error : 서버 오류 : 오류 내용",
+}
+```
 
-### 뉴스 현황 차트
-
-### 워드 클라우드
-
-
-
+### 뉴스 카테고리 기사 수 검색
+- URL
+```
+GET /news/find/category/count
+```
+- Request
+```json
+X
+```
+- Response
+```json
+SUCCESS{
+    "오피니언":133,
+    "생활":581,
+    "사회":3824,
+    "전체":10322,
+    "정치":1990,
+    "경제":2798,
+    "IT":644,
+}
+FAIL{
+    "code": 500, "message": "Error : 서버 오류 : 오류 내용",
+}
+```
+### 뉴스 언론사 기사 수 검색
+- URL
+```
+GET /news/find/company/count
+```
+- Request
+```json
+X
+```
+- Response
+``` json
+SUCCESS{
+    "연합뉴스" : 1000,
+    "뉴시스1" : 500
+}
+FAIL{
+    "code": 500, "message": "Error : 서버 오류 : 오류 내용",
+}
+```
