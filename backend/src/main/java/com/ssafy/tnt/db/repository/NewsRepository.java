@@ -16,9 +16,9 @@ public interface NewsRepository extends JpaRepository<News, Long>{
 	Page<News> findByContentContainingOrderByDateDesc(String content, Pageable pageable);
 	Page<News> findByCompanyContainingOrderByDateDesc(String company, Pageable pageable);
 	
-	@Query(value = "select news_category, count(*) as count from news group by(news_category)", nativeQuery=true)
+	@Query(value = "select news_category, count(*) as count from news where DAY(news_date) = DAY(now()) group by(news_category)", nativeQuery=true)
 	public List<Map<String, Object>> findCategoryCount();
 
-	@Query(value = "SELECT news_company, count(*) as count from news GROUP BY(news_company) ORDER BY count DESC;", nativeQuery=true)
+	@Query(value = "SELECT news_company, count(*) as count from news where DAY(news_date) = DAY(now()) GROUP BY(news_company) ORDER BY count DESC;", nativeQuery=true)
 	public List<Map<String, Object>> findCompanyCount();
 }
