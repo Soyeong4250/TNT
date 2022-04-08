@@ -1,4 +1,5 @@
 <template>
+    <span class="chart-name"><i class="fas fa-chart-bar"></i>&nbsp;기사 개수 차트</span>
     <div class="chartPage">
         <canvas id="chart" height="100%"></canvas>
     </div>
@@ -93,8 +94,21 @@ export default {
 
 <style scoped>
 .chartPage {
-    width: 100%;
-    height: 720px;
-    padding: 2em 1em 5.5em 1em;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 70%;
+    height: 500px;
+    padding: 2em 1em 1em 1em;
+}
+
+.chart-name{
+    margin-top: 30px;
+    margin-left: 10%;
+    font-family: 'NanumBarunGothicBold',sans-serif;
+    font-size : 18px;
+    margin-bottom: 20px;
+}
+.fa-chart-bar{
+    color:blue
 }
 </style>
