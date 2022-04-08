@@ -27,7 +27,7 @@ export default {
     },
   methods: {
     genLayout() {
-        console.log("!!!!!!!!!");
+        //console.log("!!!!!!!!!");
       const cloud = require("d3-cloud");
       cloud()
         .size([1000, 500])
