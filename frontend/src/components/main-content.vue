@@ -34,7 +34,7 @@
         </div>
         </div>
         <dailykeyword/>
-        <word-cloud></word-cloud>
+        <word-cloud/>
         <daily-chart/>
 </template>
 
@@ -64,29 +64,6 @@ export default {
 }
 .nav-tab-category button:focus{
     outline: none;
-}
-.mainPage{
-  height: auto;
-  min-width: 600px;
-}
-.mainPage::after {
-  content: '';
-  display: block;
-  clear: both;
-}
-.flexbox{
-  flex-wrap: wrap;
-  gap: 1em;
-  align-content: center;
-  
-}
-
-.mainBox {
-    margin-left:10%;
-  width: 55em;
-  height: 100%;
-  float: left;
-  flex-grow: 0;
 }
 
 .category{
