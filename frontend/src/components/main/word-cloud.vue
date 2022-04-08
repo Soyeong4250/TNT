@@ -14,11 +14,9 @@ export default {
     }
     },
      mounted() {
-         console.log(this.keywordRank);
            this.keywordRank.forEach((keyword) => {
             this.words.push({text:keyword.value,size:keyword.count/170*100, color:this.randomRGB()});
         }); 
-        console.log(this.words);  
     this.genLayout();
   },
   computed: {

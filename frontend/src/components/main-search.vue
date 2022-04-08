@@ -27,8 +27,8 @@ export default {
     },
     methods: {
         clickSearchBtn() {
-            console.log(this.searchWord + "을(를) 검색했습니다.");
-            console.log(document.location.href);
+            //console.log(this.searchWord + "을(를) 검색했습니다.");
+            //console.log(document.location.href);
             
             this.$router.push({
                 name : "Search",

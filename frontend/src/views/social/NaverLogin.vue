@@ -23,27 +23,27 @@ export default {
             naverLogin.getLoginStatus(function (status) {
                 if (status) {
                 var email = naverLogin.user.getEmail(); // 필수로 설정할것을 받아와 아래처럼 조건문을 줍니다.
-                console.log(naverLogin.user); 
+                //console.log(naverLogin.user); 
                 if( email == undefined || email == null) {
                     alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
                     naverLogin.reprompt();
                     return;
                 }
                 } else {
-                    console.log("callback 처리에 실패하였습니다.");
+                    //console.log("callback 처리에 실패하였습니다.");
                 }
             });
             naverLogin.getLoginStatus(function (status) {
                 if (status) {
                 var email = naverLogin.user.getEmail(); // 필수로 설정할것을 받아와 아래처럼 조건문을 줍니다.
-                console.log(naverLogin.user); 
+               // console.log(naverLogin.user); 
                 if( email == undefined || email == null) {
                     alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
                     naverLogin.reprompt();
                     return;
                 }
                 } else {
-                    console.log("callback 처리에 실패하였습니다.");
+                    //console.log("callback 처리에 실패하였습니다.");
                 }
                 axios.post(process.env.VUE_APP_API_URL + "/auth/login", {
                     user_id: naverLogin.user.email,
@@ -58,10 +58,10 @@ export default {
                 })
                 .catch(()=>{                                        
                     // 회원가입 진행
-                    let days = naverLogin.user.getBirthday().toString();
-                    let birthday = new Date(naverLogin.user.birthyear+'-'+days);
-                    console.log(birthday);
-                    
+                    //let days = naverLogin.user.getBirthday().toString();
+                    //let birthday = new Date(naverLogin.user.birthyear+'-'+days);
+                    //console.log(birthday);
+                    //
                     let values = {
                         user_name: naverLogin.user.name,
                         user_id: naverLogin.user.email,
