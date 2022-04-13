@@ -11,15 +11,17 @@ export default {
     return {
      words: [        
       ],
+      count: 1,
     }
     },
      mounted() {
-         console.log(this.keywordRank);
            this.keywordRank.forEach((keyword) => {
             this.words.push({text:keyword.value,size:keyword.count/170*100, color:this.randomRGB()});
-        }); 
-        console.log(this.words);  
-    this.genLayout();
+        });
+        if(this.count==1) {
+          this.genLayout();
+          this.count--;
+        }
   },
   computed: {
         ...mapGetters({
@@ -29,7 +31,7 @@ export default {
     },
   methods: {
     genLayout() {
-        console.log("!!!!!!!!!");
+        //console.log("!!!!!!!!!");
       const cloud = require("d3-cloud");
       cloud()
         .size([1000, 500])

@@ -64,10 +64,10 @@ export default {
     //kakao
     const kakaoLogout = () => {
         if(window.Kakao.Auth.getAccessToken()){
-            console.log("토큰이 이미 존재합니다.", window.Kakao.Auth.getAccessToken());
+            //console.log("토큰이 이미 존재합니다.", window.Kakao.Auth.getAccessToken());
         }
         window.Kakao.Auth.logout(()=>{
-            console.log('로그아웃 되었습니다.',window.Kakao.Auth.getAccessToken());
+            //console.log('로그아웃 되었습니다.',window.Kakao.Auth.getAccessToken());
         });
     }    
     const kakaoLogin = () => {
@@ -82,16 +82,8 @@ export default {
         url:'/v2/user/me',
         success : res => {
           const kakao_account = res.kakao_account;
-          console.log(kakao_account);
-            const userInfo = {
-              nickname : kakao_account.profile.nickname,
-              email : kakao_account.email,
-              gender : kakao_account.gender,
-              age : kakao_account.age_range,
-              birthday : kakao_account.birthday,
-              account_type : 2,
-            }
-            console.log(userInfo);            
+          //console.log(kakao_account);
+            //console.log(userInfo);            
             axios.post(process.env.VUE_APP_API_URL + "/auth/login", {
               user_id: kakao_account.email,
               user_pwd: kakao_account.email+"ssafy6"
@@ -139,9 +131,9 @@ export default {
             })
             // this.$bvModal.hide("bv-modal-example");
         },
-        fail : error => {
+        fail : () => {
           this.$router.push("/errorPage");
-          console.log(error);
+          //console.log(error);
         }
       })
     }

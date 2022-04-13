@@ -17,32 +17,30 @@ export default {
         };
     },
     created(){
-        console.log("chart created");
         this.getChartData();
-        console.log("chart createdEnd");
     },
     methods: {
         getChartData() {
             http.get(`/news/find/category/count`)
             .then((response) => {
-                console.log(response.data);
+                //console.log(response.data);
                 // Object.keys(response.data).forEach((d)=>{
                 //   this.dataCnt.push({
 				// 	category: d,
 				// 	cnt: response.data[d],
 				// })
                 this.dataCnt = response.data;
-                console.log("전체 출력 : "+ this.dataCnt.전체);
-                console.log(typeof(this.dataCnt.전체));
+                //console.log("전체 출력 : "+ this.dataCnt.전체);
+                //console.log(typeof(this.dataCnt.전체));
             })
-            .catch((error) => {
-                console.log(error);
+            .catch(() => {
+                //console.log(error);
             })
         },
-        fillData(chartData) {
+        fillData() {
             const ctx = document.getElementById('chart').getContext('2d');
-            console.log("나오나요"+this.dataCnt['전체']);
-            console.log("전달 ; "+chartData);
+            //console.log("나오나요"+this.dataCnt['전체']);
+            //console.log("전달 ; "+chartData);
             this.myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {

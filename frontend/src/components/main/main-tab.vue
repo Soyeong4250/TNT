@@ -87,7 +87,7 @@ setup(props){
         thumbnailnews: 0,
         isModalViewed:false,
         news: computed(()=>{
-            console.log(state.newsList[0])
+            //console.log(state.newsList[0])
             for (let index = 0; index < state.newsList.length; index++) {
                 if(state.newsList[index].tumbnailUrl=="") continue;
                 else{

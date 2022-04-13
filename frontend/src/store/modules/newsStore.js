@@ -43,7 +43,7 @@ export const newsStore={
                 state.lifeNewsList=newsList.content;
             else
                 state.opinionNewsList=newsList.content;
-            console.log(state.politicsNewsList);
+            //console.log(state.politicsNewsList);
           }
     },
     actions:{
@@ -52,7 +52,7 @@ export const newsStore={
             .get(process.env.VUE_APP_API_URL+"/news/find/category",{params:params})
             .then((response)=>{
                 commit("setNewsList",{content : response.data.content,category:params.category})
-                console.log(response.data.content,params.category)
+                //console.log(response.data.content,params.category)
             })
         }
     },

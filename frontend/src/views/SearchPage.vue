@@ -249,7 +249,7 @@ export default {
 				}
 			},400);
 		}
-    console.log(this.newsArr);
+    //console.log(this.newsArr);
     // if(this.news.content != null){
     //   this.news.content = this.news.content.substr(0, 31) + '...';
     // }
